@@ -10,6 +10,7 @@ module org.buet.sky.airrecalculator {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.desktop;
 
     opens org.buet.sky.airrecalculator to javafx.fxml;
     exports org.buet.sky.airrecalculator;
