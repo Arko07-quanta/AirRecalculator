@@ -1,0 +1,21 @@
+.button {
+    -fx-background-color: transparent;
+    -fx-border-color: #4a90e2;
+    -fx-border-width: 2px;
+    -fx-text-fill: #4a90e2;
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease;
+}
+
+.button:hover {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: white;
+}
+
+.fancyVBox {
+    -fx-background-color: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
+    -fx-padding: 30;
+    -fx-spacing: 500;
+}
