@@ -8,16 +8,17 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainPage {
+
+public class RegistrationPage {
     private final Stage stage;
 
 
-    MainPage(Stage stage){
+    RegistrationPage(Stage stage) {
         this.stage = stage;
     }
 
     public void show() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("RegistrationPage.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
