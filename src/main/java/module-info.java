@@ -11,6 +11,7 @@ module org.buet.sky.airrecalculator {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.desktop;
+    requires transitive annotations;
 
     opens org.buet.sky.airrecalculator to javafx.fxml;
     exports org.buet.sky.airrecalculator;

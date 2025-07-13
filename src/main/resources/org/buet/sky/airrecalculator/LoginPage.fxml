@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="719.0" prefWidth="977.0" styleClass="fancyVBox" stylesheets="@../../../../style/MainPage.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="719.0" prefWidth="977.0" styleClass="fancyVBox" stylesheets="@../../../../style/MainPage.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.buet.sky.airrecalculator.LoginPageController">
    <children>
       <AnchorPane prefHeight="241.0" prefWidth="978.0">
          <children>
@@ -21,11 +21,11 @@
             </ImageView>
             <HBox alignment="CENTER" layoutY="184.0" prefHeight="59.0" prefWidth="917.0" spacing="45">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="143.0" text="Home" />
+                  <Button mnemonicParsing="false" onAction="#onMain" prefHeight="60.0" prefWidth="143.0" text="Home" />
                   <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="143.0" text="Schedule" />
                   <Button layoutX="153.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="143.0" text="Request" />
                   <Button layoutX="296.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="143.0" text="Login" />
-                  <Button layoutX="651.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="143.0" text="Registration" />
+                  <Button layoutX="651.0" layoutY="10.0" mnemonicParsing="false" onAction="#onRegistrationPage" prefHeight="60.0" prefWidth="143.0" text="Registration" />
                </children>
             </HBox>
          </children>
@@ -40,7 +40,7 @@
                   <PasswordField />
                   <AnchorPane prefHeight="92.0" prefWidth="611.0">
                      <children>
-                        <Button layoutX="467.0" layoutY="21.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="143.0" text="Login" />
+                        <Button layoutX="467.0" layoutY="21.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="51.0" prefWidth="143.0" text="Login" />
                      </children>
                   </AnchorPane>
                </children>
