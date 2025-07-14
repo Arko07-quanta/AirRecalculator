@@ -4,11 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.stage.Stage;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
-public class LoginPageController {
+public class RequestPageController {
+    @FXML
+    public void onRequest(ActionEvent event) throws IOException {
+        return;
+    }
+
     @FXML
     public void onMain(ActionEvent event) throws IOException {
         Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
@@ -24,14 +28,9 @@ public class LoginPageController {
     }
 
     @FXML
-    public void onRequestPage(ActionEvent event) throws IOException {
+    public void onLoginPage(ActionEvent event) throws IOException {
         Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
-        RequestPage requestPage = new RequestPage(stage);
-        requestPage.show();
-    }
-
-    @FXML
-    public void onLogin(ActionEvent event) throws IOException {
-        return;
+        LoginPage loginPage = new LoginPage(stage);
+        loginPage.show();
     }
 }

@@ -28,4 +28,11 @@ public class RegistrationPageController {
         LoginPage loginPage = new LoginPage(stage);
         loginPage.show();
     }
+
+    @FXML
+    public void onRequestPage(ActionEvent event) throws IOException {
+        Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
+        RequestPage requestPage = new RequestPage(stage);
+        requestPage.show();
+    }
 }
