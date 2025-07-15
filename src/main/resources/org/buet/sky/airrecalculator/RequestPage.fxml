@@ -31,20 +31,20 @@
         </AnchorPane>
         <AnchorPane prefHeight="397.0" prefWidth="898.0">
          <children>
-            <VBox spacing="10" layoutX="7.0" layoutY="55.0" prefHeight="342.0" prefWidth="812.0">
+            <VBox layoutX="7.0" layoutY="55.0" prefHeight="342.0" prefWidth="812.0" spacing="10">
                <children>
                   <Label prefHeight="42.0" prefWidth="903.0" text="Company" />
-                  <Label prefHeight="47.0" prefWidth="903.0" text="#CompanyName" />
-                  <ComboBox fx:id="companyName" prefHeight="26.0" prefWidth="923.0" />
+                  <Label prefHeight="47.0" prefWidth="903.0" text="#FLIGHT ID" />
+                  <ComboBox fx:id="companyName" onAction="#setFlightId" prefHeight="26.0" prefWidth="923.0" />
                   <Label prefHeight="17.0" prefWidth="953.0" text="Departure Airport" />
                   <ComboBox prefHeight="26.0" prefWidth="923.0" />
                   <Label prefHeight="17.0" prefWidth="953.0" text="Departure Time" />
-                  <ComboBox prefHeight="26.0" prefWidth="923.0" />
+                  <ComboBox onAction="#setTime" prefHeight="26.0" prefWidth="923.0" />
                   <Label prefHeight="17.0" prefWidth="953.0" text="Maximum Fuel Capacity" />
-                  <ComboBox prefHeight="26.0" prefWidth="923.0" />
+                  <ComboBox onAction="#setCapacity" prefHeight="26.0" prefWidth="923.0" />
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="820.0" layoutY="76.0" mnemonicParsing="false" onAction="#onRequest" text="Request" />
+                        <Button layoutX="820.0" layoutY="76.0" mnemonicParsing="false" onAction="#onButtonClick" text="Request" />
                      </children>
                   </AnchorPane>
                </children>

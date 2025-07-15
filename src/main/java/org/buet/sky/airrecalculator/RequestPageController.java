@@ -18,9 +18,12 @@ import java.util.Scanner;
 
 
 public class RequestPageController {
+    @FXML
+    private Request request;
 
     @FXML
     private ComboBox companyName;
+
 
     @FXML
     public void onRequest(ActionEvent event) throws IOException {
@@ -48,17 +51,55 @@ public class RequestPageController {
         loginPage.show();
     }
 
+
+
+
+
+
     @FXML
-    public void setCombo(ActionEvent event) throws IOException {
-        String company = ((ComboBox) event.getSource()).getValue().toString();
-        //request.setCompanyName(company);
+    public void setFlightId(ActionEvent event) throws IOException {
+        request.setFlightId(Integer.parseInt(((ComboBox) event.getSource()).getValue().toString()));
+    }
+
+    @FXML
+    public void setTime(ActionEvent event) throws IOException {
+        request.setTime(Integer.parseInt(((ComboBox) event.getSource()).getValue().toString()));
+    }
+
+    @FXML
+    public void setCapacity(ActionEvent event) throws IOException {
+        request.setCapacity(Integer.parseInt(((ComboBox) event.getSource()).getValue().toString()));
+    }
+
+    @FXML
+    public void setCompanyName(ActionEvent event) throws IOException {
+        request.setCompanyName(((ComboBox) event.getSource()).getValue().toString());
+    }
+
+
+    @FXML
+    public void setDeparture(ActionEvent event) throws IOException {
+        request.setDeparture(((ComboBox) event.getSource()).getValue().toString());
     }
 
 
 
     @FXML
+    public void setArrival(ActionEvent event) throws IOException {
+        request.setArrival(((ComboBox) event.getSource()).getValue().toString());
+    }
+
+
+
+    @FXML
+    public void onButtonClick(ActionEvent event) throws IOException {
+        request.print();
+    }
+
+
+    @FXML
     public void initialize() {
-        //request = new Request();
+        request = new Request();
 
         URL url = getClass().getResource("/data/request.txt");
         try {
