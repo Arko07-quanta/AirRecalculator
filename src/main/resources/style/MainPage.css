@@ -18,3 +18,9 @@
     -fx-background-color: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
     -fx-padding: 30;
 }
+
+.label{
+    -fx-text-fill: white;
+    -fx-font-family: "Impact";
+    -fx-font-size: 14;
+}

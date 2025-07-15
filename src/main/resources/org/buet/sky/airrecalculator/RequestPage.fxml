@@ -31,7 +31,7 @@
         </AnchorPane>
         <AnchorPane prefHeight="397.0" prefWidth="898.0">
          <children>
-            <VBox layoutX="7.0" layoutY="55.0" prefHeight="342.0" prefWidth="812.0">
+            <VBox spacing="10" layoutX="7.0" layoutY="55.0" prefHeight="342.0" prefWidth="812.0">
                <children>
                   <Label prefHeight="42.0" prefWidth="903.0" text="Company" />
                   <Label prefHeight="47.0" prefWidth="903.0" text="#CompanyName" />
