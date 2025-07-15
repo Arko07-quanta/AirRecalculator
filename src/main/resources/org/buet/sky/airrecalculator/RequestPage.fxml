@@ -35,7 +35,7 @@
                <children>
                   <Label prefHeight="42.0" prefWidth="903.0" text="Company" />
                   <Label prefHeight="47.0" prefWidth="903.0" text="#CompanyName" />
-                  <ComboBox prefHeight="26.0" prefWidth="923.0" />
+                  <ComboBox fx:id="companyName" prefHeight="26.0" prefWidth="923.0" />
                   <Label prefHeight="17.0" prefWidth="953.0" text="Departure Airport" />
                   <ComboBox prefHeight="26.0" prefWidth="923.0" />
                   <Label prefHeight="17.0" prefWidth="953.0" text="Departure Time" />

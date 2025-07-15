@@ -6,9 +6,15 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.Scanner;
 
 public class LoginPageController {
+
+
+
     @FXML
     public void onMain(ActionEvent event) throws IOException {
         Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
@@ -34,4 +40,5 @@ public class LoginPageController {
     public void onLogin(ActionEvent event) throws IOException {
         return;
     }
+
 }
