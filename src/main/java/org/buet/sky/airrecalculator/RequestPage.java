@@ -20,6 +20,6 @@ public class RequestPage {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        stage.centerOnScreen();
+        //stage.centerOnScreen();
     }
 }
