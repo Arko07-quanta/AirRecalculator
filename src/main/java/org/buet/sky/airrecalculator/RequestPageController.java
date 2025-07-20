@@ -13,10 +13,6 @@ import java.util.Scanner;
 
 
 
-
-
-
-
 public class RequestPageController {
     @FXML
     private Request request;
@@ -114,8 +110,4 @@ public class RequestPageController {
             System.out.println("Error loading request file");
         }
     }
-
-
-
-
 }
