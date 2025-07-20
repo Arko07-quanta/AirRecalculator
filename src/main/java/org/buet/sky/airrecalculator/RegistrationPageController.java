@@ -35,4 +35,13 @@ public class RegistrationPageController {
         RequestPage requestPage = new RequestPage(stage);
         requestPage.show();
     }
+
+    @FXML
+    public void onSchedulePage(ActionEvent event) throws IOException {
+        Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
+        SchedulePage schedulePage = new SchedulePage(stage);
+        schedulePage.show();
+    }
+
+
 }

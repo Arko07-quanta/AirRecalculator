@@ -22,7 +22,7 @@
                 <HBox alignment="CENTER" layoutY="184.0" prefHeight="59.0" prefWidth="917.0" spacing="45">
                     <children>
                         <Button mnemonicParsing="false" onAction="#onMain" prefHeight="60.0" prefWidth="143.0" text="Home" />
-                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="143.0" text="Schedule" />
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onSchedulePage" prefHeight="60.0" prefWidth="143.0" text="Schedule" />
                         <Button layoutX="153.0" layoutY="10.0" mnemonicParsing="false" onAction="#onRequestPage" prefHeight="60.0" prefWidth="143.0" text="Request" />
                         <Button layoutX="296.0" layoutY="10.0" mnemonicParsing="false" onAction="#onLoginPage" prefHeight="60.0" prefWidth="143.0" text="Login" />
                         <Button layoutX="651.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="143.0" text="Registration" />
@@ -32,7 +32,7 @@
         </AnchorPane>
       <AnchorPane prefHeight="456.0" prefWidth="917.0">
          <children>
-            <VBox spacing="10" layoutX="136.0" layoutY="46.0" prefHeight="323.0" prefWidth="611.0">
+            <VBox layoutX="136.0" layoutY="46.0" prefHeight="323.0" prefWidth="611.0" spacing="10">
                <children>
                   <Label prefHeight="6.0" prefWidth="617.0" text="UserName" />
                   <TextField />
@@ -42,11 +42,11 @@
                   <TextField />
                   <Label prefHeight="18.0" prefWidth="623.0" text="Password" />
                   <PasswordField />
-                  <Label prefHeight="18.0" prefWidth="623.0" text="Confirm Passeord" />
+                  <Label prefHeight="18.0" prefWidth="623.0" text="Confirm Password" />
                   <PasswordField />
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                  <AnchorPane prefHeight="69.0" prefWidth="611.0">
                      <children>
-                        <Button layoutX="467.0" layoutY="49.0" mnemonicParsing="false" onAction="#onCreateAccount" text="Create Account" />
+                        <Button layoutX="449.0" layoutY="24.0" mnemonicParsing="false" onAction="#onCreateAccount" text="Create Account" />
                      </children>
                   </AnchorPane>
                </children>

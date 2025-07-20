@@ -20,6 +20,16 @@ public class RequestPageController {
     @FXML
     private ComboBox companyName;
 
+    @FXML
+    private ComboBox departureTime;
+
+    @FXML
+    private ComboBox fuelCapacity;
+
+    @FXML
+    private ComboBox onTimeSelected;
+
+
 
     @FXML
     public void onRequest(ActionEvent event) throws IOException {
@@ -48,6 +58,12 @@ public class RequestPageController {
     }
 
 
+    @FXML
+    public void onSchedulePage(ActionEvent event) throws IOException {
+        Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
+        SchedulePage schedulePage = new SchedulePage(stage);
+        schedulePage.show();
+    }
 
 
 
@@ -91,6 +107,27 @@ public class RequestPageController {
     public void onButtonClick(ActionEvent event) throws IOException {
         request.print();
     }
+
+    @FXML
+    private void onDepartureSelected(ActionEvent event) {
+        // Your code here to handle departure selection
+    }
+
+    @FXML
+    private void onDestinationSelected(ActionEvent event) {
+        // Handle destination selection
+    }
+
+    @FXML
+    private void onTimeSelected(ActionEvent event) {
+        // Handle time selection
+    }
+
+    @FXML
+    private void onCapacitySelected(ActionEvent event) {
+        // Handle capacity selection
+    }
+
 
 
     @FXML

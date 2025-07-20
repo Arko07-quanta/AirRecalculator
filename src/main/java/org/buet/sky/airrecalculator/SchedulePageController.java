@@ -1,18 +1,18 @@
 package org.buet.sky.airrecalculator;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
-import javafx.event.ActionEvent;
 import java.io.IOException;
 
-public class MainPageController {
+public class SchedulePageController {
     @FXML
-    public void onRegistrationPage(ActionEvent event) throws IOException {
+    public void onMain(ActionEvent event) throws IOException {
         Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
-        RegistrationPage registrationPage = new RegistrationPage(stage);
-        registrationPage.show();
+        MainPage mainPage = new MainPage(stage);
+        mainPage.show();
     }
 
     @FXML
@@ -30,9 +30,9 @@ public class MainPageController {
     }
 
     @FXML
-    public void onSchedulePage(ActionEvent event) throws IOException {
+    public void onRegistrationPage(ActionEvent event) throws IOException {
         Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
-        SchedulePage schedulePage = new SchedulePage(stage);
-        schedulePage.show();
+        RegistrationPage registrationPage = new RegistrationPage(stage);
+        registrationPage.show();
     }
 }

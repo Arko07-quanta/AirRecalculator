@@ -22,7 +22,7 @@
             <HBox alignment="CENTER" layoutY="184.0" prefHeight="59.0" prefWidth="917.0" spacing="45">
                <children>
                   <Button mnemonicParsing="false" onAction="#onMain" prefHeight="60.0" prefWidth="143.0" text="Home" />
-                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="143.0" text="Schedule" />
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onSchedulePage" prefHeight="60.0" prefWidth="143.0" text="Schedule" />
                   <Button layoutX="153.0" layoutY="10.0" mnemonicParsing="false" onAction="#onRequestPage" prefHeight="60.0" prefWidth="143.0" text="Request" />
                   <Button layoutX="296.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="143.0" text="Login" />
                   <Button layoutX="651.0" layoutY="10.0" mnemonicParsing="false" onAction="#onRegistrationPage" prefHeight="60.0" prefWidth="143.0" text="Registration" />
