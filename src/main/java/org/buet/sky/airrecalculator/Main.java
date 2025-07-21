@@ -12,17 +12,22 @@ import java.io.IOException;
 
 
 
-
+//
 //public class Main extends Application {
+//
+//
 //    @Override
 //    public void start(Stage primaryStage) throws Exception {
+//        network = new Network("127.0.0.1", 44444);
 //        Parent root = FXMLLoader.load(getClass().getResource("CityMap.fxml"));
 //        primaryStage.setScene(new Scene(root));
 //        primaryStage.setTitle("City Mapper");
 //        primaryStage.show();
+//
 //    }
 //
 //    public static void main(String[] args) {
+//
 //        launch(args);
 //    }
 //}
@@ -35,8 +40,8 @@ import java.io.IOException;
 
 
 
-
 public class Main extends Application {
+public static Network network;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -53,3 +58,6 @@ public class Main extends Application {
         launch(args);
     }
 }
+
+
+

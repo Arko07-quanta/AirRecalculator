@@ -1,9 +1,9 @@
 package org.buet.sky.airrecalculator;
 
 
+import java.io.Serializable;
 
-
-public class Company {
+public class Company implements Serializable {
     private int id;
     private String name;
     private String email;

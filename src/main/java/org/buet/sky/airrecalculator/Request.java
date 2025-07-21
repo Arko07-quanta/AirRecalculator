@@ -1,6 +1,8 @@
 package org.buet.sky.airrecalculator;
 
-public class Request {
+import java.io.Serializable;
+
+public class Request implements Serializable {
     private int flightId, time, capacity;
     private String companyName, arrival, departure;
 

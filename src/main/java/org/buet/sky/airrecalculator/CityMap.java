@@ -37,7 +37,9 @@ public class CityMap {
             city.setX(x);
             city.setY(y);
 
-            DataBase.addCity(city);
+            Main.network.write(1);
+            Main.network.write(city);
+
             redrawMap();
 
             nameField.clear();
@@ -48,7 +50,12 @@ public class CityMap {
     }
 
     private void redrawMap() {
-        cities = DataBase.getCity();
+       Main.network.write(100);
+
+       cities = (List<City>) Main.network.read();
+
+
+
         GraphicsContext gc = mapCanvas.getGraphicsContext2D();
         gc.setFill(Color.WHITE);
         gc.fillRect(0, 0, mapCanvas.getWidth(), mapCanvas.getHeight());

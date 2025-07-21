@@ -1,8 +1,9 @@
 package org.buet.sky.airrecalculator;
 
 
+import java.io.Serializable;
 
-public class AirPlane {
+public class AirPlane implements Serializable {
     private int id;
     private String name;
     private int fuelCapacity;

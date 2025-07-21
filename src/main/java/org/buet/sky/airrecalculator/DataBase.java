@@ -27,7 +27,7 @@ public class DataBase{
 
 
 
-    public static List<City> getCity(){
+    public synchronized static List<City> getCity(){
         List<City> cityArrayList =  new ArrayList<>();
         try {
             Connection conn = DriverManager.getConnection(DB_URL);
@@ -48,13 +48,13 @@ public class DataBase{
     }
 
 
-    public static List<AirPlane> getAirplane(){
+    public synchronized static List<AirPlane> getAirplane(){
         return getAirplane(-1);
     }
 
 
 
-    public static List<AirPlane> getAirplane(int company_id){
+    public synchronized static List<AirPlane> getAirplane(int company_id){
         List<AirPlane> AirArrayList =  new ArrayList<>();
         try {
             Connection conn = DriverManager.getConnection(DB_URL);
@@ -82,7 +82,7 @@ public class DataBase{
 
 
 
-    public static void addAirPlane(AirPlane airplane){
+    public synchronized static void addAirPlane(AirPlane airplane){
         try {
             Connection conn = DriverManager.getConnection(DB_URL);
             String sql = "INSERT INTO airplane (name, fuel_capacity, current_location, company_id) VALUES (?, ?, ?, ?)";
@@ -97,7 +97,7 @@ public class DataBase{
         }
     }
 
-    public static void addCity(City city){
+    public synchronized static void addCity(City city){
         try {
             Connection conn = DriverManager.getConnection(DB_URL);
             String sql = "INSERT INTO city (name, x, y) VALUES (?, ?, ?)";
@@ -113,7 +113,7 @@ public class DataBase{
 
 
 
-    public static void addCompany(Company company){
+    public synchronized static void addCompany(Company company){
         try {
             Connection conn = DriverManager.getConnection(DB_URL);
             String sql = "INSERT INTO company (name, email, phone, password) VALUES (?, ?, ?, ?)";

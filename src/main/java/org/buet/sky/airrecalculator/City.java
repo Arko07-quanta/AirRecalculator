@@ -1,7 +1,9 @@
 package org.buet.sky.airrecalculator;
 
 
-public class City {
+import java.io.Serializable;
+
+public class City implements Serializable {
     private int id;
     private String name;
     private double x;
