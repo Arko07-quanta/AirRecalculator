@@ -15,10 +15,7 @@ public class ClientWriteThread implements Runnable{
     @Override
     public void run() {
         while(true){
-            Integer status = (Integer) obj.writerPop();
-            if(status == -1){
-                network.write(obj.writerPop());
-            }
+            network.write(obj.writerPop());
         }
     }
 

@@ -11,18 +11,8 @@ public class ClientReadThread implements Runnable{
 
     @Override
     public void run() {
-
         while(true) {
-            Object ob = network.read();
-            Integer status = (Integer) ob;
-            if(status == 1) {
-                City city = (City) network.read();
-                DataBase.addCity(city);
-            }
-
-
-
+            obj.readerPush((Command) network.read());
         }
-
     }
 }
