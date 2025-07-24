@@ -28,7 +28,6 @@ public class ObjectChecker {
     }
 
 
-
     public boolean isLogin() {
         return command.opt.equals(0) && (command.obj instanceof Company);
     }

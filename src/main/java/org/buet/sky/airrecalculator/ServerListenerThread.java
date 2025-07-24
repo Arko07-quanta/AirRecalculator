@@ -14,6 +14,7 @@ public class ServerListenerThread implements Runnable {
         this.clientId = clientId;
         company = new Company();
         requireList = new ArrayList<>();
+        new Thread(this).start();
     }
 
     public void addEdge(int u, int v){

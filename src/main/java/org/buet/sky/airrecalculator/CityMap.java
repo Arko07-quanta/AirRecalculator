@@ -33,9 +33,8 @@ public class CityMap {
         // make Command with command -1 and a list of which we want updated information
         List<Integer> require = new ArrayList<>(); require.add(6);
 
-
         Command cmd = new Command(-1, require);
-        Main.obj.readerPush(cmd);
+        Main.obj.writerPush(cmd);
 
     }
 
