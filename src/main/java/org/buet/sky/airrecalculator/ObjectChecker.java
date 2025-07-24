@@ -1,9 +1,5 @@
 package org.buet.sky.airrecalculator;
 
-// 1-> AirPlane
-// 2-> City
-// 3-> Company
-// 6-> Map
 
 import java.util.List;
 
