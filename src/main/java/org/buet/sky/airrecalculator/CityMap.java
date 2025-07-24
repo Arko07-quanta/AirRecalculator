@@ -19,15 +19,21 @@ public class CityMap {
     @FXML
     private Canvas mapCanvas;
 
-    private List<City> cities = new ArrayList<>();
     private int nextId = 1;
 
 
 
     @FXML
     public void initialize() {
+        // adding this controller object to the controller hashmap
+        Main.controller.put(6, this);
+
+
+        // which information we want always updated, list of them
         List<Integer> nd = new ArrayList<>();
         nd.add(6);
+
+        // writing command -1 which is for updated infromation
         Main.obj.writerPush(-1);
         Main.obj.writerPush(nd);
     }
@@ -51,7 +57,6 @@ public class CityMap {
             Main.network.write(city);
 
 
-            redrawMap();
 
             nameField.clear();
             xField.clear();
@@ -61,13 +66,7 @@ public class CityMap {
     }
 
 
-    public void redrawMap() {
-
-       Main.network.write(100);
-       cities = (List<City>) Main.network.read();
-
-
-
+    public void redrawMap(List<City> cities) {
         GraphicsContext gc = mapCanvas.getGraphicsContext2D();
         gc.setFill(Color.WHITE);
         gc.fillRect(0, 0, mapCanvas.getWidth(), mapCanvas.getHeight());

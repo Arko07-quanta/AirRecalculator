@@ -8,14 +8,15 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-
-
-
+import java.util.HashMap;
 
 
 public class Main extends Application {
     public static Network network;
     public static SharedObject obj;
+
+    // contains all the controller's object
+    public static HashMap<Integer, Object> controller;
 
 
     @Override
@@ -26,6 +27,7 @@ public class Main extends Application {
 
         new ClientReadThread(network, obj);
         new ClientWriteThread(network, obj);
+        new ClientListenerThread(obj);
 
 
         Parent root = (new FXMLLoader(HelloApplication.class.getResource("MainPage.fxml"))).load();
