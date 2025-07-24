@@ -19,11 +19,6 @@ public class ClientListenerThread implements Runnable {
                 ((CityMap) Main.controller.get(6)).redrawMap(objChecker.getMap());
             }
 
-<<<<<<< Updated upstream
-        if (objChecker.isMap()) {
-            ((CityMap) Main.controller.get(6)).redrawMap(objChecker.getMap());
-=======
->>>>>>> Stashed changes
         }
     }
 
