@@ -129,4 +129,38 @@ public class DataBase{
     }
 
 
+    public synchronized static Boolean verify(Company company){
+        try{
+            Connection conn = DriverManager.getConnection(DB_URL);
+            String sql = "SELECT * FROM company WHERE name = ? AND password = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, company.getName());
+            stmt.setString(2, company.getPassword());
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next() == true && rs.next() == false) return true;
+            return false;
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+
+    public synchronized static Boolean validate(Company company){
+        try{
+            Connection conn = DriverManager.getConnection(DB_URL);
+            String sql = "SELECT * FROM company WHERE name = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, company.getName());
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()) return false;
+            return true;
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+
 }

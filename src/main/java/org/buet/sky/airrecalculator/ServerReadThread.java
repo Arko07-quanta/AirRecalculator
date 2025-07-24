@@ -1,6 +1,5 @@
 package org.buet.sky.airrecalculator;
 
-
 public class ServerReadThread implements Runnable{
     Network network;
     SharedObject obj;
@@ -12,8 +11,8 @@ public class ServerReadThread implements Runnable{
 
     @Override
     public void run() {
-        while(true){
-
+        while(true) {
+            obj.readerPush((Command) network.read());
         }
     }
 }

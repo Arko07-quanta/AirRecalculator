@@ -10,11 +10,13 @@ public class ClientListenerThread implements Runnable {
 
     public void run() {
         Command cmd = obj.readerPop();
+
         ObjectChecker objChecker = new ObjectChecker(cmd);
 
         if(objChecker.isMap()){
             ((CityMap) Main.controller.get(6)).redrawMap(objChecker.getMap());
         }
+
     }
 
 }

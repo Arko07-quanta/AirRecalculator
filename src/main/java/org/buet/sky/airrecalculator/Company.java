@@ -11,6 +11,7 @@ public class Company implements Serializable {
     private String password;
 
     public Company() {
+        id = -1;
     }
 
     public Company(String name, String email, String phone, String password) {
@@ -28,8 +29,13 @@ public class Company implements Serializable {
         this.password = password;
     }
 
+
     public int getId() {
         return id;
+    }
+
+    public Boolean isEmpty(){
+        return getId() == -1;
     }
 
     public void setId(int id) {
@@ -78,4 +84,35 @@ public class Company implements Serializable {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+
+    public static Boolean validate(Company company) {
+        if (company == null) return false;
+
+        String email = company.getEmail();
+        String password = company.getPassword();
+
+        if (email == null || !email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+            return false;
+        }
+
+        if (password == null || password.length() < 8) {
+            return false;
+        }
+
+        boolean hasLower = false;
+        boolean hasUpper = false;
+        boolean hasDigit = false;
+        boolean hasSymbol = false;
+
+        for (char ch : password.toCharArray()) {
+            if (Character.isLowerCase(ch)) hasLower = true;
+            else if (Character.isUpperCase(ch)) hasUpper = true;
+            else if (Character.isDigit(ch)) hasDigit = true;
+            else hasSymbol = true;
+        }
+
+        return hasLower && hasUpper && hasDigit && hasSymbol;
+    }
+
 }

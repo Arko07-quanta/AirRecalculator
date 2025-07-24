@@ -9,7 +9,6 @@ public class ObjectChecker {
     }
 
 
-
     public Boolean isMap(){
         return command.opt.equals(6) && (command.obj instanceof List<?>);
     }
@@ -17,6 +16,7 @@ public class ObjectChecker {
     public List<City> getMap(){
         return (List<City>) command.obj;
     }
+
 
 
 
@@ -28,4 +28,16 @@ public class ObjectChecker {
     }
 
 
+
+    public boolean isLogin() {
+        return command.opt.equals(0) && (command.obj instanceof Company);
+    }
+
+    public boolean isSignUp() {
+        return command.opt.equals(1) && (command.obj instanceof Company);
+    }
+
+    public Company getAccount() {
+        return (Company) command.obj;
+    }
 }

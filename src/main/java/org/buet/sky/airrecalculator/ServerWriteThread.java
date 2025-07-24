@@ -1,5 +1,8 @@
 package org.buet.sky.airrecalculator;
 
+
+import java.util.List;
+
 public class ServerWriteThread implements Runnable{
     Network network;
     SharedObject obj;
@@ -9,19 +12,12 @@ public class ServerWriteThread implements Runnable{
         new Thread(this).start();
     }
 
-
     @Override
     public void run() {
-
-        while(true) {
-            Object ob = network.read();
-            Integer status = (Integer) ob;
-            if(status == 1) {
-                City city = (City) network.read();
-                DataBase.addCity(city);
-            }
-        }
-
-
+        while(true){
+            network.write(obj.writerPop());
         }
     }
+
+
+}

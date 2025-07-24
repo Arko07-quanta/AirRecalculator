@@ -5,6 +5,7 @@ import java.util.Queue;
 
 public class SharedObject{
     public Queue<Command> reader, writer;
+    public Company account;
 
     SharedObject(){
         reader = new LinkedList<Command>();
