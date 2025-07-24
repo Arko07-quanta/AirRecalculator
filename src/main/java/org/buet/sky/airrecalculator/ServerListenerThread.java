@@ -33,6 +33,7 @@ public class ServerListenerThread implements Runnable {
 
 
     public void writeMap(){
+        System.out.println("ServerListenerThread writeMap");
         obj.writerPush(new Command(6, DataBase.getCity()));
     }
 
@@ -54,7 +55,16 @@ public class ServerListenerThread implements Runnable {
                 requireList = objectChecker.getRequire();
                 for (Integer opt : requireList) {
                     addEdge(opt, clientId);
+                    System.out.println(opt);
+
+                    // this need to be remove
+                    if(opt == 6){
+                        writeMap();
+                    }
+
+
                 }
+
             }
 
             if(objectChecker.isMap()){

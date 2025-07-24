@@ -53,10 +53,7 @@ public class CityMap {
             city.setX(x);
             city.setY(y);
 
-            Main.network.write(1);
-            Main.network.write(city);
-
-
+            Main.obj.writerPush(new Command(-1, city));
 
             nameField.clear();
             xField.clear();
