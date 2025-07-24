@@ -6,13 +6,24 @@ import java.io.Serializable;
 public class AirPlane implements Serializable {
     private int id;
     private String name;
+
+
+
     private int fuelCapacity;
+    private int speed;
+    private int mileage;
+
+
+
+
     private int currentLocation;
     private int companyId;
     private double userRating;
     private int departureAirport;
     private int arrivalAirport;
     private int arrivalTime;
+
+
 
     public AirPlane() {
     }
@@ -30,6 +41,10 @@ public class AirPlane implements Serializable {
         this.fuelCapacity = fuelCapacity;
         this.currentLocation = currentLocation;
         this.companyId = companyId;
+    }
+
+    public int getMileage() {
+        return mileage;
     }
 
     public AirPlane(int id, String name, int fuelCapacity, int currentLocation, int companyId, double userRating) {
@@ -98,5 +113,9 @@ public class AirPlane implements Serializable {
                 ", currentLocation=" + currentLocation +
                 ", companyId=" + companyId +
                 '}';
+    }
+
+    public int getSpeed() {
+        return speed;
     }
 }

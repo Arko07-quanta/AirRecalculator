@@ -17,12 +17,13 @@ public class DataBaseListener  implements Runnable{
                     obj.readerPush(new Command(cmd.opt, null));
                 }
             }
+
             if(objectChecker.getMyPlane()){
-
+                for(Integer client_id: Server.companyClient.get(objectChecker.getCompanyId())){
+                    SharedObject obj = Server.clientObject.get(client_id);
+                    obj.readerPush(new Command(cmd.opt, null));
+                }
             }
-
-
-
 
 
         }

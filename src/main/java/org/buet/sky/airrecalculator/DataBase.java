@@ -37,8 +37,8 @@ public class DataBase{
                 City city = new City();
                 city.setId(rs.getInt("id"));
                 city.setName(rs.getString("name"));
-                city.setX(rs.getDouble("x"));
-                city.setY(rs.getDouble("y"));
+                city.setX(rs.getInt("x"));
+                city.setY(rs.getInt("y"));
                 cityArrayList.add(city);
             }
         }catch(SQLException e) {

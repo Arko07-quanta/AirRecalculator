@@ -35,8 +35,6 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("City Mapper");
         primaryStage.show();
-
-
     }
 
     public static void main(String[] args) {
