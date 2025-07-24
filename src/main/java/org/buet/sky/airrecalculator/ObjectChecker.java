@@ -10,32 +10,43 @@ public class ObjectChecker {
     }
 
 
-    public Boolean isMap(){
-        return command.opt.equals(6) && (command.obj instanceof List<?>);
+
+    public Boolean addCity(){
+        return command.opt.equals(7);
     }
-
-    public List<City> getMap(){
-        return (List<City>) command.obj;
+    public Boolean getAllCity(){
+        return command.opt.equals(6) ;
     }
-
-
     public Boolean isRequire(){
-        return command.opt.equals(-1) && (command.obj instanceof List<?>);
+        return command.opt.equals(-1);
     }
-    public List<Integer> getRequire(){
-        return (List<Integer>) command.obj;
-    }
-
-
+    public boolean addPlane(){ return command.opt.equals(8);}
+    public boolean getMyPlane(){return command.opt.equals(8);}
+    public boolean getAllPlane(){ return command.opt.equals(9);}
+    public boolean closeThread(){ return command.opt.equals(-100);}
     public boolean isLogin() {
-        return command.opt.equals(0) && (command.obj instanceof Company);
+        return command.opt.equals(0);
     }
-
     public boolean isSignUp() {
-        return command.opt.equals(1) && (command.obj instanceof Company);
+        return command.opt.equals(1);
     }
+    public boolean getAllCompany(){ return command.opt.equals(1);}
 
-    public Company getAccount() {
+
+
+
+
+    public Company getAccountObj() {
         return (Company) command.obj;
     }
+    public AirPlane getPlaneObj() {
+        return (AirPlane) command.obj;
+    }
+    public City getCityObj(){
+        return (City) command.obj;
+    }
+    public List<Integer> getRequireObj(){
+        return (List<Integer>) command.obj;
+    }
+    public List<City> getAllCityObj(){return (List<City>) command.obj;}
 }

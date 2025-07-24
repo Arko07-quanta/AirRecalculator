@@ -1,0 +1,30 @@
+package org.buet.sky.airrecalculator;
+
+public class DataBaseListener  implements Runnable{
+    DataBaseListener(){
+        new Thread(this).start();
+    }
+
+
+    public void run(){
+        while(true){
+            Command cmd = Server.dataBaseListener.writerPop();
+            ObjectChecker objectChecker = new ObjectChecker(cmd);
+
+            if(objectChecker.getAllCity() || objectChecker.getAllCompany() || objectChecker.getAllPlane()){
+                for(Integer client_id: Server.requireGraph.get(cmd.opt)){
+                    SharedObject obj = Server.clientObject.get(client_id);
+                    obj.readerPush(new Command(cmd.opt, null));
+                }
+            }
+            if(objectChecker.getMyPlane()){
+
+            }
+
+
+
+
+
+        }
+    }
+}

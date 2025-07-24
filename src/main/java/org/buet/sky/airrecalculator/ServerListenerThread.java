@@ -6,34 +6,21 @@ public class ServerListenerThread implements Runnable {
     private SharedObject obj;
 
     private List<Integer> requireList;
-    private Company company;
     private Integer clientId;
 
     public ServerListenerThread(SharedObject obj, Integer clientId) {
         this.obj = obj;
         this.clientId = clientId;
-        company = new Company();
         requireList = new ArrayList<>();
         new Thread(this).start();
     }
 
-    public void addEdge(int u, int v){
-        if(Server.requireGraph.get(u) == null) Server.requireGraph.put(u, new HashSet<>());
-        Server.requireGraph.get(u).add(v);
-    }
 
-    public void removeEdge(int u, int v){
-        if(Server.requireGraph.get(u) != null){
-            Server.requireGraph.get(u).remove(v);
-            if(Server.requireGraph.get(u).isEmpty()) Server.requireGraph.remove(u);
-        }
-    }
 
 
 
 
     public void writeMap(){
-        System.out.println("ServerListenerThread writeMap");
         obj.writerPush(new Command(6, DataBase.getCity()));
     }
 
@@ -47,34 +34,40 @@ public class ServerListenerThread implements Runnable {
         while(true) {
             ObjectChecker objectChecker = new ObjectChecker(obj.readerPop());
 
-            if(objectChecker.isRequire()) {
-                for (Integer opt : requireList) {
-                    removeEdge(opt, clientId);
+            if(objectChecker.closeThread()){
+                for(Integer u : requireList){
+                    Server.requireGraph.removeEdge(clientId, u);
                 }
-
-                requireList = objectChecker.getRequire();
-                for (Integer opt : requireList) {
-                    addEdge(opt, clientId);
-                    System.out.println(opt);
-
-                    // this need to be remove
-                    if(opt == 6){
-                        writeMap();
-                    }
-
-
-                }
-
+                if(obj.account != null)
+                    Server.companyClient.removeEdge(clientId, obj.account.getId());
+                System.out.println("Client " + clientId + " closed");
+                break;
             }
 
-            if(objectChecker.isMap()){
+
+            if(objectChecker.isRequire()) {
+                for (Integer opt : requireList) {
+                    Server.requireGraph.removeEdge(opt, clientId);
+                }
+
+                requireList = objectChecker.getRequireObj();
+                for (Integer opt : requireList) {
+                    Server.requireGraph.addEdge(opt, clientId);
+                    System.out.println(opt);
+                    obj.readerPush(new Command(opt, null));
+                }
+            }
+
+            if(objectChecker.getAllCity()){
                 writeMap();
             }
 
 
+
             if(objectChecker.isLogin()){
-                Company company = objectChecker.getAccount();
+                Company company = objectChecker.getAccountObj();
                 if(DataBase.verify(company)){
+                    Server.companyClient.addEdge(clientId, company.getId());
                     obj.account = company;
                     obj.writerPush(new Command(0, company));
                 }else{
@@ -82,9 +75,12 @@ public class ServerListenerThread implements Runnable {
                 }
             }
 
+
+
             if(objectChecker.isSignUp()){
-                Company company = objectChecker.getAccount();
+                Company company = objectChecker.getAccountObj();
                 if(Company.validate(company) && DataBase.validate(company)){
+                    Server.companyClient.addEdge(clientId, company.getId());
                     DataBase.addCompany(company);
                     obj.account = company;
                     obj.writerPush(new Command(0, company));
@@ -92,6 +88,20 @@ public class ServerListenerThread implements Runnable {
                     obj.writerPush(new Command(0, null));
                 }
             }
+
+            if(objectChecker.addCity()){
+                DataBase.addCity(objectChecker.getCityObj());
+            }
+
+            if(objectChecker.addPlane()){
+                if(obj.account == null) continue;
+                DataBase.addAirPlane(objectChecker.getPlaneObj());
+            }
+
+
+
+
+
 
 
 

@@ -31,16 +31,16 @@
         </AnchorPane>
       <AnchorPane prefHeight="446.0" prefWidth="917.0">
          <children>
-            <TableView fx:id="planeTable" layoutX="23.0" layoutY="35.0" prefHeight="391.0" prefWidth="870.0">
+            <TableView layoutX="23.0" layoutY="35.0" prefHeight="391.0" prefWidth="870.0">
               <columns>
-                <TableColumn fx:id="flightID" prefWidth="79.9999942779541" text="Flight ID" />
-                <TableColumn fx:id="companyID" prefWidth="85.60001373291016" text="Company ID" />
-                  <TableColumn fx:id="departureTime" prefWidth="98.40000915527344" text="Departure Time" />
-                  <TableColumn fx:id="departureAirport" prefWidth="119.20001220703125" text="Departure Airport" />
-                  <TableColumn fx:id="destinationAirport" prefWidth="119.20001220703125" text="Destination Airport" />
-                  <TableColumn fx:id="arrivalTime" prefWidth="119.20001220703125" text="Arrival Time" />
-                  <TableColumn fx:id="flightTime" prefWidth="119.20001220703125" text="Flight Time" />
-                  <TableColumn fx:id="userRating" prefWidth="119.20001220703125" text="User Rating" />
+                <TableColumn prefWidth="79.9999942779541" text="Flight ID" />
+                <TableColumn prefWidth="85.60001373291016" text="Company ID" />
+                  <TableColumn prefWidth="98.40000915527344" text="Departure Time" />
+                  <TableColumn prefWidth="119.20001220703125" text="Departure Airport" />
+                  <TableColumn prefWidth="119.20001220703125" text="Destination Airport" />
+                  <TableColumn prefWidth="119.20001220703125" text="Arrival Time" />
+                  <TableColumn prefWidth="119.20001220703125" text="Flight Time" />
+                  <TableColumn prefWidth="119.20001220703125" text="User Rating" />
               </columns>
             </TableView>
          </children>
