@@ -35,18 +35,18 @@
             <VBox layoutX="136.0" layoutY="46.0" prefHeight="323.0" prefWidth="611.0" spacing="10">
                <children>
                   <Label prefHeight="6.0" prefWidth="617.0" text="UserName" />
-                  <TextField />
+                  <TextField fx:id="regName" />
                   <Label prefHeight="18.0" prefWidth="623.0" text="Email" />
-                  <TextField />
+                  <TextField fx:id="regMail" />
                   <Label prefHeight="18.0" prefWidth="623.0" text="Phone" />
-                  <TextField />
+                  <TextField fx:id="regPhone" />
                   <Label prefHeight="18.0" prefWidth="623.0" text="Password" />
-                  <PasswordField />
+                  <PasswordField fx:id="regPass" />
                   <Label prefHeight="18.0" prefWidth="623.0" text="Confirm Password" />
-                  <PasswordField />
+                  <PasswordField fx:id="regConfirmPass" />
                   <AnchorPane prefHeight="69.0" prefWidth="611.0">
                      <children>
-                        <Button layoutX="449.0" layoutY="24.0" mnemonicParsing="false" onAction="#onCreateAccount" text="Create Account" />
+                        <Button fx:id="createAccount" layoutX="449.0" layoutY="24.0" mnemonicParsing="false" onAction="#onCreateAccount" text="Create Account" />
                      </children>
                   </AnchorPane>
                </children>

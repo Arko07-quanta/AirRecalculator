@@ -14,7 +14,8 @@ import java.util.HashMap;
 public class Main extends Application {
     public static Network network;
     public static SharedObject obj;
-
+    public static Company company;  // contains login info
+    public Boolean loginStatus = false;
     // contains all the controller's object
     public static HashMap<Integer, Object> controller;
 
@@ -30,7 +31,7 @@ public class Main extends Application {
         new ClientListenerThread(obj);
 
 
-        Parent root = (new FXMLLoader(HelloApplication.class.getResource("CityMap.fxml"))).load();
+        Parent root = (new FXMLLoader(HelloApplication.class.getResource("MainPage.fxml"))).load();
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("City Mapper");
         primaryStage.show();

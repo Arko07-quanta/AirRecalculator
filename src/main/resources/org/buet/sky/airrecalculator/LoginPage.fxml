@@ -35,9 +35,9 @@
             <VBox layoutX="143.0" layoutY="36.0" prefHeight="323.0" prefWidth="611.0" spacing="20">
                <children>
                   <Label text="Username" />
-                  <TextField />
+                  <TextField fx:id="userName" />
                   <Label text="Password" />
-                  <PasswordField />
+                  <PasswordField fx:id="userPass" />
                   <AnchorPane prefHeight="92.0" prefWidth="611.0">
                      <children>
                         <Button layoutX="467.0" layoutY="21.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="51.0" prefWidth="143.0" text="Login" />

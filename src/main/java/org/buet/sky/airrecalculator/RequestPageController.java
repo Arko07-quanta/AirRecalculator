@@ -14,20 +14,14 @@ import java.util.Scanner;
 
 
 public class RequestPageController {
-    @FXML
-    private Request request;
-
-    @FXML
-    private ComboBox companyName;
-
-    @FXML
-    private ComboBox departureTime;
-
-    @FXML
-    private ComboBox fuelCapacity;
-
-    @FXML
-    private ComboBox onTimeSelected;
+    @FXML public ComboBox flightId;
+    @FXML public ComboBox departureAirport;
+    @FXML public ComboBox destinationAirport;
+    @FXML private Request request;
+    @FXML private ComboBox companyName;
+    @FXML private ComboBox departureTime;
+    @FXML private ComboBox fuelCapacity;
+    @FXML private ComboBox onTimeSelected;
 
 
 

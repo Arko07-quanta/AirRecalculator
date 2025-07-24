@@ -3,6 +3,8 @@ package org.buet.sky.airrecalculator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 
@@ -14,6 +16,8 @@ import java.util.Scanner;
 public class LoginPageController {
 
 
+    @FXML public TextField userName;
+    @FXML public PasswordField userPass;
 
     @FXML
     public void onMain(ActionEvent event) throws IOException {
@@ -38,6 +42,8 @@ public class LoginPageController {
 
     @FXML
     public void onLogin(ActionEvent event) throws IOException {
+        String name = userName.getText();
+        String pass = userPass.getText();
 
         return;
     }
