@@ -1,6 +1,8 @@
 package org.buet.sky.airrecalculator;
 
-public class Command {
+import java.io.Serializable;
+
+public class Command implements Serializable{
     public Integer opt;
     public Object obj;
     Command(Integer opt, Object obj){
