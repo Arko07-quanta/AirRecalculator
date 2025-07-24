@@ -38,6 +38,7 @@ public class LoginPageController {
 
     @FXML
     public void onLogin(ActionEvent event) throws IOException {
+
         return;
     }
 
