@@ -35,4 +35,8 @@ public class MainPageController {
         SchedulePage schedulePage = new SchedulePage(stage);
         schedulePage.show();
     }
+
+    public void function(){
+
+    }
 }

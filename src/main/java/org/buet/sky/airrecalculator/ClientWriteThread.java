@@ -1,0 +1,26 @@
+package org.buet.sky.airrecalculator;
+
+
+import java.util.List;
+
+public class ClientWriteThread implements Runnable{
+    Network network;
+    SharedObject obj;
+    public ClientWriteThread(Network network, SharedObject obj){
+        this.network = network;
+        this.obj = obj;
+        new Thread(this).start();
+    }
+
+    @Override
+    public void run() {
+        while(true){
+            Integer status = (Integer) obj.writerPop();
+            if(status == -1){
+                network.write(obj.writerPop());
+            }
+        }
+    }
+
+
+}

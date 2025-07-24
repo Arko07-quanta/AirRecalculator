@@ -4,30 +4,45 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class SharedObject{
-    public Queue<Integer> queue;
+    public Queue<Object> reader, writer;
 
     SharedObject(){
-        queue = new LinkedList<Integer>();
+        reader = new LinkedList<Object>();
+        writer = new LinkedList<Object>();
     }
 
 
-    public synchronized void push(int val){
-        if(val >= 100) {
-            queue.add(val);
-            notifyAll();
-        }
+    public synchronized void readerPush(Object obj){
+        reader.add(obj);
+        notifyAll();
     }
 
-
-
-    public synchronized int pop(){
-        while(queue.isEmpty()){
+    public synchronized Object readerPop(){
+        while(reader.isEmpty()){
             try {
                 wait();
             } catch (InterruptedException e) {
                 System.out.println(e);
             }
         }
-        return queue.poll();
+        return reader.poll();
     }
+
+
+    public synchronized void writerPush(Object obj){
+        writer.add(obj);
+        notifyAll();
+    }
+
+    public synchronized Object writerPop(){
+        while(writer.isEmpty()){
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
+        }
+        return writer.poll();
+    }
+
 }

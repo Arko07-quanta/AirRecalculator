@@ -7,7 +7,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class CityMap {
 
@@ -20,16 +22,24 @@ public class CityMap {
     private List<City> cities = new ArrayList<>();
     private int nextId = 1;
 
+
+
     @FXML
     public void initialize() {
-        redrawMap();
+        List<Integer> nd = new ArrayList<>();
+        nd.add(6);
+        Main.obj.writerPush(-1);
+        Main.obj.writerPush(nd);
     }
+
+
 
     @FXML
     private void onAddCity() {
             String name = nameField.getText();
             double x = Double.parseDouble(xField.getText());
             double y = Double.parseDouble(yField.getText());
+
 
             City city = new City();
             city.setId(nextId++);
@@ -40,6 +50,7 @@ public class CityMap {
             Main.network.write(1);
             Main.network.write(city);
 
+
             redrawMap();
 
             nameField.clear();
@@ -49,9 +60,10 @@ public class CityMap {
 
     }
 
-    private void redrawMap() {
-       Main.network.write(100);
 
+    public void redrawMap() {
+
+       Main.network.write(100);
        cities = (List<City>) Main.network.read();
 
 
