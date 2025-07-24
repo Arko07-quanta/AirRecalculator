@@ -7,15 +7,24 @@ import java.util.Set;
 
 public class Server {
     private ServerSocket serverSocket;
-    public static HashMap<Integer, Set<Integer>> requireGraph;
+
+    public static HashGraph requireGraph, companyClient;
 
     public static HashMap<Integer, SharedObject> clientObject;
 
+    public static SharedObject dataBaseListener;
 
 
-    int clientId = 0;
+
+
+
+    int clientId = 1000;
     Server(){
-        clientObject = new HashMap<>(); requireGraph = new HashMap<>();
+        clientObject = new HashMap<>();
+        requireGraph = new HashGraph();
+        companyClient = new HashGraph();
+        dataBaseListener = new SharedObject();
+        new DataBaseListener();
 
         try{
             serverSocket = new ServerSocket(44444);
@@ -23,7 +32,6 @@ public class Server {
                 clientId++;
                 Network nt = new Network(serverSocket.accept());
                 SharedObject obj = new SharedObject();
-                System.out.println(clientId);
 
                clientObject.put(clientId, obj);
                 new ServerWriteThread(nt, obj);
@@ -31,6 +39,7 @@ public class Server {
                 new ServerListenerThread(obj, clientId);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("Server could not be started");
         }
     }

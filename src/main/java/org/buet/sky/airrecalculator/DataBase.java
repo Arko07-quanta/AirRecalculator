@@ -53,7 +53,6 @@ public class DataBase{
     }
 
 
-
     public synchronized static List<AirPlane> getAirplane(int company_id){
         List<AirPlane> AirArrayList =  new ArrayList<>();
         try {
@@ -92,6 +91,12 @@ public class DataBase{
             stmt.setInt(3, airplane.getCurrentLocation());
             stmt.setInt(4, airplane.getCompanyId());
             stmt.executeUpdate();
+            Integer companyId = airplane.getCompanyId();
+
+
+            Server.dataBaseListener.writerPush(new Command(8, companyId));
+            Server.dataBaseListener.writerPush(new Command(9, null));
+
         }catch (SQLException e){
             System.out.println(e.getMessage());
         }
@@ -106,6 +111,9 @@ public class DataBase{
             stmt.setDouble(2, city.getX());
             stmt.setDouble(3, city.getY());
             stmt.executeUpdate();
+            System.out.println(city.getName() + " " + city.getX() + " " + city.getY());
+            Server.dataBaseListener.writerPush(new Command(6, null));
+
         }catch (SQLException e){
             System.out.println(e.getMessage());
         }
@@ -123,6 +131,7 @@ public class DataBase{
             stmt.setString(3, company.getPhone());
             stmt.setString(4, company.getPassword());
             stmt.executeUpdate();
+            Server.dataBaseListener.writerPush(new Command(1, null));
         }catch (SQLException e){
             System.out.println(e.getMessage());
         }

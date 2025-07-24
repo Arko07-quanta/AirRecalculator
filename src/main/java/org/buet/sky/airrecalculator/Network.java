@@ -1,10 +1,9 @@
 package org.buet.sky.airrecalculator;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.LinkedList;
-import java.util.Queue;
 
 
 public class Network {
@@ -13,61 +12,37 @@ public class Network {
     private ObjectOutputStream out;
 
 
-
-    public Network(Socket socket){
+    public Network(Socket socket) throws IOException {
         this.socket = socket;
         init();
     }
 
-    public Network(String ip, int port){
-        try {
-            this.socket = new Socket(ip, port);
-        }catch (Exception e){
-            System.out.println("Could not connect to the server");
-            System.out.println(e);
-        }
+    public Network(String ip, int port) throws IOException {
+        this.socket = new Socket(ip, port);
         init();
     }
 
-
-
-    private void init(){
-        try {
-            out = new ObjectOutputStream(socket.getOutputStream());
-            out.flush();
-            in = new ObjectInputStream(socket.getInputStream());
-
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+    private void init() throws IOException {
+        out = new ObjectOutputStream(socket.getOutputStream());
+        out.flush();
+        in = new ObjectInputStream(socket.getInputStream());
     }
 
 
 
-    public void write(Object object){
-        try {
-            out.writeUnshared(object);
-        }catch(Exception e){
-            System.out.println(e);
-        }
+    public void write(Object object) throws IOException {
+        out.writeUnshared(object);
     }
 
-    public Object read(){
-        try {
-            return in.readUnshared();
-        }catch(Exception e){
-            System.out.println(e);
-            return null;
-        }
+    public Object read() throws IOException, ClassNotFoundException {
+        return in.readUnshared();
     }
 
-    public void closeConnection(){
-        try {
-            socket.close();
-            in.close();
-            out.close();
-        }catch(Exception e){
-            System.out.println(e);
-        }
+
+    public void closeConnection() throws IOException {
+        socket.close();
+        in.close();
+        out.close();
     }
+
 }

@@ -9,10 +9,16 @@ public class ClientReadThread implements Runnable{
         new Thread(this).start();
     }
 
+
     @Override
     public void run() {
         while(true) {
-            obj.readerPush((Command) network.read());
+            try {
+                obj.readerPush((Command) network.read());
+            }catch(Exception e){
+                obj.readerPush(new Command(-100, null));
+                break;
+            }
         }
     }
 }
