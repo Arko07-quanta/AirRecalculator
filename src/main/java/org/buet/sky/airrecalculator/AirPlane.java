@@ -9,6 +9,10 @@ public class AirPlane implements Serializable {
     private int fuelCapacity;
     private int currentLocation;
     private int companyId;
+    private double userRating;
+    private int departureAirport;
+    private int arrivalAirport;
+    private int arrivalTime;
 
     public AirPlane() {
     }
@@ -26,6 +30,15 @@ public class AirPlane implements Serializable {
         this.fuelCapacity = fuelCapacity;
         this.currentLocation = currentLocation;
         this.companyId = companyId;
+    }
+
+    public AirPlane(int id, String name, int fuelCapacity, int currentLocation, int companyId, double userRating) {
+        this.id = id;
+        this.name = name;
+        this.fuelCapacity = fuelCapacity;
+        this.currentLocation = currentLocation;
+        this.companyId = companyId;
+        this.userRating = userRating;
     }
 
     public int getId() {
@@ -66,6 +79,14 @@ public class AirPlane implements Serializable {
 
     public void setCompanyId(int companyId) {
         this.companyId = companyId;
+    }
+
+    public double getUserRating() {
+        return userRating;
+    }
+
+    public void setUserRating(double userRating) {
+        this.userRating = userRating;
     }
 
     @Override

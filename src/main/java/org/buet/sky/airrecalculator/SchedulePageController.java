@@ -1,13 +1,36 @@
 package org.buet.sky.airrecalculator;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class SchedulePageController {
+    @FXML
+    public TableView planeTable;
+    @FXML
+    public TableColumn departureAirport;
+    @FXML
+    public TableColumn flightID;
+    @FXML
+    public TableColumn companyID;
+    @FXML
+    public TableColumn departureTime;
+    @FXML
+    public TableColumn destinationAirport;
+    @FXML
+    public TableColumn arrivalTime;
+    @FXML
+    public TableColumn flightTime;
+    @FXML
+    public TableColumn userRating;
+
     @FXML
     public void onMain(ActionEvent event) throws IOException {
         Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
