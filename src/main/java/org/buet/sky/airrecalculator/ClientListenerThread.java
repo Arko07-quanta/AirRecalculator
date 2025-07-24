@@ -9,9 +9,11 @@ public class ClientListenerThread implements Runnable {
     }
 
     public void run() {
-        Integer opt = (Integer) obj.readerPop();
-        if(opt == 6){
-            ((CityMap) Main.controller.get(opt)).redrawMap((List<City>) obj.readerPop());
+        Command cmd = obj.readerPop();
+        ObjectChecker objChecker = new ObjectChecker(cmd);
+
+        if(objChecker.isMap()){
+            ((CityMap) Main.controller.get(6)).redrawMap(objChecker.getMap());
         }
     }
 

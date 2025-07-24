@@ -4,20 +4,20 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class SharedObject{
-    public Queue<Object> reader, writer;
+    public Queue<Command> reader, writer;
 
     SharedObject(){
-        reader = new LinkedList<Object>();
-        writer = new LinkedList<Object>();
+        reader = new LinkedList<Command>();
+        writer = new LinkedList<Command>();
     }
 
 
-    public synchronized void readerPush(Object obj){
+    public synchronized void readerPush(Command obj){
         reader.add(obj);
         notifyAll();
     }
 
-    public synchronized Object readerPop(){
+    public synchronized Command readerPop(){
         while(reader.isEmpty()){
             try {
                 wait();
@@ -29,12 +29,12 @@ public class SharedObject{
     }
 
 
-    public synchronized void writerPush(Object obj){
+    public synchronized void writerPush(Command obj){
         writer.add(obj);
         notifyAll();
     }
 
-    public synchronized Object writerPop(){
+    public synchronized Command writerPop(){
         while(writer.isEmpty()){
             try {
                 wait();

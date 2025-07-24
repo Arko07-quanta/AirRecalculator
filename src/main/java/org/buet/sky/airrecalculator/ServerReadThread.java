@@ -13,13 +13,7 @@ public class ServerReadThread implements Runnable{
     @Override
     public void run() {
         while(true){
-            Integer status = obj.pop();
-            if(status== 100) {
-                network.write(DataBase.getCity());
-            }
 
         }
     }
-
-
 }
