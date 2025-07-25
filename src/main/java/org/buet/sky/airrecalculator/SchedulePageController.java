@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
@@ -30,6 +31,7 @@ public class SchedulePageController {
     public TableColumn flightTime;
     @FXML
     public TableColumn userRating;
+    @FXML public Button loginProfile;
 
     @FXML
     public void onMain(ActionEvent event) throws IOException {
@@ -57,5 +59,15 @@ public class SchedulePageController {
         Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
         RegistrationPage registrationPage = new RegistrationPage(stage);
         registrationPage.show();
+    }
+
+    @FXML
+    public void initialize(){
+        if(Main.loginStatus){
+            loginProfile.setText(Main.company.getName());
+        }
+        else{
+            loginProfile.setText("Login");
+        }
     }
 }

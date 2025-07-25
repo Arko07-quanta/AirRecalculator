@@ -20,6 +20,7 @@ public class RegistrationPageController {
     @FXML public PasswordField regPass;
     @FXML public PasswordField regConfirmPass;
     @FXML public Button createAccount;
+    @FXML public Button loginProfile;
 
 
     @FXML
@@ -34,6 +35,7 @@ public class RegistrationPageController {
 
     @FXML
     public void onCreateAccount(ActionEvent event) throws IOException {
+        Main.serverStatus = false;
         String pass = regPass.getText();
         String passConfirm = regConfirmPass.getText();
         String name = regName.getText();
@@ -50,12 +52,26 @@ public class RegistrationPageController {
         Company newCompany = new Company(name, mail, phone, pass);
         Command cmd = new Command(1,newCompany);
         Main.obj.writerPush(cmd);
+        while(!Main.serverStatus){
+            try{
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        if(Main.company == null){
+            showPopup("Company Already Exists");
+            Main.serverStatus = false;
+            return;
+        }
         showPopup("Successfully Created Company");
         regPass.clear();
         regConfirmPass.clear();
         regName.clear();
         regMail.clear();
         regPhone.clear();
+        Main.serverStatus = false;
+        Main.loginStatus = true;
         return;
     }
 
@@ -87,5 +103,13 @@ public class RegistrationPageController {
         schedulePage.show();
     }
 
+    public void initialize(){
+        if(Main.loginStatus){
+            loginProfile.setText(Main.company.getName());
+        }
+        else{
+            loginProfile.setText("Login");
+        }
+    }
 
 }

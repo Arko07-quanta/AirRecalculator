@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="719.0" prefWidth="977.0" styleClass="fancyVBox" stylesheets="@../../../../style/MainPage.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.buet.sky.airrecalculator.LoginPageController">
+<VBox prefHeight="719.0" prefWidth="977.0" styleClass="fancyVBox" stylesheets="@../../../../style/MainPage.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.buet.sky.airrecalculator.ProfilePageController">
+
     <children>
+        <!-- Header: same as other pages -->
         <AnchorPane prefHeight="241.0" prefWidth="978.0">
             <children>
                 <ImageView fitHeight="124.0" fitWidth="912.0" pickOnBounds="true">
@@ -18,47 +19,60 @@
                         <Image url="@../../../../images/banner.gif" />
                     </image>
                 </ImageView>
+
                 <HBox alignment="CENTER" layoutY="184.0" prefHeight="59.0" prefWidth="917.0" spacing="45">
                     <children>
                         <Button mnemonicParsing="false" onAction="#onMain" prefHeight="60.0" prefWidth="143.0" text="Home" />
-                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onSchedulePage" prefHeight="60.0" prefWidth="143.0" text="Schedule" />
-                        <Button layoutX="153.0" layoutY="10.0" mnemonicParsing="false" onAction="#onRequestPage" prefHeight="60.0" prefWidth="143.0" text="Request" />
-                        <Button layoutX="296.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="143.0" text="Login" />
-                        <Button layoutX="651.0" layoutY="10.0" mnemonicParsing="false" onAction="#onRegistrationPage" prefHeight="60.0" prefWidth="143.0" text="Registration" />
+                        <Button mnemonicParsing="false" onAction="#onSchedulePage" prefHeight="60.0" prefWidth="143.0" text="Schedule" />
+                        <Button mnemonicParsing="false" onAction="#onRequestPage" prefHeight="60.0" prefWidth="143.0" text="Request" />
+                        <Button fx:id="profileName" mnemonicParsing="false" prefHeight="60.0" prefWidth="143.0" text="Login" />
+                        <Button mnemonicParsing="false" onAction="#onRegistrationPage" prefHeight="60.0" prefWidth="143.0" text="Registration" />
                     </children>
                 </HBox>
             </children>
         </AnchorPane>
+
+        <!-- Profile Info Section -->
         <AnchorPane prefHeight="397.0" prefWidth="898.0">
-         <children>
-            <ScrollPane layoutX="-2.0" layoutY="17.0" prefHeight="385.0" prefWidth="926.0">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <VBox layoutX="22.0" layoutY="12.0" prefHeight="370.0" prefWidth="870.0">
-                           <children>
-                              <AnchorPane prefHeight="128.0" prefWidth="870.0">
-                                 <children>
-                                    <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="335.0" layoutY="-11.0" pickOnBounds="true" preserveRatio="true" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                 <children>
-                                    <TextField layoutX="21.0" layoutY="14.0" prefHeight="26.0" prefWidth="339.0" text="Name: " />
-                                    <TextField layoutX="20.0" layoutY="40.0" prefHeight="23.0" prefWidth="342.0" text="ID        : " />
-                                    <Button layoutX="554.0" layoutY="6.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="116.0" text="Add Plane" />
-                                    <Button layoutX="684.0" layoutY="7.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="103.0" text="Log Out" />
-                                    <TextField layoutX="22.0" layoutY="100.0" prefHeight="22.0" prefWidth="160.0" text="Planes: " />
-                                 </children>
-                              </AnchorPane>
-                              <VBox prefHeight="166.0" prefWidth="870.0" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </AnchorPane>
-              </content>
-            </ScrollPane>
-         </children>
+            <children>
+                <VBox alignment="TOP_CENTER" layoutX="50.0" layoutY="20.0" prefWidth="877.0" spacing="20.0">
+                    <children>
+
+                        <!-- Optional profile picture -->
+                        <ImageView fitHeight="120.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../images/profile_icon.png" />
+                            </image>
+                        </ImageView>
+
+                        <!-- Name -->
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <Label prefWidth="80" text="Name:" />
+                            <Label fx:id="nameLabel" styleClass="infoLabel" text="John Doe" />
+                        </HBox>
+
+                        <!-- ID -->
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <Label prefWidth="80" text="ID:" />
+                            <Label fx:id="idLabel" styleClass="infoLabel" text="20201234" />
+                        </HBox>
+
+                        <!-- Plane Count -->
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <Label prefWidth="80" text="Planes:" />
+                            <Label fx:id="planeCountLabel" styleClass="infoLabel" text="3" />
+                        </HBox>
+
+                        <!-- Buttons -->
+                        <HBox alignment="CENTER" spacing="20.0">
+                            <Button fx:id="planeInfoButton" onAction="#onPlaneInfoClicked" prefWidth="160" text="Plane Information" />
+                            <Button fx:id="addPlaneButton" onAction="#onAddPlaneClicked" prefWidth="120" text="Add Plane" />
+                            <Button fx:id="logoutButton" onAction="#onLogoutClicked" prefWidth="120" text="Log Out" />
+                        </HBox>
+
+                    </children>
+                </VBox>
+            </children>
         </AnchorPane>
     </children>
 </VBox>

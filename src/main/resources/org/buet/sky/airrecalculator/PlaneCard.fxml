@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/24.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.buet.sky.airrecalculator.PlaneCardController"
+      spacing="10" styleClass="card">
+
+    <children>
+        <Label fx:id="planeName" styleClass="cardTitle"/>
+        <HBox spacing="10">
+            <VBox spacing="5">
+                <Label fx:id="planeId" styleClass="info"/>
+                <Label fx:id="fuel" styleClass="info"/>
+                <Label fx:id="departureAirport" styleClass="info"/>
+            </VBox>
+            <VBox spacing="5">
+                <Label fx:id="destinationAirport" styleClass="info"/>
+                <Label fx:id="departureTime" styleClass="info"/>
+                <Label fx:id="flightTime" styleClass="info"/>
+            </VBox>
+        </HBox>
+    </children>
+</VBox>

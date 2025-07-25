@@ -22,6 +22,11 @@ public class ClientListenerThread implements Runnable {
                 ((CityMap) Main.controller.get(6)).redrawMap(objChecker.getAllCityObj());
             }
 
+            if(objChecker.isSignUp()){
+                Main.serverStatus = true;
+                Main.company = (Company) cmd.obj;
+            }
+
         }
     }
 

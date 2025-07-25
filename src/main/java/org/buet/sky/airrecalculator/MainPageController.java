@@ -2,12 +2,15 @@ package org.buet.sky.airrecalculator;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
 import java.io.IOException;
 
 public class MainPageController {
+    @FXML public Button loginProfile;
+
     @FXML
     public void onRegistrationPage(ActionEvent event) throws IOException {
         Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
@@ -17,9 +20,15 @@ public class MainPageController {
 
     @FXML
     public void onLoginPage(ActionEvent event) throws IOException {
-        Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
-        LoginPage loginPage = new LoginPage(stage);
-        loginPage.show();
+        if(Main.loginStatus) {
+            Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
+            LoginPage loginPage = new LoginPage(stage);
+            loginPage.show();
+        }else {
+            Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
+            ProfilePage profilePage = new ProfilePage(stage);
+            profilePage.show();
+        }
     }
 
     @FXML
@@ -36,7 +45,12 @@ public class MainPageController {
         schedulePage.show();
     }
 
-    public void function(){
-
+    public void initialize(){
+        if(Main.loginStatus){
+            loginProfile.setText(Main.company.getName());
+        }
+        else{
+            loginProfile.setText("Login");
+        }
     }
 }
