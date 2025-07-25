@@ -4,9 +4,10 @@ import java.util.Objects;
 
 public class Node {
     City city;
-    Integer fuel, cost;
+    Integer fuel;
+    double cost;
     Node prev;
-    Node(City city, Integer fuel, Integer cost,  Node prev){
+    Node(City city, Integer fuel, Double cost,  Node prev){
         this.city = city;
         this.fuel = fuel;
         this.cost = cost;
@@ -16,7 +17,7 @@ public class Node {
 
 
     public int compareTo(Node o) {
-        return Integer.compare(this.cost, o.cost);
+        return Double.compare(this.cost, o.cost);
     }
     public int hashCode(){
         return Objects.hash(city, fuel);

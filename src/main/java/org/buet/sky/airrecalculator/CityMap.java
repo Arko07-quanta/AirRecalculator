@@ -39,12 +39,11 @@ public class CityMap {
     }
 
 
-
     @FXML
     private void onAddCity() {
             String name = nameField.getText();
-            int x = Integer.parseInt(xField.getText());
-            int y = Integer.parseInt(yField.getText());
+            double x = Double.parseDouble(xField.getText());
+            double y = Double.parseDouble(yField.getText());
 
 
             City city = new City();
@@ -70,8 +69,8 @@ public class CityMap {
 
         gc.setFill(Color.RED);
         for (City city : cities) {
-            int x = city.getX();
-            int y = city.getY();
+            double x = city.getX();
+            double y = city.getY();
             gc.fillOval(x - 5, y - 5, 10, 10);
             gc.strokeText(city.getName(), x + 7, y);
         }

@@ -1,32 +1,25 @@
 package org.buet.sky.airrecalculator;
 
-
 import java.io.Serializable;
 
 public class AirPlane implements Serializable {
     private int id;
     private String name;
 
-
-
     private int fuelCapacity;
-    private int speed;
-    private int mileage;
-
-
-
+    private double speed;
+    private double mileage;
 
     private int currentLocation;
     private int companyId;
     private double userRating;
+
     private int departureAirport;
     private int arrivalAirport;
     private int arrivalTime;
 
 
-
-    public AirPlane() {
-    }
+    public AirPlane() {}
 
     public AirPlane(String name, int fuelCapacity, int currentLocation, int companyId) {
         this.name = name;
@@ -36,15 +29,7 @@ public class AirPlane implements Serializable {
     }
 
     public AirPlane(int id, String name, int fuelCapacity, int currentLocation, int companyId) {
-        this.id = id;
-        this.name = name;
-        this.fuelCapacity = fuelCapacity;
-        this.currentLocation = currentLocation;
-        this.companyId = companyId;
-    }
-
-    public int getMileage() {
-        return mileage;
+        this(id, name, fuelCapacity, currentLocation, companyId, 0.0);
     }
 
     public AirPlane(int id, String name, int fuelCapacity, int currentLocation, int companyId, double userRating) {
@@ -56,66 +41,71 @@ public class AirPlane implements Serializable {
         this.userRating = userRating;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+    public AirPlane(int id, String name, int fuelCapacity, double speed, double mileage,
+                    int currentLocation, int companyId, double userRating,
+                    int departureAirport, int arrivalAirport, int arrivalTime) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
-    }
-
-    public int getFuelCapacity() {
-        return fuelCapacity;
-    }
-
-    public void setFuelCapacity(int fuelCapacity) {
         this.fuelCapacity = fuelCapacity;
-    }
-
-    public int getCurrentLocation() {
-        return currentLocation;
-    }
-
-    public void setCurrentLocation(int currentLocation) {
+        this.speed = speed;
+        this.mileage = mileage;
         this.currentLocation = currentLocation;
-    }
-
-    public int getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(int companyId) {
         this.companyId = companyId;
-    }
-
-    public double getUserRating() {
-        return userRating;
-    }
-
-    public void setUserRating(double userRating) {
         this.userRating = userRating;
+        this.departureAirport = departureAirport;
+        this.arrivalAirport = arrivalAirport;
+        this.arrivalTime = arrivalTime;
     }
+
+
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public int getFuelCapacity() { return fuelCapacity; }
+    public void setFuelCapacity(int fuelCapacity) { this.fuelCapacity = fuelCapacity; }
+
+    public double getSpeed() { return speed; }
+    public void setSpeed(double speed) { this.speed = speed; }
+
+    public double getMileage() { return mileage; }
+    public void setMileage(double mileage) { this.mileage = mileage; }
+
+    public int getCurrentLocation() { return currentLocation; }
+    public void setCurrentLocation(int currentLocation) { this.currentLocation = currentLocation; }
+
+    public int getCompanyId() { return companyId; }
+    public void setCompanyId(int companyId) { this.companyId = companyId; }
+
+    public double getUserRating() { return userRating; }
+    public void setUserRating(double userRating) { this.userRating = userRating; }
+
+    public int getDepartureAirport() { return departureAirport; }
+    public void setDepartureAirport(int departureAirport) { this.departureAirport = departureAirport; }
+
+    public int getArrivalAirport() { return arrivalAirport; }
+    public void setArrivalAirport(int arrivalAirport) { this.arrivalAirport = arrivalAirport; }
+
+    public int getArrivalTime() { return arrivalTime; }
+    public void setArrivalTime(int arrivalTime) { this.arrivalTime = arrivalTime; }
+
 
     @Override
     public String toString() {
-        return "Airplane{" +
+        return "AirPlane{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", fuelCapacity=" + fuelCapacity +
+                ", speed=" + speed +
+                ", mileage=" + mileage +
                 ", currentLocation=" + currentLocation +
                 ", companyId=" + companyId +
+                ", userRating=" + userRating +
+                ", departureAirport=" + departureAirport +
+                ", arrivalAirport=" + arrivalAirport +
+                ", arrivalTime=" + arrivalTime +
                 '}';
-    }
-
-    public int getSpeed() {
-        return speed;
     }
 }

@@ -11,7 +11,6 @@ public class Dijkstra {
     private City source, destination;
     private List<City> cities;
 
-
     Dijkstra(AirPlane airplane, City source, City destination, List<City> cities) {
         maxFuelCapacity = airplane.getFuelCapacity();
         this.airplane = airplane;
@@ -27,7 +26,7 @@ public class Dijkstra {
         Set<Node> visited = new HashSet<>();
         list = new ArrayList<>();
 
-        pq.offer(new Node(source, 0, 0, null));
+        pq.offer(new Node(source, 0, 0.0, null));
 
 
         Node minNode = null;
@@ -70,7 +69,7 @@ public class Dijkstra {
         Set<Node> visited = new HashSet<>();
         list = new ArrayList<>();
 
-        pq.offer(new Node(source, 0, 0, null));
+        pq.offer(new Node(source, 0, 0.0, null));
 
 
         Node minNode = null;
@@ -103,5 +102,4 @@ public class Dijkstra {
         Collections.reverse(list);
         return list;
     }
-
 }
