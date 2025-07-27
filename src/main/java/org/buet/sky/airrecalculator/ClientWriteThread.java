@@ -17,6 +17,7 @@ public class ClientWriteThread implements Runnable{
         while(true){
             try {
                 network.write(obj.writerPop());
+                System.out.println("writting");
             }catch(Exception e){
                 obj.readerPush(new Command(-100, null));
             }

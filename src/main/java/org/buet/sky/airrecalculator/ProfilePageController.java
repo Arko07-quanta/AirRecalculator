@@ -50,7 +50,8 @@ public class ProfilePageController {
         profileName.setText(Main.company.getName());
         nameLabel.setText(Main.company.getName());
         idLabel.setText(Integer.toString(Main.company.getId()));
-        planeCountLabel.setText(Integer.toString(Main.airPlaneList.size()));
+        if(Main.airPlaneList != null)planeCountLabel.setText(Integer.toString(Main.airPlaneList.size()));
+        else planeCountLabel.setText("0");
         return;
     }
 

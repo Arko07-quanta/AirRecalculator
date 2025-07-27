@@ -80,13 +80,13 @@ public class RequestPageController {
     private void populateComboBoxes(){
         // Populate flightId with planeList
         flightId.getItems().clear();
-        flightId.getItems().addAll(Main.airPlaneList);
+        if(Main.airPlaneList != null) flightId.getItems().addAll(Main.airPlaneList);
 
         // Populate departureAirport and destinationAirport with cityList
         departureAirport.getItems().clear();
         destinationAirport.getItems().clear();
-        departureAirport.getItems().addAll(Main.cityList);
-        destinationAirport.getItems().addAll(Main.cityList);
+        if(Main.cityList != null) departureAirport.getItems().addAll(Main.cityList);
+        if(Main.cityList != null) destinationAirport.getItems().addAll(Main.cityList);
 
         // You can also populate departureTime if you have data for that
         // Example dummy times:
@@ -103,6 +103,7 @@ public class RequestPageController {
         }
         else{
             companyNameLabel.setText(Main.company.getName());
+            enableEditing();
             populateComboBoxes();
         }
     }

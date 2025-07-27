@@ -20,12 +20,11 @@ public class MainPageController {
 
     @FXML
     public void onLoginPage(ActionEvent event) throws IOException {
-        if(Main.loginStatus) {
-            Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
+        Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
+        if(Main.loginStatus == false) {
             LoginPage loginPage = new LoginPage(stage);
             loginPage.show();
         }else {
-            Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
             ProfilePage profilePage = new ProfilePage(stage);
             profilePage.show();
         }

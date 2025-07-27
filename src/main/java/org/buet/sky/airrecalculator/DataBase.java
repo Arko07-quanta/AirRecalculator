@@ -123,6 +123,9 @@ public class DataBase{
 
     public synchronized static void addCompany(Company company){
         try {
+
+            System.out.println("adding");
+            System.out.println(company);
             Connection conn = DriverManager.getConnection(DB_URL);
             String sql = "INSERT INTO company (name, email, phone, password) VALUES (?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -158,6 +161,11 @@ public class DataBase{
 
     public synchronized static Boolean validate(Company company){
         try{
+            System.out.println("Validating");
+            System.out.println(company);
+
+
+
             Connection conn = DriverManager.getConnection(DB_URL);
             String sql = "SELECT * FROM company WHERE name = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
