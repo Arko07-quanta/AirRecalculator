@@ -33,7 +33,7 @@ public class PlaneInfoController implements Initializable {
                 String id                 = nullToNA(Integer.toString(p.getId()));
                 String name               = nullToNA(p.getName());
                 String fuel               = p.getFuelCapacity() + " L";
-                String departureAirport   = nullToNA(p.getDepartureAirport());
+                String departureAirport   = nullToNA(Integer.toString(p.getDepartureAirport()));
                 String destinationAirport = nullToNA(p.getDestinationAirport());
                 String departureTime      = nullToNA(p.getDepartureTime());
                 String flightTime         = nullToNA(p.getFlightTime());

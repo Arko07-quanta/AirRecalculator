@@ -13,8 +13,8 @@ public class AirPlane implements Serializable {
     private int currentLocation;
     private int companyId;
     private double userRating;
-    private String departureAirport;
-    private String arrivalAirport;
+    private int departureAirport;
+    private int arrivalAirport;
     private int departureTime;
     private int flightTime;
 
@@ -54,7 +54,7 @@ public class AirPlane implements Serializable {
         this.userRating = userRating;
         this.departureAirport = departureAirport;
         this.arrivalAirport = arrivalAirport;
-        this.arrivalTime = arrivalTime;
+        this.departureTime = arrivalTime;
     }
 
 
@@ -88,8 +88,8 @@ public class AirPlane implements Serializable {
     public int getArrivalAirport() { return arrivalAirport; }
     public void setArrivalAirport(int arrivalAirport) { this.arrivalAirport = arrivalAirport; }
 
-    public int getArrivalTime() { return arrivalTime; }
-    public void setArrivalTime(int arrivalTime) { this.arrivalTime = arrivalTime; }
+    public int getArrivalTime() { return departureTime; }
+    public void setArrivalTime(int arrivalTime) { this.departureTime = arrivalTime; }
 
 
     @Override
@@ -105,17 +105,17 @@ public class AirPlane implements Serializable {
                 ", userRating=" + userRating +
                 ", departureAirport=" + departureAirport +
                 ", arrivalAirport=" + arrivalAirport +
-                ", arrivalTime=" + arrivalTime +
+                ", arrivalTime=" + departureTime +
                 '}';
     }
 
 
-    public String getDepartureAirport() {
-        return departureAirport;
-    }
+//    public String getDepartureAirport() {
+//        return Integer.toString(departureAirport);
+//    }
 
     public String getDestinationAirport() {
-        return arrivalAirport;
+        return Integer.toString(arrivalAirport);
     }
 
     public String getDepartureTime() {
