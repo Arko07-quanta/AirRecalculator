@@ -16,10 +16,17 @@ public class AddPlane {
     }
 
     public void show() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("AddPlane.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("AddPlane.fxml"));
+            System.out.println("getting FXML");
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }catch (IOException e) {
+            System.out.println("Error");
+            e.printStackTrace();
+        }
         //stage.centerOnScreen();
     }
 }

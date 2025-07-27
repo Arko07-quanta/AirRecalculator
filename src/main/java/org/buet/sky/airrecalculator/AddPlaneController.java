@@ -1,6 +1,7 @@
 package org.buet.sky.airrecalculator;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.Node;
 import javafx.stage.Stage;
@@ -9,6 +10,7 @@ import java.io.IOException;
 
 public class AddPlaneController {
 
+    @FXML public Button profileName;
     @FXML private TextField planeNameField;
     @FXML private TextField fuelCapacityField;
     @FXML private TextField flightIdField;
@@ -16,11 +18,9 @@ public class AddPlaneController {
 
     @FXML
     public void initialize() {
-        // auto‐generate Flight ID
         flightIdField.setText(generateFlightId());
-        // auto‐fill Company ID from the logged‐in user (stubbed here)
         companyIdField.setText(getCurrentCompanyId());
-        // make sure read‐only
+        profileName.setText(Main.company.getName());
         flightIdField.setEditable(false);
         companyIdField.setEditable(false);
     }

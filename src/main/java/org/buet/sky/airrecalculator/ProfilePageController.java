@@ -32,10 +32,12 @@ public class ProfilePageController {
     @FXML
     public void onAddPlaneClicked(ActionEvent event) throws IOException {
         Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
+        System.out.println("getting clicked");
         AddPlane addPlane = new AddPlane(stage);
         addPlane.show();
         return;
     }
+
 
     @FXML
     public void onLogoutClicked(ActionEvent event) throws IOException {
