@@ -14,6 +14,11 @@ public class Company implements Serializable {
         id = -1;
     }
 
+    public Company(String name, String password){
+        this.name = name;
+        this.password = password;
+    }
+
     public Company(String name, String email, String phone, String password) {
         this.name = name;
         this.email = email;

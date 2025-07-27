@@ -4,20 +4,33 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class Main extends Application {
     public static Network network;
     public static SharedObject obj;
     public static Company company;  // contains login info
-    public Boolean loginStatus = false;
+    public static Boolean loginStatus = false;
+    public static Boolean serverStatus = false;
     // contains all the controller's object
     public static HashMap<Integer, Object> controller;
+    public static List<AirPlane> airPlaneList;
+    public static List<City>  cityList;
+
+    public static void showPopup(String msg) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(msg);
+        alert.showAndWait();
+    }
 
 
     @Override

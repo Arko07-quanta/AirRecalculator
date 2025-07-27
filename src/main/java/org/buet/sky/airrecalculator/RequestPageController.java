@@ -3,7 +3,9 @@ package org.buet.sky.airrecalculator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -14,16 +16,14 @@ import java.util.Scanner;
 
 
 public class RequestPageController {
+
+
+    @FXML public Label companyNameLabel;
     @FXML public ComboBox flightId;
     @FXML public ComboBox departureAirport;
     @FXML public ComboBox destinationAirport;
-    @FXML private Request request;
-    @FXML private ComboBox companyName;
-    @FXML private ComboBox departureTime;
-    @FXML private ComboBox fuelCapacity;
-    @FXML private ComboBox onTimeSelected;
-
-
+    @FXML public ComboBox departureTime;
+    @FXML public Button requestButton;
 
     @FXML
     public void onRequest(ActionEvent event) throws IOException {
@@ -60,85 +60,51 @@ public class RequestPageController {
     }
 
 
-
-
     @FXML
-    public void setFlightId(ActionEvent event) throws IOException {
-        request.setFlightId(Integer.parseInt(((ComboBox) event.getSource()).getValue().toString()));
+    private void disableEditing() {
+        flightId.setDisable(true);
+        departureAirport.setDisable(true);
+        destinationAirport.setDisable(true);
+        departureTime.setDisable(true);
     }
 
     @FXML
-    public void setTime(ActionEvent event) throws IOException {
-        request.setTime(Integer.parseInt(((ComboBox) event.getSource()).getValue().toString()));
+    private void enableEditing() {
+        flightId.setDisable(false);
+        departureAirport.setDisable(false);
+        destinationAirport.setDisable(false);
+        departureTime.setDisable(false);
     }
 
     @FXML
-    public void setCapacity(ActionEvent event) throws IOException {
-        request.setCapacity(Integer.parseInt(((ComboBox) event.getSource()).getValue().toString()));
+    private void populateComboBoxes(){
+        // Populate flightId with planeList
+        flightId.getItems().clear();
+        if(Main.airPlaneList != null) flightId.getItems().addAll(Main.airPlaneList);
+
+        // Populate departureAirport and destinationAirport with cityList
+        departureAirport.getItems().clear();
+        destinationAirport.getItems().clear();
+        if(Main.cityList != null) departureAirport.getItems().addAll(Main.cityList);
+        if(Main.cityList != null) destinationAirport.getItems().addAll(Main.cityList);
+
+        // You can also populate departureTime if you have data for that
+        // Example dummy times:
+        departureTime.getItems().clear();
+        departureTime.getItems().addAll("06:00 AM", "12:00 PM", "06:00 PM");
     }
-
-    @FXML
-    public void setCompanyName(ActionEvent event) throws IOException {
-        request.setCompanyName(((ComboBox) event.getSource()).getValue().toString());
-    }
-
-
-    @FXML
-    public void setDeparture(ActionEvent event) throws IOException {
-        request.setDeparture(((ComboBox) event.getSource()).getValue().toString());
-    }
-
-
-
-    @FXML
-    public void setArrival(ActionEvent event) throws IOException {
-        request.setArrival(((ComboBox) event.getSource()).getValue().toString());
-    }
-
-
-
-    @FXML
-    public void onButtonClick(ActionEvent event) throws IOException {
-        request.print();
-    }
-
-    @FXML
-    private void onDepartureSelected(ActionEvent event) {
-        // Your code here to handle departure selection
-    }
-
-    @FXML
-    private void onDestinationSelected(ActionEvent event) {
-        // Handle destination selection
-    }
-
-    @FXML
-    private void onTimeSelected(ActionEvent event) {
-        // Handle time selection
-    }
-
-    @FXML
-    private void onCapacitySelected(ActionEvent event) {
-        // Handle capacity selection
-    }
-
 
 
     @FXML
     public void initialize() {
-        request = new Request();
-
-        URL url = getClass().getResource("/data/request.txt");
-        try {
-            assert url != null;
-            Scanner sc = new Scanner(new File(url.toURI()));
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
-                System.out.println(line);
-                companyName.getItems().add(line);
-            }
-        } catch (Exception e) {
-            System.out.println("Error loading request file");
+        if(!Main.loginStatus){
+            disableEditing();
+            return;
+        }
+        else{
+            companyNameLabel.setText(Main.company.getName());
+            enableEditing();
+            populateComboBoxes();
         }
     }
 }

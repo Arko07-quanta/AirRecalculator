@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="719.0" prefWidth="977.0" styleClass="fancyVBox" stylesheets="@../../../../style/MainPage.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.buet.sky.airrecalculator.AddPlaneController">
+
+    <!-- Banner + Nav Bar (identical to MainPage.fxml) -->
+    <children>
+        <AnchorPane prefHeight="241.0" prefWidth="977.0">
+            <children>
+                <ImageView fitHeight="124.0" fitWidth="912.0" pickOnBounds="true">
+                    <image>
+                        <Image url="@../../../../images/banner.gif" />
+                    </image>
+                </ImageView>
+                <HBox alignment="CENTER" layoutY="184.0" prefHeight="59.0" prefWidth="917.0" spacing="45">
+                    <children>
+                        <Button onAction="#onMain" prefHeight="60.0" prefWidth="143.0" styleClass="button" text="Home" />
+                        <Button onAction="#onSchedulePage" prefHeight="60.0" prefWidth="143.0" styleClass="button" text="Schedule" />
+                        <Button onAction="#onRequestPage" prefHeight="60.0" prefWidth="143.0" styleClass="button" text="Request" />
+                        <Button fx:id="profileName" onAction="#onLoginPage" prefHeight="60.0" prefWidth="143.0" styleClass="button" text="Login" />
+                        <Button onAction="#onRegistrationPage" prefHeight="60.0" prefWidth="143.0" styleClass="button" text="Registration" />
+                    </children>
+                </HBox>
+            </children>
+        </AnchorPane>
+
+        <!-- Form Section (styled same as other pages) -->
+        <VBox alignment="TOP_CENTER" spacing="20" VBox.vgrow="ALWAYS">
+            <padding>
+                <Insets bottom="30" left="30" right="30" top="30" />
+            </padding>
+
+            <Label styleClass="label" text="Add New Plane" />
+
+            <GridPane hgap="20" vgap="20">
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" minWidth="120" />
+                    <ColumnConstraints halignment="LEFT" minWidth="200" />
+                </columnConstraints>
+
+                <children>
+                    <!-- Plane Name -->
+                    <Label styleClass="label" text="Plane Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <TextField fx:id="planeNameField" promptText="Enter plane name" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                    <!-- Fuel Capacity -->
+                    <Label styleClass="label" text="Fuel Capacity:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <TextField fx:id="fuelCapacityField" promptText="Enter fuel capacity" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                    <!-- Flight ID (auto) -->
+                    <Label styleClass="label" text="Flight ID:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <TextField fx:id="flightIdField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                    <!-- Company ID (auto) -->
+                    <Label styleClass="label" text="Company ID:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                    <TextField fx:id="companyIdField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                </children>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+            </GridPane>
+
+            <Button fx:id="submitButton" onAction="#onSubmit" prefWidth="120" styleClass="button" text="Submit" />
+        </VBox>
+    </children>
+</VBox>

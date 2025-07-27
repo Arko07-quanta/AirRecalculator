@@ -44,7 +44,32 @@ public class LoginPageController {
     public void onLogin(ActionEvent event) throws IOException {
         String name = userName.getText();
         String pass = userPass.getText();
-
+        Main.serverStatus = false;
+        if(pass.isEmpty() || name.isEmpty()){
+            Main.showPopup("Please fill all the fields");
+            return;
+        }
+        Company company = new Company(name,pass);
+        Command cmd = new Command(0, company);
+        Main.obj.writerPush(cmd);
+        while(!Main.serverStatus){
+            try{
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        if(!Main.company.isEmpty()){
+            Main.loginStatus = true;
+            Main.serverStatus = false;
+            Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
+            ProfilePage profilePage = new ProfilePage(stage);
+            profilePage.show();
+        }
+        else{
+            Main.showPopup("Invalid username or password");
+            Main.serverStatus = false;
+        }
         return;
     }
 

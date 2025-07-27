@@ -13,10 +13,10 @@ public class AirPlane implements Serializable {
     private int currentLocation;
     private int companyId;
     private double userRating;
-
-    private int departureAirport;
-    private int arrivalAirport;
-    private int arrivalTime;
+    private String departureAirport;
+    private String arrivalAirport;
+    private int departureTime;
+    private int flightTime;
 
 
     public AirPlane() {}
@@ -108,4 +108,22 @@ public class AirPlane implements Serializable {
                 ", arrivalTime=" + arrivalTime +
                 '}';
     }
+
+
+    public String getDepartureAirport() {
+        return departureAirport;
+    }
+
+    public String getDestinationAirport() {
+        return arrivalAirport;
+    }
+
+    public String getDepartureTime() {
+        return Integer.toString(departureTime);
+    }
+
+    public String getFlightTime() {
+        return Integer.toString(flightTime);
+    }
 }
+

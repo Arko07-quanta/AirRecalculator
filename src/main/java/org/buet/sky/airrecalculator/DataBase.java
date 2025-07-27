@@ -118,10 +118,15 @@ public class DataBase {
         }
     }
 
-    public synchronized static void addCompany(Company company) {
-        try (Connection conn = DriverManager.getConnection(DB_URL);
-             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Company (name, email, phone, password) VALUES (?, ?, ?, ?)")
-        ) {
+
+    public synchronized static void addCompany(Company company){
+        try {
+
+            System.out.println("adding");
+            System.out.println(company);
+            Connection conn = DriverManager.getConnection(DB_URL);
+            String sql = "INSERT INTO company (name, email, phone, password) VALUES (?, ?, ?, ?)";
+            PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, company.getName());
             stmt.setString(2, company.getEmail());
             stmt.setString(3, company.getPhone());
@@ -147,11 +152,19 @@ public class DataBase {
             return false;
         }
     }
+    
+    
 
-    public synchronized static boolean validate(Company company) {
-        try (Connection conn = DriverManager.getConnection(DB_URL);
-             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Company WHERE name = ?")
-        ) {
+    public synchronized static Boolean validate(Company company){
+        try{
+            System.out.println("Validating");
+            System.out.println(company);
+
+
+
+            Connection conn = DriverManager.getConnection(DB_URL);
+            String sql = "SELECT * FROM company WHERE name = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, company.getName());
             ResultSet rs = stmt.executeQuery();
             return !rs.next();
