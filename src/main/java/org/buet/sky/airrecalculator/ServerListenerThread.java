@@ -96,27 +96,13 @@ public class ServerListenerThread implements Runnable {
             }
 
             if(objectChecker.addPlane()){
-                AirPlane airPlane = objectChecker.getPlaneObj();
-                System.out.println(airPlane);
-                if(airPlane == null){
-                    System.out.println("No plane found");
-                }
-                if(obj.account == null) continue;
-                DataBase.addAirPlane(airPlane);
+                DataBase.addAirPlane(objectChecker.getPlaneObj());
             }
 
 
-
-
-
-
-
-
-
-
-
-
-
+            if(objectChecker.getMyPlane()){
+                obj.writerPush(new Command(18, DataBase.getAirplane(obj.account.getId())));
+            }
 
         }
 
