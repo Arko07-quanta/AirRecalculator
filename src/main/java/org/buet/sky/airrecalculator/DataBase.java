@@ -54,8 +54,8 @@ public class DataBase {
              Statement stmt = conn.createStatement()) {
 
             ResultSet rs = (companyId == -1)
-                    ? stmt.executeQuery("SELECT * FROM AirPlane")
-                    : stmt.executeQuery("SELECT * FROM AirPlane ORDER BY departureTime WHERE companyId = " + companyId);
+                    ? stmt.executeQuery("SELECT * FROM AirPlane ORDER BY departureTime")
+                    : stmt.executeQuery("SELECT * FROM AirPlane WHERE companyId = " + companyId);
 
             while (rs.next()) {
                 AirPlane airplane = new AirPlane(
@@ -212,7 +212,9 @@ public class DataBase {
 
 
     public synchronized static void addAirPlane(AirPlane airplane) {
+        System.out.println("getting called");
         if(verify(airplane) == false) {
+            System.out.println("modify");
             modifyAirPlane(airplane);
             return;
         }
@@ -301,26 +303,6 @@ public class DataBase {
 
 
 
-
-
-    // have to repair this shit and have to addSchedule function
-
-    public synchronized static List<AirPlane> getSchedule(){
-        List<AirPlane> airplanes = new ArrayList<>();
-        try{
-            Connection conn = DriverManager.getConnection(DB_URL);
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Schedule WHERE start_time >= ? ORDER BY start_time DESC");
-            stmt.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
-            ResultSet rs = stmt.executeQuery();
-            while(rs.next()) {
-                AirPlane airplane = getAirplaneById(rs.getInt("air_plane_id"));
-                airplanes.add(airplane);
-            }
-        }catch (SQLException e){
-            System.out.println(e.getMessage());
-        }
-        return airplanes;
-    }
 
 
 
