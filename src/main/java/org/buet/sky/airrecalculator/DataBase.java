@@ -52,11 +52,10 @@ public class DataBase {
         List<AirPlane> airplanes = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(DB_URL);
              Statement stmt = conn.createStatement()) {
-            System.out.println("at least trying to get");
 
             ResultSet rs = (companyId == -1)
                     ? stmt.executeQuery("SELECT * FROM AirPlane")
-                    : stmt.executeQuery("SELECT * FROM AirPlane WHERE companyId = " + companyId);
+                    : stmt.executeQuery("SELECT * FROM AirPlane ORDER BY departureTime WHERE companyId = " + companyId);
 
             while (rs.next()) {
                 AirPlane airplane = new AirPlane(
@@ -105,8 +104,6 @@ public class DataBase {
 
     public synchronized static void addCompany(Company company){
         try {
-
-            System.out.println("adding");
             System.out.println(company);
             Connection conn = DriverManager.getConnection(DB_URL);
             String sql = "INSERT INTO company (name, email, phone, password) VALUES (?, ?, ?, ?)";
@@ -116,12 +113,34 @@ public class DataBase {
             stmt.setString(3, company.getPhone());
             stmt.setString(4, company.getPassword());
             stmt.executeUpdate();
+            company.setId(getCompanyId(company));
 
             Server.dataBaseListener.writerPush(new Command(1, null));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
+
+
+
+    public synchronized static int getCompanyId(Company company){
+        try (Connection conn = DriverManager.getConnection(DB_URL);
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Company WHERE name = ? AND password = ?")
+        ) {
+            stmt.setString(1, company.getName());
+            stmt.setString(2, company.getPassword());
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                return rs.getInt("id");
+            }
+            return -1;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return -1;
+        }
+    }
+
+
 
     public synchronized static boolean verify(Company company) {
         try (Connection conn = DriverManager.getConnection(DB_URL);
@@ -130,7 +149,12 @@ public class DataBase {
             stmt.setString(1, company.getName());
             stmt.setString(2, company.getPassword());
             ResultSet rs = stmt.executeQuery();
-            return rs.next() && !rs.next();
+
+            if(rs.next() && !rs.next()){
+                company.setId(getCompanyId(company));
+                return true;
+            }
+            return false;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return false;
@@ -154,11 +178,6 @@ public class DataBase {
 
     public synchronized static Boolean validate(Company company){
         try{
-            System.out.println("Validating");
-            System.out.println(company);
-
-
-
             Connection conn = DriverManager.getConnection(DB_URL);
             String sql = "SELECT * FROM company WHERE name = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -170,11 +189,6 @@ public class DataBase {
             return false;
         }
     }
-
-
-
-
-
 
 
         private static AirPlane mapRowToAirPlane(ResultSet rs) throws SQLException {
@@ -194,9 +208,6 @@ public class DataBase {
                 rs.getInt("cost")
         );
     }
-
-
-
 
 
 
@@ -229,7 +240,6 @@ public class DataBase {
                     airplane.setId(rs.getInt(1));
                 }
             }
-            // notify listeners to refresh
             Server.dataBaseListener.writerPush(new Command(8, airplane.getCompanyId()));
             Server.dataBaseListener.writerPush(new Command(9, null));
         } catch (SQLException e) {
@@ -238,16 +248,20 @@ public class DataBase {
     }
 
     public synchronized static void modifyAirPlane(AirPlane airplane) {
-        String sql = "UPDATE AirPlane SET departureTime = ?, arrivalAirport = ?, flightTime = ?, cost = ? WHERE id = ?";
+
+        System.out.println("modifying airplane");
+        System.out.println(airplane.getDepartureAirport());
+
+        String sql = "UPDATE AirPlane SET  departureTime = ?, arrivalAirport = ?, flightTime = ?, cost = ?, departureAirport = ? WHERE id = ?";
         try (Connection conn = DriverManager.getConnection(DB_URL);
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setLong(1, airplane.getDepartureTime());
+            ps.setInt(1, airplane.getDepartureTime());
             ps.setInt(2, airplane.getArrivalAirport());
-            ps.setLong(3, airplane.getFlightTime());
+            ps.setInt(3, airplane.getFlightTime());
             ps.setInt(4, airplane.getCost());
-            ps.setInt(5, airplane.getId());
+            ps.setInt(5, airplane.getDepartureAirport());
+            ps.setInt(6, airplane.getId());
             ps.executeUpdate();
-            // after modifying, push refresh
             Server.dataBaseListener.writerPush(new Command(8, airplane.getCompanyId()));
         } catch (SQLException e) {
             e.printStackTrace();

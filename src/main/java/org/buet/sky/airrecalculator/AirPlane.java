@@ -13,7 +13,7 @@ public class AirPlane implements Serializable {
     private double userRating;
     private int departureAirport;
     private int arrivalAirport;
-    private int departureTime; // also used as "arrivalTime" in older constructors
+    private int departureTime;
     private int flightTime;
     private int cost;
 

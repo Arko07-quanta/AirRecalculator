@@ -45,6 +45,7 @@ public class Main extends Application {
         new ClientListenerThread(obj);
 
 
+
         Parent root = (new FXMLLoader(Main.class.getResource("MainPage.fxml"))).load();
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("City Mapper");

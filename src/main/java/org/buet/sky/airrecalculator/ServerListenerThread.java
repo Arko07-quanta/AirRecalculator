@@ -79,7 +79,6 @@ public class ServerListenerThread implements Runnable {
                 Company company = objectChecker.getAccountObj();
                 System.out.println(company);
 
-
                 if(DataBase.validate(company)){
                     Server.companyClient.addEdge(clientId, company.getId());
                     DataBase.addCompany(company);
@@ -113,12 +112,9 @@ public class ServerListenerThread implements Runnable {
                 }
             }
 
-
-            if(objectChecker.isSchedule()){
-
+            if(objectChecker.getAllPlane()){
+                obj.writerPush(new Command(9, DataBase.getAirplane()));
             }
-
-
 
 
         }
