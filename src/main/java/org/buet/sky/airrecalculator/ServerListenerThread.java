@@ -90,6 +90,8 @@ public class ServerListenerThread implements Runnable {
                 }
             }
 
+            System.out.println(objectChecker.command.opt);
+
             if(objectChecker.addCity()){
                 DataBase.addCity(objectChecker.getCityObj());
             }

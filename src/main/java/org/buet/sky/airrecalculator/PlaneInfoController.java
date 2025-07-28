@@ -42,7 +42,7 @@ public class PlaneInfoController{
                     String name = nullToNA(p.getName());
                     String fuel = p.getFuelCapacity() + " L";
                     String departureAirport = nullToNA(Integer.toString(p.getDepartureAirport()));
-                    String destinationAirport = nullToNA(Integer.toString(p.getDestinationAirport()));
+                    String destinationAirport = nullToNA(Integer.toString(p.getArrivalAirport()));
                     String departureTime = nullToNA(Integer.toString(p.getDepartureTime()));
                     String flightTime = nullToNA(Integer.toString(p.getFlightTime()));
 

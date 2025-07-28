@@ -5,29 +5,20 @@ import java.io.Serializable;
 public class AirPlane implements Serializable {
     private int id;
     private String name;
-
     private int fuelCapacity;
     private double speed;
     private double mileage;
-
     private int currentLocation;
     private int companyId;
     private double userRating;
     private int departureAirport;
     private int arrivalAirport;
-    private int departureTime;
+    private int departureTime; // also used as "arrivalTime" in older constructors
     private int flightTime;
     private int cost;
 
-
     public AirPlane() {}
 
-    public void setDepartureTime(int departureTime) {
-        this.departureTime = departureTime;
-    }
-    public void setFlightTime(int flightTime) {this.flightTime = flightTime;}
-    public void setCost(int cost) {this.cost = cost;}
-    public int getCost(){return cost;}
 
     public AirPlane(String name, int fuelCapacity, double speed, int currentLocation, int companyId) {
         this.name = name;
@@ -37,38 +28,19 @@ public class AirPlane implements Serializable {
         this.speed = speed;
     }
 
-    public AirPlane(int id, String name, int fuelCapacity, int currentLocation, int companyId) {
-        this(id, name, fuelCapacity, currentLocation, companyId, 0.0);
-    }
-
-    public AirPlane(int id, String name, int fuelCapacity, int currentLocation, int companyId, double userRating) {
-        this.id = id;
-        this.name = name;
-        this.fuelCapacity = fuelCapacity;
-        this.currentLocation = currentLocation;
-        this.companyId = companyId;
-        this.userRating = userRating;
-    }
-
-    public AirPlane(int id, String name, int fuelCapacity, double speed, double mileage,
-                    int currentLocation, int companyId, double userRating,
-                    int departureAirport, int arrivalAirport, int arrivalTime) {
-        this.id = id;
-        this.name = name;
-        this.fuelCapacity = fuelCapacity;
-        this.speed = speed;
-        this.mileage = mileage;
-        this.currentLocation = currentLocation;
-        this.companyId = companyId;
-        this.userRating = userRating;
-        this.departureAirport = departureAirport;
-        this.arrivalAirport = arrivalAirport;
-        this.departureTime = arrivalTime;
-    }
-
-    public AirPlane(int id, String name, int fuelCapacity, double speed, double mileage,
-                    int currentLocation, int companyId, double userRating,
-                    int departureAirport, int arrivalAirport, int arrivalTime, int cost) {
+    public AirPlane(int id,
+                    String name,
+                    int fuelCapacity,
+                    double speed,
+                    double mileage,
+                    int currentLocation,
+                    int companyId,
+                    double userRating,
+                    int departureAirport,
+                    int arrivalAirport,
+                    int departureTime,
+                    int flightTime,
+                    int cost) {
         this.id = id;
         this.name = name;
         this.fuelCapacity = fuelCapacity;
@@ -79,11 +51,20 @@ public class AirPlane implements Serializable {
         this.userRating = userRating;
         this.departureAirport = departureAirport;
         this.arrivalAirport = arrivalAirport;
-        this.departureTime = arrivalTime;
+        this.departureTime = departureTime;
+        this.flightTime = flightTime;
         this.cost = cost;
     }
 
 
+
+
+
+
+
+
+
+    // --- Getters/Setters ---
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
@@ -114,9 +95,18 @@ public class AirPlane implements Serializable {
     public int getArrivalAirport() { return arrivalAirport; }
     public void setArrivalAirport(int arrivalAirport) { this.arrivalAirport = arrivalAirport; }
 
-    public int getArrivalTime() { return departureTime; }
-    public void setArrivalTime(int arrivalTime) { this.departureTime = arrivalTime; }
+    public int getDepartureTime() { return departureTime; }
+    public void setDepartureTime(int departureTime) { this.departureTime = departureTime; }
 
+    public int getFlightTime() { return flightTime; }
+    public void setFlightTime(int flightTime) { this.flightTime = flightTime; }
+
+    public int getCost() { return cost; }
+    public void setCost(int cost) { this.cost = cost; }
+
+    // Legacy confusing methods
+    public int getArrivalTime() { return departureTime; } // kept for backward compatibility
+    public void setArrivalTime(int arrivalTime) { this.departureTime = arrivalTime; } // legacy
 
     @Override
     public String toString() {
@@ -131,25 +121,9 @@ public class AirPlane implements Serializable {
                 ", userRating=" + userRating +
                 ", departureAirport=" + departureAirport +
                 ", arrivalAirport=" + arrivalAirport +
-                ", arrivalTime=" + departureTime +
+                ", departureTime=" + departureTime +
+                ", flightTime=" + flightTime +
+                ", cost=" + cost +
                 '}';
     }
-
-
-//    public String getDepartureAirport() {
-//        return Integer.toString(departureAirport);
-//    }
-
-    public int getDestinationAirport() {
-        return departureAirport;
-    }
-
-    public int getDepartureTime() {
-        return departureTime;
-    }
-
-    public int getFlightTime() {
-        return flightTime;
-    }
 }
-

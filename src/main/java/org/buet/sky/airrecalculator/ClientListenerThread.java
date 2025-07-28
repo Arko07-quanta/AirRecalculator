@@ -66,7 +66,6 @@ public class ClientListenerThread implements Runnable {
                     Main.serverStatus = true;
                 }
 
-
             }
 
             if(objChecker.getMyPlane()){
