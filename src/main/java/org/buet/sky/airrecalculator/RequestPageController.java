@@ -42,6 +42,7 @@ public class RequestPageController {
 //        airPlane.setMileage(3);
 
         // give time
+        System.out.println("getting called");
 
         new Dijkstra(airPlane, departureCity, destinationCity, Main.cityList, true, depTime);
         new Dijkstra(airPlane, departureCity, destinationCity, Main.cityList, false, depTime);
