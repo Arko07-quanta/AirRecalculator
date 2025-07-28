@@ -13,20 +13,18 @@ import java.util.List;
 public class AddPlaneController {
 
     @FXML public Button profileName;
+    @FXML public TextField speedField;
+    @FXML public TextField mileageField;
+    @FXML public TextField departureAirportField;
     @FXML private TextField planeNameField;
     @FXML private TextField fuelCapacityField;
-    @FXML private TextField flightIdField;
-    @FXML private TextField companyIdField;
 
     @FXML
     public void initialize() {
         String x = generateFlightId();
-        flightIdField.setText(x);
         planeNameField.setText(x);
-        companyIdField.setText(getCurrentCompanyId());
+        //companyIdField.setText(getCurrentCompanyId());
         profileName.setText(Main.company.getName());
-        flightIdField.setEditable(false);
-        companyIdField.setEditable(false);
         planeNameField.setEditable(false);
     }
 
@@ -36,30 +34,19 @@ public class AddPlaneController {
         return init + System.currentTimeMillis() % 100000;
     }
 
-    private String getCurrentCompanyId() {
-        return Integer.toString(Main.company.getId());
-    }
-
     @FXML
     public void onSubmit(ActionEvent event) {
         String name = planeNameField.getText();
-        String fuelText = fuelCapacityField.getText().trim();
-        if (name.isEmpty() || fuelText.isEmpty()) {
+        int fuel = Integer.parseInt(fuelCapacityField.getText().trim());
+        double speed = Double.parseDouble(speedField.getText().trim());
+        double mileage = Double.parseDouble(mileageField.getText().trim());
+        int departureAirport = Integer.parseInt(departureAirportField.getText().trim());
+        if(name.isEmpty() || fuel==0 || mileage==0 || departureAirport==0) {
             Main.showPopup("Please fill all the fields");
-            return;
         }
-
-        int fuel;
-        try {
-            fuel = Integer.parseInt(fuelText);
-        } catch (NumberFormatException e) {
-            System.err.println("Fuel capacity must be a number");
-            return;
-        }
-
         int companyId = Main.company.getId();
         // currentLocation is assumed 0 or default; adjust as needed
-        AirPlane plane = new AirPlane(name, fuel, 0, companyId);
+        AirPlane plane = new AirPlane(name, fuel, speed, departureAirport, companyId);
         Command cmd = new Command(8,plane);
         System.out.println(cmd.obj);
         Main.obj.writerPush(cmd);

@@ -51,8 +51,13 @@ public class ClientListenerThread implements Runnable {
 
             if(objChecker.isLogin()){
                 Company company = objChecker.getAccountObj();
-                Main.serverStatus = true;
-                Main.company = company;
+                if(company != null){
+                    Main.serverStatus = true;
+                    Main.company = company;
+                }
+                else{
+                    Main.serverStatus = true;
+                }
 
 
             }
