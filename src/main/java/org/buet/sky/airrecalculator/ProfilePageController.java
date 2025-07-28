@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ProfilePageController {
@@ -20,6 +22,7 @@ public class ProfilePageController {
     @FXML public Button addPlaneButton;
     @FXML public Button logoutButton;
     @FXML public Button profileName;
+    private int cnt;
 
     @FXML
     public void onPlaneInfoClicked(ActionEvent event) throws IOException {
@@ -53,11 +56,15 @@ public class ProfilePageController {
 
     @FXML
     public void initialize() {
+        Main.controller.put(15,this);
+        List<Integer> req = new ArrayList<>(); req.add(18);
+        Main.obj.writerPush(new Command(-1,req));
         profileName.setText(Main.company.getName());
         nameLabel.setText(Main.company.getName());
         idLabel.setText(Integer.toString(Main.company.getId()));
-        if(Main.airPlaneList != null)planeCountLabel.setText(Integer.toString(Main.airPlaneList.size()));
-        else planeCountLabel.setText("0");
+        if(Main.airPlaneList != null) cnt = Main.airPlaneList.size();
+        else cnt = 0;
+        planeCountLabel.setText(Integer.toString(cnt));
         return;
     }
 
