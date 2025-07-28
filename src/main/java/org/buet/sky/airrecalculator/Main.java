@@ -24,7 +24,6 @@ public class Main extends Application {
     public static HashMap<Integer, Object> controller;
     public static List<AirPlane> airPlaneList;
     public static List<City>  cityList;
-    public static List<AirPlane> allPlaneList;
 
     public static void showPopup(String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -46,8 +45,7 @@ public class Main extends Application {
         new ClientListenerThread(obj);
 
 
-
-        Parent root = (new FXMLLoader(Main.class.getResource("MainPage.fxml"))).load();
+        Parent root = (new FXMLLoader(HelloApplication.class.getResource("MainPage.fxml"))).load();
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("City Mapper");
         primaryStage.show();
