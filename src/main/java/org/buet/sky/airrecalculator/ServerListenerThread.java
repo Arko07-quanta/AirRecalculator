@@ -100,7 +100,8 @@ public class ServerListenerThread implements Runnable {
             }
 
             if(objectChecker.addPlane()){
-                AirPlane airPlane = objectChecker.getPlaneObj();
+                AirPlane airPlane = (AirPlane) objectChecker.getPlaneObj();
+                System.out.println(airPlane);
                 if(airPlane == null){
                     System.out.println("No plane found");
                 }
