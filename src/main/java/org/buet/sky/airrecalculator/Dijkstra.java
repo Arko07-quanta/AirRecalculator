@@ -46,7 +46,9 @@ public class Dijkstra implements Runnable {
         Node minNode = null;
 
         while (!pq.isEmpty()) {
+
             Node node = pq.poll();
+
             if (node.city.equals(destination)) {
                 minNode = node;
                 break;
@@ -64,6 +66,7 @@ public class Dijkstra implements Runnable {
 
                 Node newNode = new Node(city, newFuel, node.cost + time, node);
                 if (!visited.contains(newNode)) {
+                    //System.out.println("Hello world");
                     pq.offer(newNode);
                 }
             }
@@ -72,7 +75,8 @@ public class Dijkstra implements Runnable {
             list.add(minNode);
             minNode = minNode.prev;
         }
-        Collections.reverse(list);
+        System.out.println(list);
+
         return format(list);
     }
 
@@ -90,6 +94,7 @@ public class Dijkstra implements Runnable {
 
         while (!pq.isEmpty()) {
             Node node = pq.poll();
+            System.out.println(node.city);
             if (node.city.equals(destination)) {
                 minNode = node;
                 break;

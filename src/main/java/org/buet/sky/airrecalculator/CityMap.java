@@ -24,7 +24,7 @@ public class CityMap {
 
     @FXML
     public void initialize() {
-        Main.controller.put(6, this);
+        Main.controller.put(30, this);
 
         List<Integer> require = new ArrayList<>();
         require.add(6);
