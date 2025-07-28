@@ -42,9 +42,9 @@ public class PlaneInfoController{
                     String name = nullToNA(p.getName());
                     String fuel = p.getFuelCapacity() + " L";
                     String departureAirport = nullToNA(Integer.toString(p.getDepartureAirport()));
-                    String destinationAirport = nullToNA(p.getDestinationAirport());
-                    String departureTime = nullToNA(p.getDepartureTime());
-                    String flightTime = nullToNA(p.getFlightTime());
+                    String destinationAirport = nullToNA(Integer.toString(p.getDestinationAirport()));
+                    String departureTime = nullToNA(Integer.toString(p.getDepartureTime()));
+                    String flightTime = nullToNA(Integer.toString(p.getFlightTime()));
 
                     pc.setPlaneData(
                             name,
@@ -69,7 +69,7 @@ public class PlaneInfoController{
         return (s == null || s.isBlank()) ? "N/A" : s;
     }
 
-
+    // Navigation methods, mirroring MainPageController
 
     @FXML
     public void onMain(ActionEvent event) throws IOException {

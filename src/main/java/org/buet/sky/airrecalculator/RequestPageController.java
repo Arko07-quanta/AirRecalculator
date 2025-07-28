@@ -11,11 +11,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
-
+import java.util.*;
 
 
 public class RequestPageController {
@@ -28,20 +24,27 @@ public class RequestPageController {
     @FXML public ComboBox departureTime;
     @FXML public Button requestButton;
     @FXML public Button profileName;
+    List<String> times = new ArrayList<>();
+    HashMap<String,Integer> timeRef = new HashMap<>();
+
+    int getTime(String time){
+        String[] arr = time.split(":");
+        return Integer.parseInt(arr[0])*60 +  Integer.parseInt(arr[1]);
+    }
 
     @FXML
     public void onRequest(ActionEvent event) throws IOException {
         City departureCity = (City) departureAirport.getValue();
         City destinationCity = (City) destinationAirport.getValue();
         AirPlane airPlane = (AirPlane) flightId.getValue();
-
+        int depTime = timeRef.get((String) departureTime.getValue());
         airPlane.setFuelCapacity(100);
         airPlane.setMileage(3);
 
         // give time
 
-        new Dijkstra(airPlane, departureCity, destinationCity, Main.cityList, true);
-        new Dijkstra(airPlane, departureCity, destinationCity, Main.cityList, false);
+        new Dijkstra(airPlane, departureCity, destinationCity, Main.cityList, true, depTime);
+        new Dijkstra(airPlane, departureCity, destinationCity, Main.cityList, false, depTime);
         return;
     }
 
@@ -112,12 +115,20 @@ public class RequestPageController {
         // You can also populate departureTime if you have data for that
         // Example dummy times:
         departureTime.getItems().clear();
-        departureTime.getItems().addAll("06:00 AM", "12:00 PM", "06:00 PM");
+        departureTime.getItems().setAll(times);
     }
 
 
     @FXML
     public void initialize() {
+        for (int hour = 0; hour < 24; hour++) {
+            for (int minute = 0; minute < 60; minute += 30) {
+                times.add(String.format("%02d:%02d", hour, minute));
+            }
+        }
+        for(String time : times) {
+            timeRef.put(time,getTime(time));
+        }
         Main.controller.put(6,this);
         List<Integer> flightIds = new ArrayList<>(); flightIds.add(6); flightIds.add(18);
         Main.obj.writerPush(new Command(-1,flightIds));
