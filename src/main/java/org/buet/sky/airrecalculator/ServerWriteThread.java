@@ -19,6 +19,7 @@ public class ServerWriteThread implements Runnable{
                 network.write(obj.writerPop());
             }catch(Exception e){
                 obj.readerPush(new Command(-100, null));
+                break;
             }
         }
     }

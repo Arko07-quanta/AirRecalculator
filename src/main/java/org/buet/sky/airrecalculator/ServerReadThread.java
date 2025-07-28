@@ -16,7 +16,9 @@ public class ServerReadThread implements Runnable{
             try {
                 obj.readerPush((Command) network.read());
             }catch(Exception e){
+                obj.writerPush(new Command(-100, null));
                 obj.readerPush(new Command(-100, null));
+                break;
             }
         }
     }
