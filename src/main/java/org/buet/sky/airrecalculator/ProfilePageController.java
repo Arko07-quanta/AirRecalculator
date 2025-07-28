@@ -41,6 +41,10 @@ public class ProfilePageController {
 
     @FXML
     public void onLogoutClicked(ActionEvent event) throws IOException {
+        Main.loginStatus = false;
+        Main.company = null;
+        if(Main.airPlaneList != null)Main.airPlaneList.clear();
+        if(Main.controller != null)Main.controller.clear();
         Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
         LoginPage loginPage = new LoginPage(stage);
         loginPage.show();

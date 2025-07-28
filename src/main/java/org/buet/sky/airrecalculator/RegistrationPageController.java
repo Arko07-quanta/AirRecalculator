@@ -72,6 +72,9 @@ public class RegistrationPageController {
         regPhone.clear();
         Main.serverStatus = false;
         Main.loginStatus = true;
+        Stage stage = ((Stage)((Node) event.getSource()).getScene().getWindow());
+        ProfilePage profilePage = new ProfilePage(stage);
+        profilePage.show();
         return;
     }
 
@@ -84,9 +87,15 @@ public class RegistrationPageController {
 
     @FXML
     public void onLoginPage(ActionEvent event) throws IOException {
-        Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
-        LoginPage loginPage = new LoginPage(stage);
-        loginPage.show();
+        if(!Main.loginStatus) {
+            Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
+            LoginPage loginPage = new LoginPage(stage);
+            loginPage.show();
+        }else{
+            Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
+            ProfilePage profilePage = new ProfilePage(stage);
+            profilePage.show();
+        }
     }
 
     @FXML

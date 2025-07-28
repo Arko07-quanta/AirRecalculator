@@ -27,7 +27,7 @@
                         <Button onAction="#onMain" prefHeight="60.0" prefWidth="143.0" text="Home" />
                         <Button onAction="#onSchedulePage" prefHeight="60.0" prefWidth="143.0" text="Schedule" />
                         <Button prefHeight="60.0" prefWidth="143.0" text="Request" />
-                        <Button onAction="#onLoginPage" prefHeight="60.0" prefWidth="143.0" text="Login" />
+                        <Button fx:id="profileName" onAction="#onLoginPage" prefHeight="60.0" prefWidth="143.0" text="Login" />
                         <Button onAction="#onRegistrationPage" prefHeight="60.0" prefWidth="143.0" text="Registration" />
                     </children>
                 </HBox>

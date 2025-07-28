@@ -51,4 +51,5 @@ public class ObjectChecker {
     public Integer getCompanyId(){
         return (Integer) command.obj;
     }
+    public List<AirPlane> getAllPlaneObj(){return (List<AirPlane>) command.obj;}
 }

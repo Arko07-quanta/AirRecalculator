@@ -7,6 +7,8 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddPlaneController {
 
@@ -18,15 +20,19 @@ public class AddPlaneController {
 
     @FXML
     public void initialize() {
-        flightIdField.setText(generateFlightId());
+        String x = generateFlightId();
+        flightIdField.setText(x);
+        planeNameField.setText(x);
         companyIdField.setText(getCurrentCompanyId());
         profileName.setText(Main.company.getName());
         flightIdField.setEditable(false);
         companyIdField.setEditable(false);
+        planeNameField.setEditable(false);
     }
 
     private String generateFlightId() {
-        String init = Main.company.getName().substring(0, 2).toUpperCase();
+        String init = Main.company.getName().substring(0,1).toUpperCase();
+        if(Main.company.getName().length() > 1) init = Main.company.getName().substring(0, 2).toUpperCase();
         return init + System.currentTimeMillis() % 100000;
     }
 
@@ -36,7 +42,7 @@ public class AddPlaneController {
 
     @FXML
     public void onSubmit(ActionEvent event) {
-        String name = planeNameField.getText().trim();
+        String name = planeNameField.getText();
         String fuelText = fuelCapacityField.getText().trim();
         if (name.isEmpty() || fuelText.isEmpty()) {
             Main.showPopup("Please fill all the fields");
@@ -54,7 +60,11 @@ public class AddPlaneController {
         int companyId = Main.company.getId();
         // currentLocation is assumed 0 or default; adjust as needed
         AirPlane plane = new AirPlane(name, fuel, 0, companyId);
-        Command cmd = new Command(2,plane);
+        Command cmd = new Command(8,plane);
+        System.out.println(cmd.obj);
+        Main.obj.writerPush(cmd);
+        List<Integer> require = new ArrayList<>(); require.add(9);
+        cmd = new Command(-1,require);
         Main.obj.writerPush(cmd);
         // Navigate back to plane info or clear form
         Main.showPopup("Plane added successfully");

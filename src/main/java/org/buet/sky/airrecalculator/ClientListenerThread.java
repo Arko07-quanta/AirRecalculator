@@ -24,14 +24,15 @@ public class ClientListenerThread implements Runnable {
 
             if(objChecker.isLogin()){
                 Company company = objChecker.getAccountObj();
-                if(company!=null){
-                    Main.serverStatus = true;
-                    Main.company = (Company) cmd.obj;
-                }else{
-                    Main.serverStatus = false;
-                }
+                Main.serverStatus = true;
+                Main.company = company;
 
 
+            }
+
+            if(objChecker.getAllPlane()){
+                Main.airPlaneList = objChecker.getAllPlaneObj();
+                ((PlaneInfoController) Main.controller.get(9)).initialize();
             }
 
         }

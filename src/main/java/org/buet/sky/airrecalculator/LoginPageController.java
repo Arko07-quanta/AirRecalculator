@@ -59,7 +59,7 @@ public class LoginPageController {
                 throw new RuntimeException(e);
             }
         }
-        if(!Main.company.isEmpty()){
+        if(Main.company != null){
             Main.loginStatus = true;
             Main.serverStatus = false;
             Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());

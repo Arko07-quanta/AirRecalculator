@@ -42,9 +42,15 @@ public class SchedulePageController {
 
     @FXML
     public void onLoginPage(ActionEvent event) throws IOException {
-        Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
-        LoginPage loginPage = new LoginPage(stage);
-        loginPage.show();
+        if(!Main.loginStatus){
+            Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
+            LoginPage loginPage = new LoginPage(stage);
+            loginPage.show();
+        }else{
+            Stage stage =  ((Stage) ((Node) event.getSource()).getScene().getWindow());
+            ProfilePage profilePage = new ProfilePage(stage);
+            profilePage.show();
+        }
     }
 
     @FXML

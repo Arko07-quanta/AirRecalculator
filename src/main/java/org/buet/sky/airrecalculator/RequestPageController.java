@@ -24,6 +24,7 @@ public class RequestPageController {
     @FXML public ComboBox destinationAirport;
     @FXML public ComboBox departureTime;
     @FXML public Button requestButton;
+    @FXML public Button profileName;
 
     @FXML
     public void onRequest(ActionEvent event) throws IOException {
@@ -46,9 +47,15 @@ public class RequestPageController {
 
     @FXML
     public void onLoginPage(ActionEvent event) throws IOException {
-        Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
-        LoginPage loginPage = new LoginPage(stage);
-        loginPage.show();
+        if(!Main.loginStatus) {
+            Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
+            LoginPage loginPage = new LoginPage(stage);
+            loginPage.show();
+        }else{
+            Stage stage = ((Stage) ((Node) event.getSource()).getScene().getWindow());
+            ProfilePage profilePage = new ProfilePage(stage);
+            profilePage.show();
+        }
     }
 
 
@@ -98,11 +105,13 @@ public class RequestPageController {
     @FXML
     public void initialize() {
         if(!Main.loginStatus){
+            profileName.setText("Login");
             disableEditing();
             return;
         }
         else{
             companyNameLabel.setText(Main.company.getName());
+            profileName.setText(Main.company.getName());
             enableEditing();
             populateComboBoxes();
         }

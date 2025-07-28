@@ -14,43 +14,44 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class PlaneInfoController implements Initializable {
+public class PlaneInfoController{
 
     @FXML
     private VBox cardContainer;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize() {
+        Main.controller.put(9, this);
+        if(Main.airPlaneList != null) {
+            for (AirPlane p : Main.airPlaneList) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(
+                            getClass().getResource("PlaneCard.fxml")
+                    );
+                    Node card = loader.load();
+                    PlaneCardController pc = loader.getController();
 
-        for (AirPlane p : Main.airPlaneList) {
-            try {
-                FXMLLoader loader = new FXMLLoader(
-                        getClass().getResource("PlaneCard.fxml")
-                );
-                Node card = loader.load();
-                PlaneCardController pc = loader.getController();
+                    String id = nullToNA(Integer.toString(p.getId()));
+                    String name = nullToNA(p.getName());
+                    String fuel = p.getFuelCapacity() + " L";
+                    String departureAirport = nullToNA(Integer.toString(p.getDepartureAirport()));
+                    String destinationAirport = nullToNA(p.getDestinationAirport());
+                    String departureTime = nullToNA(p.getDepartureTime());
+                    String flightTime = nullToNA(p.getFlightTime());
 
-                String id                 = nullToNA(Integer.toString(p.getId()));
-                String name               = nullToNA(p.getName());
-                String fuel               = p.getFuelCapacity() + " L";
-                String departureAirport   = nullToNA(Integer.toString(p.getDepartureAirport()));
-                String destinationAirport = nullToNA(p.getDestinationAirport());
-                String departureTime      = nullToNA(p.getDepartureTime());
-                String flightTime         = nullToNA(p.getFlightTime());
+                    pc.setPlaneData(
+                            name,
+                            id,
+                            fuel,
+                            departureAirport,
+                            destinationAirport,
+                            departureTime,
+                            flightTime
+                    );
+                    cardContainer.getChildren().add(card);
 
-                pc.setPlaneData(
-                        name,
-                        id,
-                        fuel,
-                        departureAirport,
-                        destinationAirport,
-                        departureTime,
-                        flightTime
-                );
-                cardContainer.getChildren().add(card);
-
-            } catch (IOException e) {
-                e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
