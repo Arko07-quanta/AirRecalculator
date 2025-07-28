@@ -1,6 +1,13 @@
 package org.buet.sky.airrecalculator;
 
 
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.List;
 
 public class ClientListenerThread implements Runnable {
@@ -21,30 +28,33 @@ public class ClientListenerThread implements Runnable {
             }
 
             if(objChecker.isDijkstra()){
-                System.out.println("Dijkstra closed");
                 List<City> dij = objChecker.getDijkstraObj();
-                ((CityMap) Main.controller.get(6)).drawWithEdges(dij);
-                try {
-                    Thread.sleep(7000);
-                }catch (InterruptedException e){
-                    e.printStackTrace();
-                }
+                System.out.println(objChecker.getDijkstraObj());
+
+//
+//                Stage stage = new Stage();
+//                Parent root = null;
+//                try {
+//                    root = FXMLLoader.load(getClass().getResource("MyCity.fxml"));
+//                } catch (IOException e) {
+//                    System.out.println("FXML loader error");
+//                    throw new RuntimeException(e);
+//                }
+//                Scene scene = new Scene(root);
+//                stage.setScene(scene);
+//                stage.show();
+
+
+                ((CityMap) Main.controller.get(30)).drawWithEdges(dij);
             }
 
 
 
             if(objChecker.getAllCity()) {
                 Main.cityList = objChecker.getAllCityObj();
-                ((CityMap) Main.controller.get(6)).redrawMap(objChecker.getAllCityObj());
-                AirPlane airPlane = new AirPlane("name", 100, 3.0, 0, 0);
-                airPlane.setMileage(2);
-                try {
-                    Thread.sleep(5000);
-                }catch (InterruptedException e){
-                    e.printStackTrace();
-                }
-                Dijkstra dijkstra = new Dijkstra(airPlane, Main.cityList.get(0), Main.cityList.get(Main.cityList.size() -1), Main.cityList, true);
-                Dijkstra dijkstra2 = new Dijkstra(airPlane, Main.cityList.get(0), Main.cityList.get(Main.cityList.size() -1), Main.cityList, false);
+                Platform.runLater(() -> {
+                    ((RequestPageController) Main.controller.get(6)).populateComboBoxes();
+                });
             }
 
 
@@ -64,8 +74,27 @@ public class ClientListenerThread implements Runnable {
 
             if(objChecker.getMyPlane()){
                 Main.airPlaneList = objChecker.getAllPlaneObj();
-                ((PlaneInfoController) Main.controller.get(9)).refreshPlanes();
+                for(AirPlane airPlane:Main.airPlaneList){
+                    System.out.println(airPlane);
+                }
+
+                try{
+                    Platform.runLater(() -> {
+                        ((PlaneInfoController) Main.controller.get(18)).refreshPlanes();
+                    });
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+                try{
+                    Platform.runLater(() -> {
+                        ((RequestPageController) Main.controller.get(6)).populateComboBoxes();
+                    });
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
             }
+
 
         }
     }

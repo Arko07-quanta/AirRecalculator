@@ -104,7 +104,9 @@ public class ServerListenerThread implements Runnable {
 
 
             if(objectChecker.getMyPlane()){
-                obj.writerPush(new Command(18, DataBase.getAirplane(obj.account.getId())));
+                if(obj.account != null){
+                    obj.writerPush(new Command(18, DataBase.getAirplane(obj.account.getId())));
+                }
             }
 
         }

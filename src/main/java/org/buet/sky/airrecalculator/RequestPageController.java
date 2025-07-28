@@ -11,6 +11,9 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 
@@ -28,6 +31,13 @@ public class RequestPageController {
 
     @FXML
     public void onRequest(ActionEvent event) throws IOException {
+        City departureCity = (City) departureAirport.getValue();
+        City destinationCity = (City) destinationAirport.getValue();
+        AirPlane airPlane = (AirPlane) flightId.getValue();
+
+        airPlane.setFuelCapacity(100);
+        new Dijkstra(airPlane, departureCity, destinationCity, Main.cityList, true);
+
         return;
     }
 
@@ -84,7 +94,7 @@ public class RequestPageController {
     }
 
     @FXML
-    private void populateComboBoxes(){
+    public void populateComboBoxes(){
         // Populate flightId with planeList
         flightId.getItems().clear();
         if(Main.airPlaneList != null) flightId.getItems().addAll(Main.airPlaneList);
@@ -104,6 +114,9 @@ public class RequestPageController {
 
     @FXML
     public void initialize() {
+        Main.controller.put(6,this);
+        List<Integer> flightIds = new ArrayList<>(); flightIds.add(6); flightIds.add(18);
+        Main.obj.writerPush(new Command(-1,flightIds));
         if(!Main.loginStatus){
             profileName.setText("Login");
             disableEditing();

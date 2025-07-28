@@ -21,7 +21,7 @@ public class PlaneInfoController{
     private VBox cardContainer;
 
     public void initialize() {
-        Main.controller.put(9, this);
+        Main.controller.put(18, this);
         List<Integer> list = new ArrayList<>();
         list.add(18);
         Main.obj.writerPush(new Command(-1, list));
@@ -69,7 +69,7 @@ public class PlaneInfoController{
         return (s == null || s.isBlank()) ? "N/A" : s;
     }
 
-    // Navigation methods, mirroring MainPageController
+
 
     @FXML
     public void onMain(ActionEvent event) throws IOException {
@@ -92,7 +92,7 @@ public class PlaneInfoController{
     @FXML
     public void onLoginPage(ActionEvent event) throws IOException {
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        new LoginPage(stage).show();
+        new ProfilePage(stage).show();
     }
 
     @FXML

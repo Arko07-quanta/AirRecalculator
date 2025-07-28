@@ -14,44 +14,41 @@
       fx:controller="org.buet.sky.airrecalculator.PlaneInfoController"
       prefHeight="719.0"
       prefWidth="977.0"
-      maxHeight="-Infinity"
-      maxWidth="-Infinity"
-      minHeight="-Infinity"
-      minWidth="-Infinity"
       styleClass="fancyVBox"
       stylesheets="@../../../../style/MainPage.css">
 
     <children>
 
         <!-- Banner + Navigation (same as main page) -->
-        <AnchorPane prefHeight="241.0" prefWidth="978.0">
+        <AnchorPane prefHeight="241.0" prefWidth="977.0">
             <children>
-                <ImageView fitHeight="124.0" fitWidth="912.0" pickOnBounds="true">
+                <ImageView fitHeight="124.0" fitWidth="977.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../../../../images/banner.gif"/>
                     </image>
                 </ImageView>
-                <HBox alignment="CENTER" layoutY="184.0" prefHeight="59.0" prefWidth="917.0" spacing="45">
+                <HBox alignment="CENTER" layoutY="184.0" prefHeight="59.0" prefWidth="977.0" spacing="45">
                     <children>
-                        <Button text="Home" prefHeight="60.0" prefWidth="143.0" onAction="#onMain"/>
-                        <Button text="Schedule" prefHeight="60.0" prefWidth="143.0" onAction="#onSchedulePage"/>
-                        <Button text="Request" prefHeight="60.0" prefWidth="143.0" onAction="#onRequestPage"/>
-                        <Button text="Login" prefHeight="60.0" prefWidth="143.0" onAction="#onLoginPage"/>
-                        <Button text="Registration" prefHeight="60.0" prefWidth="143.0" onAction="#onRegistrationPage"/>
+                        <Button onAction="#onMain" prefHeight="60.0" prefWidth="143.0" styleClass="button" text="Home" />
+                        <Button onAction="#onSchedulePage" prefHeight="60.0" prefWidth="143.0" styleClass="button" text="Schedule" />
+                        <Button onAction="#onRequestPage" prefHeight="60.0" prefWidth="143.0" styleClass="button" text="Request" />
+                        <Button fx:id="profileName" onAction="#onLoginPage" prefHeight="60.0" prefWidth="143.0" styleClass="button" text="Login" />
+                        <Button onAction="#onRegistrationPage" prefHeight="60.0" prefWidth="143.0" styleClass="button" text="Registration" />
                     </children>
                 </HBox>
             </children>
         </AnchorPane>
 
         <!-- Plane cards scroll section -->
-        <ScrollPane fitToWidth="true" prefHeight="478.0" prefWidth="977.0" VBox.vgrow="ALWAYS">
+        <ScrollPane fitToWidth="true" prefHeight="478.0" prefWidth="977.0" VBox.vgrow="ALWAYS" styleClass="scroll-pane">
             <content>
                 <VBox fx:id="cardContainer"
                       alignment="TOP_CENTER"
                       spacing="20"
-                      prefWidth="940.0">
+                      prefWidth="940.0"
+                      styleClass="cardContainer">
                     <padding>
-                        <Insets top="20" right="20" bottom="20" left="20"/>
+                        <Insets top="30" right="30" bottom="30" left="30"/>
                     </padding>
                 </VBox>
             </content>
