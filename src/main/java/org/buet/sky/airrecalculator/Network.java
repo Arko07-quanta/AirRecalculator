@@ -32,6 +32,7 @@ public class Network {
 
     public void write(Object object) throws IOException {
         out.writeUnshared(object);
+        out.flush();
     }
 
     public Object read() throws IOException, ClassNotFoundException {

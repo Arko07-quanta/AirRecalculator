@@ -16,10 +16,6 @@ public class ServerListenerThread implements Runnable {
     }
 
 
-
-
-
-
     public void writeMap(){
         obj.writerPush(new Command(6, DataBase.getCity()));
     }
@@ -74,9 +70,9 @@ public class ServerListenerThread implements Runnable {
                     obj.writerPush(new Command(0, null));
                 }
             }
+
+
             System.out.println(objectChecker.command.opt);
-
-
 
             if(objectChecker.isSignUp()){
                 System.out.println("Client " + clientId + " sign up");
@@ -100,7 +96,7 @@ public class ServerListenerThread implements Runnable {
             }
 
             if(objectChecker.addPlane()){
-                AirPlane airPlane = (AirPlane) objectChecker.getPlaneObj();
+                AirPlane airPlane = objectChecker.getPlaneObj();
                 System.out.println(airPlane);
                 if(airPlane == null){
                     System.out.println("No plane found");
@@ -108,6 +104,7 @@ public class ServerListenerThread implements Runnable {
                 if(obj.account == null) continue;
                 DataBase.addAirPlane(airPlane);
             }
+
 
 
 

@@ -20,7 +20,7 @@ public class ObjectChecker {
         return command.opt.equals(-1);
     }
     public boolean addPlane(){ return command.opt.equals(8);}
-    public boolean getMyPlane(){return command.opt.equals(8);}
+    public boolean getMyPlane(){return command.opt.equals(18);}
     public boolean getAllPlane(){ return command.opt.equals(9);}
     public boolean closeThread(){ return command.opt.equals(-100);}
     public boolean isDijkstra(){return command.opt.equals(15);}

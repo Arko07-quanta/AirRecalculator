@@ -50,9 +50,9 @@ public class AddPlaneController {
         Command cmd = new Command(8,plane);
         System.out.println(cmd.obj);
         Main.obj.writerPush(cmd);
-        List<Integer> require = new ArrayList<>(); require.add(9);
-        cmd = new Command(-1,require);
-        Main.obj.writerPush(cmd);
+//        List<Integer> require = new ArrayList<>(); require.add(9);
+//        cmd = new Command(-1,require);
+//        Main.obj.writerPush(cmd);
         // Navigate back to plane info or clear form
         Main.showPopup("Plane added successfully");
     }
