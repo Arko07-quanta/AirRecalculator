@@ -19,6 +19,7 @@ public class Main extends Application {
     public static Company company;  // contains login info
     public static Boolean loginStatus = false;
     public static Boolean serverStatus = false;
+
     // contains all the controller's object
     public static HashMap<Integer, Object> controller;
     public static List<AirPlane> airPlaneList;

@@ -89,7 +89,7 @@ public class DataBase {
             stmt.setDouble(4, city.getOilCost());
             stmt.setDouble(5, city.getFillingSpeed());
             stmt.executeUpdate();
-            Server.dataBaseListener.writerPush(new Command(6, null));
+            //Server.dataBaseListener.writerPush(new Command(6, null));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -223,7 +223,47 @@ public class DataBase {
         return airplanes;
     }
 
-    public static void main(String args[]){
 
+    public synchronized static void resetAllTables() {
+        try (Connection conn = DriverManager.getConnection(DB_URL);
+             Statement stmt = conn.createStatement()) {
+
+            stmt.execute("PRAGMA foreign_keys = OFF;");
+
+            String[] tables = {"City", "AirPlane", "Company", "Schedule"};
+
+            for (String table : tables) {
+                // Clear data
+                stmt.executeUpdate("DELETE FROM " + table);
+
+                try (PreparedStatement ps = conn.prepareStatement("DELETE FROM sqlite_sequence WHERE name = ?")) {
+                    ps.setString(1, table);
+                    ps.executeUpdate();
+                }
+            }
+
+            stmt.execute("PRAGMA foreign_keys = ON;");
+
+            System.out.println("All tables have been reset.");
+//
+//            Server.dataBaseListener.writerPush(new Command(6, null));
+//            Server.dataBaseListener.writerPush(new Command(9, null));
+//            Server.dataBaseListener.writerPush(new Command(1, null));
+
+        } catch (SQLException e) {
+            System.out.println("Error resetting tables: " + e.getMessage());
+        }
+    }
+
+
+    public static void main(String args[]){
+        resetAllTables();
+
+        Random ran = new Random();
+
+        for(int i=0;i < 26; i++){
+            City city = new City(i, "" + i, ran.nextInt(0, 700), ran.nextInt(0, 500), ran.nextInt(8, 15), ran.nextInt(8, 15));
+            addCity(city);
+        }
     }
 }

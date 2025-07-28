@@ -23,6 +23,7 @@ public class ObjectChecker {
     public boolean getMyPlane(){return command.opt.equals(8);}
     public boolean getAllPlane(){ return command.opt.equals(9);}
     public boolean closeThread(){ return command.opt.equals(-100);}
+    public boolean isDijkstra(){return command.opt.equals(15);}
 
 
     public boolean isLogin() {
@@ -52,4 +53,5 @@ public class ObjectChecker {
         return (Integer) command.obj;
     }
     public List<AirPlane> getAllPlaneObj(){return (List<AirPlane>) command.obj;}
+    public List<City> getDijkstraObj(){return (List<City>) command.obj;}
 }

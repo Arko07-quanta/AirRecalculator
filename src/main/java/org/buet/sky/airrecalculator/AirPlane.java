@@ -21,11 +21,12 @@ public class AirPlane implements Serializable {
 
     public AirPlane() {}
 
-    public AirPlane(String name, int fuelCapacity, int currentLocation, int companyId) {
+    public AirPlane(String name, int fuelCapacity, double speed, int currentLocation, int companyId) {
         this.name = name;
         this.fuelCapacity = fuelCapacity;
         this.currentLocation = currentLocation;
         this.companyId = companyId;
+        this.speed = speed;
     }
 
     public AirPlane(int id, String name, int fuelCapacity, int currentLocation, int companyId) {
