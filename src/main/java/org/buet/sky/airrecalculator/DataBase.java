@@ -252,6 +252,31 @@ public class DataBase {
         return airplanes;
     }
 
+    public synchronized static void updateTable() throws SQLException {
+        try (Connection conn = DriverManager.getConnection(DB_URL);
+             Statement stmt = conn.createStatement()) {
+            stmt.executeUpdate("DROP TABLE IF EXISTS AirPlane");
+            stmt.executeUpdate(
+                    "CREATE TABLE AirPlane (" +
+                            "id INT PRIMARY KEY AUTO_INCREMENT, " +
+                            "name VARCHAR(255), " +
+                            "fuelCapacity INT, " +
+                            "speed DOUBLE, " +
+                            "mileage DOUBLE, " +
+                            "currentLocation INT, " +
+                            "companyId INT, " +
+                            "userRating DOUBLE, " +
+                            "departureAirport INT, " +
+                            "arrivalAirport INT, " +
+                            "departureTime INT, " +
+                            "flightTime INT, " +
+                            "cost INT" +
+                            ")"
+            );
+        }
+    }
+
+
 
     public synchronized static void resetAllTables() {
         try (Connection conn = DriverManager.getConnection(DB_URL);
@@ -285,9 +310,10 @@ public class DataBase {
     }
 
 
-    public static void main(String args[]){
+    public static void main(String args[]) throws SQLException {
         resetAllTables();
 
+        updateTable();
         Random ran = new Random();
 
         for(int i=0;i < 26; i++){
