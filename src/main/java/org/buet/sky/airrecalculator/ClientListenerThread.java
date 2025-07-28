@@ -91,7 +91,16 @@ public class ClientListenerThread implements Runnable {
                 }
             }
 
-
+            if(objChecker.getAllPlane()){
+                Main.allPlaneList = objChecker.getAllPlaneObj();
+                try{
+                    Platform.runLater(() -> {
+                        ((SchedulePageController) Main.controller.get(9)).loadPlanes();
+                    });
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
         }
     }
 

@@ -4,34 +4,21 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SchedulePageController {
-    @FXML
-    public TableView planeTable;
-    @FXML
-    public TableColumn departureAirport;
-    @FXML
-    public TableColumn flightID;
-    @FXML
-    public TableColumn companyID;
-    @FXML
-    public TableColumn departureTime;
-    @FXML
-    public TableColumn destinationAirport;
-    @FXML
-    public TableColumn arrivalTime;
-    @FXML
-    public TableColumn flightTime;
-    @FXML
-    public TableColumn userRating;
-    @FXML public Button loginProfile;
+    @FXML public Button profileName;
+    @FXML public VBox cardContainer;
 
     @FXML
     public void onMain(ActionEvent event) throws IOException {
@@ -70,10 +57,58 @@ public class SchedulePageController {
     @FXML
     public void initialize(){
         if(Main.loginStatus){
-            loginProfile.setText(Main.company.getName());
+            profileName.setText(Main.company.getName());
         }
         else{
-            loginProfile.setText("Login");
+            profileName.setText("Login");
         }
+        Main.controller.put(9,this);
+        List<Integer> req = new ArrayList<>(); req.add(9);
+        loadPlanes();
+    }
+
+    public void loadPlanes(){
+        cardContainer.getChildren().clear(); // Clear existing cards
+
+        if (Main.airPlaneList != null) {
+            for (AirPlane p : Main.airPlaneList) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("PlaneCard.fxml"));
+                    Node card = loader.load();
+                    PlaneCardController pc = loader.getController();
+
+                    String id = nullToNA(Integer.toString(p.getId()));
+                    String name = nullToNA(p.getName());
+                    String fuel = p.getFuelCapacity() + " L";
+                    String departureAirport = nullToNA(Integer.toString(p.getDepartureAirport()));
+                    String destinationAirport = nullToNA(Integer.toString(p.getArrivalAirport()));
+                    String departureTime = nullToNA(Integer.toString(p.getDepartureTime()));
+                    String flightTime = nullToNA(Integer.toString(p.getFlightTime()));
+                    int cst = p.getCost();
+                    cst = (int) (cst*1.5);
+                    cst = cst/50;
+                    String cost = nullToNA(Integer.toString(cst));
+
+                    pc.setPlaneData(
+                            name,
+                            id,
+                            fuel,
+                            departureAirport,
+                            destinationAirport,
+                            departureTime,
+                            flightTime,
+                            cost
+                    );
+                    cardContainer.getChildren().add(card);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private String nullToNA(String s) {
+        return (s == null || s.isBlank()) ? "N/A" : s;
     }
 }

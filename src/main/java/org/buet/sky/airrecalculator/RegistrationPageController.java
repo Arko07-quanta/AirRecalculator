@@ -62,6 +62,11 @@ public class RegistrationPageController {
         if(Main.company == null){
             showPopup("Company Already Exists");
             Main.serverStatus = false;
+            regPass.clear();
+            regConfirmPass.clear();
+            regName.clear();
+            regMail.clear();
+            regPhone.clear();
             return;
         }
         showPopup("Successfully Created Company");

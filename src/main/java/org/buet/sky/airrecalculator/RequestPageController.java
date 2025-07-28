@@ -38,8 +38,8 @@ public class RequestPageController {
         City destinationCity = (City) destinationAirport.getValue();
         AirPlane airPlane = (AirPlane) flightId.getValue();
         int depTime = timeRef.get((String) departureTime.getValue());
-        airPlane.setFuelCapacity(100);
-        airPlane.setMileage(3);
+//        airPlane.setFuelCapacity(100);
+//        airPlane.setMileage(3);
 
         // give time
 

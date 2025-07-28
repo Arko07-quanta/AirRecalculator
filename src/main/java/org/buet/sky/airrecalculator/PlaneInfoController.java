@@ -45,6 +45,7 @@ public class PlaneInfoController{
                     String destinationAirport = nullToNA(Integer.toString(p.getArrivalAirport()));
                     String departureTime = nullToNA(Integer.toString(p.getDepartureTime()));
                     String flightTime = nullToNA(Integer.toString(p.getFlightTime()));
+                    String cost = nullToNA(Integer.toString(p.getCost()));
 
                     pc.setPlaneData(
                             name,
@@ -53,7 +54,8 @@ public class PlaneInfoController{
                             departureAirport,
                             destinationAirport,
                             departureTime,
-                            flightTime
+                            flightTime,
+                            cost
                     );
                     cardContainer.getChildren().add(card);
 

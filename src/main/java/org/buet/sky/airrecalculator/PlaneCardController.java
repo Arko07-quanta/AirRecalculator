@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class PlaneCardController {
+    @FXML public Label cost;
     @FXML private Label planeName;
     @FXML private Label planeId;
     @FXML private Label fuel;
@@ -12,7 +13,7 @@ public class PlaneCardController {
     @FXML private Label departureTime;
     @FXML private Label flightTime;
 
-    public void setPlaneData(String id, String name, String fuelVal, String dep, String dest, String depTime, String flightDuration) {
+    public void setPlaneData(String id, String name, String fuelVal, String dep, String dest, String depTime, String flightDuration, String cst) {
         planeName.setText(name);
         planeId.setText("ID: " + id);
         fuel.setText("Fuel: " + fuelVal);
@@ -20,5 +21,6 @@ public class PlaneCardController {
         destinationAirport.setText("To: " + dest);
         departureTime.setText("Departure: " + depTime);
         flightTime.setText("Duration: " + flightDuration);
+        cost.setText("Cost: " + cst);
     }
 }

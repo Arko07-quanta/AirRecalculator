@@ -24,6 +24,7 @@ public class Main extends Application {
     public static HashMap<Integer, Object> controller;
     public static List<AirPlane> airPlaneList;
     public static List<City>  cityList;
+    public static List<AirPlane> allPlaneList;
 
     public static void showPopup(String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
