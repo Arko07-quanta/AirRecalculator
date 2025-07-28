@@ -11,6 +11,7 @@ import javafx.scene.Node;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -21,12 +22,19 @@ public class PlaneInfoController{
 
     public void initialize() {
         Main.controller.put(9, this);
-        if(Main.airPlaneList != null) {
+        List<Integer> list = new ArrayList<>();
+        list.add(18);
+        Main.obj.writerPush(new Command(-1, list));
+        refreshPlanes();
+    }
+
+    public void refreshPlanes() {
+        cardContainer.getChildren().clear(); // Clear existing cards
+
+        if (Main.airPlaneList != null) {
             for (AirPlane p : Main.airPlaneList) {
                 try {
-                    FXMLLoader loader = new FXMLLoader(
-                            getClass().getResource("PlaneCard.fxml")
-                    );
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("PlaneCard.fxml"));
                     Node card = loader.load();
                     PlaneCardController pc = loader.getController();
 
@@ -55,6 +63,7 @@ public class PlaneInfoController{
             }
         }
     }
+
 
     private String nullToNA(String s) {
         return (s == null || s.isBlank()) ? "N/A" : s;
