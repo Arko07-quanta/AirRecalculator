@@ -12,8 +12,20 @@
     private double y;
     private double oilCost;
     private double fillingSpeed;
+    private int oilBought;
 
     public City() {}
+
+    public City(City city) {
+        this.id = city.id;
+        this.name = city.name;
+        this.x = city.x;
+        this.y = city.y;
+        this.oilCost = city.oilCost;
+        this.fillingSpeed = city.fillingSpeed;
+        this.oilBought = city.oilBought;
+    }
+
 
     public City(String name, double x, double y, double oilCost, double fillingSpeed) {
         this.name = name;
@@ -21,7 +33,9 @@
         this.y = y;
         this.oilCost = oilCost;
         this.fillingSpeed = fillingSpeed;
+        this.oilBought = 0;
     }
+
 
     public City(int id, String name, double x, double y, double oilCost, double fillingSpeed) {
         this.id = id;
@@ -30,10 +44,13 @@
         this.y = y;
         this.oilCost = oilCost;
         this.fillingSpeed = fillingSpeed;
+        this.oilBought = 0;
     }
 
 
-    public int getId() { return id; }
+
+
+        public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
     public String getName() { return name; }
@@ -53,6 +70,13 @@
 
 
 
+    public int getOilBought() { return oilBought; }
+    public void setOilBought(int oilBought) { this.oilBought = oilBought; }
+    public void buyOil(){ oilBought++;}
+
+
+
+
     public double dist(City city) {
         double dx = this.x - city.x;
         double dy = this.y - city.y;
@@ -64,12 +88,9 @@
         if (this == obj) return true;
         if (!(obj instanceof City)) return false;
         City other = (City) obj;
-        return id == other.id &&
-                Double.compare(x, other.x) == 0 &&
-                Double.compare(y, other.y) == 0 &&
-                Double.compare(oilCost, other.oilCost) == 0 &&
-                Double.compare(fillingSpeed, other.fillingSpeed) == 0 &&
-                Objects.equals(name, other.name);
+
+        boolean flag =  id == other.id;
+        return flag;
     }
 
     @Override
@@ -86,6 +107,7 @@
                 ", y=" + y +
                 ", oilCost=" + oilCost +
                 ", fillingSpeed=" + fillingSpeed +
+                ", oilBought=" + oilBought +
                 '}';
     }
     }

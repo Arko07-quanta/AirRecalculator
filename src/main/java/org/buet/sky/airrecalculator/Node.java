@@ -2,7 +2,7 @@ package org.buet.sky.airrecalculator;
 
 import java.util.Objects;
 
-public class Node {
+public class Node implements Comparable<Node>{
     City city;
     Integer fuel;
     double cost;

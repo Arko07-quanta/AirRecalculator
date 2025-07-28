@@ -53,7 +53,7 @@ public class AddPlaneController {
 
         int companyId = Main.company.getId();
         // currentLocation is assumed 0 or default; adjust as needed
-        AirPlane plane = new AirPlane(name, fuel, 0, companyId);
+        AirPlane plane = new AirPlane(name, 0, fuel, 0, companyId);
         Command cmd = new Command(2,plane);
         Main.obj.writerPush(cmd);
         // Navigate back to plane info or clear form
