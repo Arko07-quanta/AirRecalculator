@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
@@ -17,10 +18,12 @@ import java.util.ResourceBundle;
 
 public class PlaneInfoController{
 
+    @FXML public Button profileName;
     @FXML
     private VBox cardContainer;
 
     public void initialize() {
+        profileName.setText(Main.company.getName());
         Main.controller.put(18, this);
         List<Integer> list = new ArrayList<>();
         list.add(18);

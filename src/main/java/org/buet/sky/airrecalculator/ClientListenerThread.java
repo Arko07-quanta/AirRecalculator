@@ -49,9 +49,13 @@ public class ClientListenerThread implements Runnable {
 
             if(objChecker.getAllCity()) {
                 Main.cityList = objChecker.getAllCityObj();
-                Platform.runLater(() -> {
-                    ((RequestPageController) Main.controller.get(6)).populateComboBoxes();
-                });
+                try{
+                    Platform.runLater(() -> {
+                        ((RequestPageController) Main.controller.get(6)).populateComboBoxes();
+                    });
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
 
 

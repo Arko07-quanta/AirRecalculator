@@ -64,6 +64,7 @@ public class SchedulePageController {
         }
         Main.controller.put(9,this);
         List<Integer> req = new ArrayList<>(); req.add(9);
+        Main.obj.writerPush(new Command(-1,req));
         loadPlanes();
     }
 
@@ -72,6 +73,7 @@ public class SchedulePageController {
 
         if (Main.airPlaneList != null) {
             for (AirPlane p : Main.airPlaneList) {
+                if(p.getFlightTime() == 0) continue;
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("PlaneCard.fxml"));
                     Node card = loader.load();

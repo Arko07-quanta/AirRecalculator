@@ -46,7 +46,7 @@ public class AddPlaneController {
         }
         int companyId = Main.company.getId();
         // currentLocation is assumed 0 or default; adjust as needed
-        AirPlane plane = new AirPlane(name, fuel, speed, departureAirport, companyId);
+        AirPlane plane = new AirPlane(name, fuel, speed, departureAirport, companyId, mileage);
         Command cmd = new Command(8,plane);
         System.out.println(cmd.obj);
         Main.obj.writerPush(cmd);
