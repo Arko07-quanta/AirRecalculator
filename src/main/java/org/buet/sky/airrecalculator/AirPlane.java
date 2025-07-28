@@ -17,9 +17,16 @@ public class AirPlane implements Serializable {
     private int arrivalAirport;
     private int departureTime;
     private int flightTime;
+    private int cost;
 
 
     public AirPlane() {}
+
+    public void setDepartureTime(int departureTime) {
+        this.departureTime = departureTime;
+    }
+    public void setFlightTime(int flightTime) {this.flightTime = flightTime;}
+    public void setCost(int cost) {this.cost = cost;}
 
     public AirPlane(String name, int fuelCapacity, double speed, int currentLocation, int companyId) {
         this.name = name;

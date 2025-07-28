@@ -36,8 +36,12 @@ public class RequestPageController {
         AirPlane airPlane = (AirPlane) flightId.getValue();
 
         airPlane.setFuelCapacity(100);
-        new Dijkstra(airPlane, departureCity, destinationCity, Main.cityList, true);
+        airPlane.setMileage(3);
 
+        // give time
+
+        new Dijkstra(airPlane, departureCity, destinationCity, Main.cityList, true);
+        new Dijkstra(airPlane, departureCity, destinationCity, Main.cityList, false);
         return;
     }
 

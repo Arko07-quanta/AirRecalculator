@@ -29,23 +29,20 @@ public class ClientListenerThread implements Runnable {
 
             if(objChecker.isDijkstra()){
                 List<City> dij = objChecker.getDijkstraObj();
-                System.out.println(objChecker.getDijkstraObj());
 
-//
-//                Stage stage = new Stage();
-//                Parent root = null;
-//                try {
-//                    root = FXMLLoader.load(getClass().getResource("MyCity.fxml"));
-//                } catch (IOException e) {
-//                    System.out.println("FXML loader error");
-//                    throw new RuntimeException(e);
-//                }
-//                Scene scene = new Scene(root);
-//                stage.setScene(scene);
-//                stage.show();
+                Platform.runLater(() -> {
+                    Stage stage = new Stage();
+                    try {
+                        Parent root = FXMLLoader.load(getClass().getResource("CityMap.fxml"));
+                        stage.setScene(new Scene(root));
 
+                        stage.show();
+                        ((CityMap) Main.controller.get(30)).drawWithEdges(dij);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
 
-                ((CityMap) Main.controller.get(30)).drawWithEdges(dij);
             }
 
 

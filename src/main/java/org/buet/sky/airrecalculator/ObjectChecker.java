@@ -33,6 +33,8 @@ public class ObjectChecker {
         return command.opt.equals(1);
     }
     public boolean getAllCompany(){ return command.opt.equals(1);}
+    public boolean isSchedule(){ return  command.opt.equals(20);}
+
 
 
     public Company getAccountObj() {
@@ -48,6 +50,9 @@ public class ObjectChecker {
         return (List<Integer>) command.obj;
     }
 
+    public List<AirPlane> getScheduleObj(){
+        return (List<AirPlane>) command.obj;
+    }
     public List<City> getAllCityObj(){return (List<City>) command.obj;}
     public Integer getCompanyId(){
         return (Integer) command.obj;

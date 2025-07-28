@@ -95,10 +95,26 @@ public class DataBase {
         }
     }
 
+
+    public synchronized static void modifyAirPlane(AirPlane airplane) {
+        try (Connection conn = DriverManager.getConnection(DB_URL);
+             PreparedStatement stmt = conn.prepareStatement("UPDATE AirPlane SET departureTime = ?, departureAirport = ?, flightTime = ?, arrivalAirport = ? WHERE id = ?");
+        ) {
+            stmt.executeQuery();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
     public synchronized static void addAirPlane(AirPlane airplane) {
+
+        if(verify(airplane) == false) { modifyAirPlane(airplane); return;}
+
         try (Connection conn = DriverManager.getConnection(DB_URL);
              PreparedStatement stmt = conn.prepareStatement("INSERT INTO AirPlane (name, fuelCapacity, speed, mileage, currentLocation, companyId, userRating, departureAirport, arrivalAirport, arrivalTime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
         ) {
+
             stmt.setString(1, airplane.getName());
             stmt.setInt(2, airplane.getFuelCapacity());
             stmt.setDouble(3, airplane.getSpeed());
@@ -149,6 +165,19 @@ public class DataBase {
             return rs.next() && !rs.next();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public synchronized static boolean verify(AirPlane airplane) {
+        try (Connection conn = DriverManager.getConnection(DB_URL);
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM AirPlane WHERE id = ?")
+        ) {
+            stmt.setInt(1, airplane.getId());
+            ResultSet rs = stmt.executeQuery();
+            return rs.next() == false;
+
+        } catch (SQLException e) {
             return false;
         }
     }

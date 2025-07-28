@@ -94,6 +94,8 @@ public class ServerListenerThread implements Runnable {
                 DataBase.addCity(objectChecker.getCityObj());
             }
 
+
+
             if(objectChecker.addPlane()){
                 if(obj.account != null){
                     AirPlane plane = objectChecker.getPlaneObj();
@@ -108,6 +110,14 @@ public class ServerListenerThread implements Runnable {
                     obj.writerPush(new Command(18, DataBase.getAirplane(obj.account.getId())));
                 }
             }
+
+
+            if(objectChecker.isSchedule()){
+
+            }
+
+
+
 
         }
 
