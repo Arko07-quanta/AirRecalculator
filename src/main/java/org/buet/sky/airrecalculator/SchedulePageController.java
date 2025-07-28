@@ -73,9 +73,9 @@ public class SchedulePageController {
         cardContainer.getChildren().clear(); // Clear existing cards
 
         System.out.println(Main.allPlaneList);
-        if (Main.airPlaneList != null) {
+        if (Main.allPlaneList != null) {
             for (AirPlane p : Main.allPlaneList) {
-                //if(p.getFlightTime() == 0) continue;
+                if(p.getFlightTime() == 0) continue;
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("PlaneCard.fxml"));
                     Node card = loader.load();
