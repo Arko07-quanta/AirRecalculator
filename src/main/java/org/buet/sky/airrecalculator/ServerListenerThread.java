@@ -114,6 +114,7 @@ public class ServerListenerThread implements Runnable {
             }
 
             if(objectChecker.getAllPlane()){
+                System.out.println("hello trying to get all the plane");
                 obj.writerPush(new Command(9, DataBase.getAirplane()));
             }
 

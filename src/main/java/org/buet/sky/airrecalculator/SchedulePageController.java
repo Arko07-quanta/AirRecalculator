@@ -63,6 +63,7 @@ public class SchedulePageController {
             profileName.setText("Login");
         }
         Main.controller.put(9,this);
+
         List<Integer> req = new ArrayList<>(); req.add(9);
         Main.obj.writerPush(new Command(-1,req));
         loadPlanes();
@@ -71,9 +72,10 @@ public class SchedulePageController {
     public void loadPlanes(){
         cardContainer.getChildren().clear(); // Clear existing cards
 
+        System.out.println(Main.allPlaneList);
         if (Main.airPlaneList != null) {
-            for (AirPlane p : Main.airPlaneList) {
-                if(p.getFlightTime() == 0) continue;
+            for (AirPlane p : Main.allPlaneList) {
+                //if(p.getFlightTime() == 0) continue;
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("PlaneCard.fxml"));
                     Node card = loader.load();
