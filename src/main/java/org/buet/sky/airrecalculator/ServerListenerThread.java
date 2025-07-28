@@ -81,7 +81,6 @@ public class ServerListenerThread implements Runnable {
 
 
                 if(DataBase.validate(company)){
-
                     Server.companyClient.addEdge(clientId, company.getId());
                     DataBase.addCompany(company);
                     obj.account = company;
@@ -96,7 +95,11 @@ public class ServerListenerThread implements Runnable {
             }
 
             if(objectChecker.addPlane()){
-                DataBase.addAirPlane(objectChecker.getPlaneObj());
+                if(obj.account != null){
+                    AirPlane plane = objectChecker.getPlaneObj();
+                    plane.setCompanyId(obj.account.getId());
+                    DataBase.addAirPlane(plane);
+                }
             }
 
 
