@@ -71,7 +71,10 @@ public class DataBase {
                         rs.getInt("arrivalAirport"),
                         rs.getInt("departureTime"),
                         rs.getInt("flightTime"),
-                        rs.getInt("cost")
+                        rs.getInt("cost"),
+                        rs.getLong("ticket"),
+                        rs.getBoolean("timeEfficient")
+
                 );
 
                 airplanes.add(airplane);
@@ -191,7 +194,7 @@ public class DataBase {
     }
 
 
-        private static AirPlane mapRowToAirPlane(ResultSet rs) throws SQLException {
+    private static AirPlane mapRowToAirPlane(ResultSet rs) throws SQLException {
         return new AirPlane(
                 rs.getInt("id"),
                 rs.getString("name"),
@@ -205,7 +208,9 @@ public class DataBase {
                 rs.getInt("arrivalAirport"),
                 rs.getInt("departureTime"),
                 rs.getInt("flightTime"),
-                rs.getInt("cost")
+                rs.getInt("cost"),
+                rs.getLong("ticket"),
+                rs.getBoolean("timeEfficient")
         );
     }
 
@@ -219,8 +224,8 @@ public class DataBase {
             return;
         }
 
-        String sql = "INSERT INTO AirPlane (name, fuelCapacity, speed, mileage, currentLocation, companyId, userRating, departureAirport, arrivalAirport, departureTime, flightTime, cost) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO AirPlane (name, fuelCapacity, speed, mileage, currentLocation, companyId, userRating, departureAirport, arrivalAirport, departureTime, flightTime, cost, ticket, timeEfficient) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DriverManager.getConnection(DB_URL);
              PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, airplane.getName());
@@ -235,6 +240,9 @@ public class DataBase {
             ps.setInt(10, airplane.getDepartureTime());
             ps.setInt(11, airplane.getFlightTime());
             ps.setInt(12, airplane.getCost());
+            ps.setLong(13, airplane.getTicket());
+            ps.setBoolean(14, airplane.isTimeEfficient());
+
 
             ps.executeUpdate();
             try (ResultSet rs = ps.getGeneratedKeys()) {
@@ -275,7 +283,7 @@ public class DataBase {
         System.out.println("modifying airplane");
         System.out.println(airplane.getDepartureAirport());
 
-        String sql = "UPDATE AirPlane SET  departureTime = ?, arrivalAirport = ?, flightTime = ?, cost = ?, departureAirport = ? WHERE id = ?";
+        String sql = "UPDATE AirPlane SET  departureTime = ?, arrivalAirport = ?, flightTime = ?, cost = ?, departureAirport = ?, ticket = ?, timeEfficient=? WHERE id = ?";
         try (Connection conn = DriverManager.getConnection(DB_URL);
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, airplane.getDepartureTime());
@@ -284,6 +292,8 @@ public class DataBase {
             ps.setInt(4, airplane.getCost());
             ps.setInt(5, airplane.getDepartureAirport());
             ps.setInt(6, airplane.getId());
+            ps.setLong(7, airplane.getTicket());
+            ps.setBoolean(8, airplane.isTimeEfficient());
             ps.executeUpdate();
             Server.dataBaseListener.writerPush(new Command(18, airplane.getCompanyId()));
             Server.dataBaseListener.writerPush(new Command(9, null));

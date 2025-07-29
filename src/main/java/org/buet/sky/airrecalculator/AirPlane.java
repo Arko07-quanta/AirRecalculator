@@ -24,13 +24,14 @@ public class AirPlane implements Serializable {
     public AirPlane() {}
 
 
-    public AirPlane(String name, int fuelCapacity, double speed, int currentLocation, int companyId, double mileage) {
+    public AirPlane(String name, int fuelCapacity, double speed, int currentLocation, int companyId, double mileage, long ticket) {
         this.name = name;
         this.fuelCapacity = fuelCapacity;
         this.currentLocation = currentLocation;
         this.companyId = companyId;
         this.speed = speed;
         this.mileage = mileage;
+        this.ticket = ticket;
     }
 
     public AirPlane(int id,
@@ -45,7 +46,7 @@ public class AirPlane implements Serializable {
                     int arrivalAirport,
                     int departureTime,
                     int flightTime,
-                    int cost) {
+                    int cost, long ticket, boolean timeEfficient) {
         this.id = id;
         this.name = name;
         this.fuelCapacity = fuelCapacity;
@@ -59,6 +60,8 @@ public class AirPlane implements Serializable {
         this.departureTime = departureTime;
         this.flightTime = flightTime;
         this.cost = cost;
+        this.ticket = ticket;
+        this.timeEfficient = timeEfficient;
     }
 
 
@@ -108,9 +111,13 @@ public class AirPlane implements Serializable {
     public int getCost() { return cost; }
     public void setCost(int cost) { this.cost = cost; }
 
-    // Legacy confusing methods
-    public int getArrivalTime() { return departureTime; } // kept for backward compatibility
-    public void setArrivalTime(int arrivalTime) { this.departureTime = arrivalTime; } // legacy
+    public long getTicket() { return ticket; }
+    public void setTicket(long ticket) { this.ticket = ticket; }
+
+    public boolean isTimeEfficient() { return timeEfficient; }
+    public void setTimeEfficient(boolean timeEfficient) { this.timeEfficient = timeEfficient; }
+
+
 
     @Override
     public String toString() {
@@ -128,6 +135,8 @@ public class AirPlane implements Serializable {
                 ", departureTime=" + departureTime +
                 ", flightTime=" + flightTime +
                 ", cost=" + cost +
+                ", ticket=" + ticket +
+                ", timeEfficient=" + timeEfficient +
                 '}';
     }
 }

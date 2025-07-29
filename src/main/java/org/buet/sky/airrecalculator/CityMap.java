@@ -108,6 +108,7 @@ public class CityMap {
         }
     }
 
+    
     public void redrawMap(List<City> cities) {
         GraphicsContext gc = mapCanvas.getGraphicsContext2D();
         gc.setFill(Color.WHITE);
