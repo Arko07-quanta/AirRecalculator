@@ -281,8 +281,11 @@ public class DataBase {
     }
 
 
-    public synchronized static void modifyAirPlane(AirPlane airplane) {
 
+
+
+
+    public synchronized static void modifyAirPlane(AirPlane airplane) {
         System.out.println("modifying airplane");
         System.out.println(airplane.getDepartureAirport());
 

@@ -14,45 +14,44 @@ import java.util.List;
 
 public class ClientListenerThread implements Runnable {
     SharedObject obj;
+
     ClientListenerThread(SharedObject obj) {
         this.obj = obj;
         new Thread(this).start();
     }
 
 
-
-
-    public void refreshWindow(){
-        try{
+    public void refreshWindow() {
+        try {
             Platform.runLater(() -> {
                 ((RequestPageController) Main.controller.get(6)).loadData();
             });
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
 
-        try{
+        try {
             Platform.runLater(() -> {
                 ((PlaneInfoController) Main.controller.get(18)).loadData();
             });
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("PlaneInfo refresh failed");
         }
 
-        try{
+        try {
             Platform.runLater(() -> {
                 ((SchedulePageController) Main.controller.get(9)).loadData();
             });
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        try{
+        try {
             Platform.runLater(() -> {
                 ((ProfilePageController) Main.controller.get(15)).loadData();
             });
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -67,20 +66,17 @@ public class ClientListenerThread implements Runnable {
     }
 
 
-
-
-
     public void run() {
         while (true) {
             Command cmd = obj.readerPop();
             ObjectChecker objChecker = new ObjectChecker(cmd);
 
-            if(objChecker.closeThread()){
+            if (objChecker.closeThread()) {
                 System.out.println("Thread closed");
                 break;
             }
 
-            if(objChecker.isDijkstra()){
+            if (objChecker.isDijkstra()) {
                 List<City> dij = objChecker.getDijkstraObj();
 
                 Platform.runLater(() -> {
@@ -98,7 +94,7 @@ public class ClientListenerThread implements Runnable {
 
             }
 
-            if(objChecker.isLogOut()){
+            if (objChecker.isLogOut()) {
                 Main.loginStatus = false;
 
                 try {
@@ -110,43 +106,46 @@ public class ClientListenerThread implements Runnable {
                             throw new RuntimeException(e);
                         }
                     });
-                }catch(Exception e){
+                } catch (Exception e) {
                     System.out.println("Failed to Log out");
                 }
             }
 
 
-            if(objChecker.getAllCity()) {
+            if (objChecker.getAllCity()) {
                 Main.cityList = objChecker.getAllCityObj();
             }
 
 
-            if(objChecker.isLogin()){
+            if (objChecker.isLogin()) {
                 Company company = objChecker.getAccountObj();
-                if(company != null){
+                if (company != null) {
                     List<Integer> list = new ArrayList<>();
                     list.addAll(Main.req);
                     list.add(18);
                     obj.writerPush(new Command(-1, list));
                     Main.serverStatus = true;
                     Main.company = company;
-                }else{
+                } else {
                     Main.serverStatus = true;
                 }
 
             }
             System.out.println("reading something");
 
-            if(objChecker.getMyPlane()){
+            if (objChecker.getMyPlane()) {
                 Main.airPlaneList = objChecker.getAllPlaneObj();
-            }
+<<<<<<< Updated upstream
+=======
 
-            if(objChecker.getAllPlane()){
-                Main.allPlaneList = objChecker.getAllPlaneObj();
-            }
+                if (objChecker.getAllPlane()) {
+                    Main.allPlaneList = objChecker.getAllPlaneObj();
+                }
 
-            refreshWindow();
+                refreshWindow();
+>>>>>>> Stashed changes
+            }
         }
-    }
 
+    }
 }
