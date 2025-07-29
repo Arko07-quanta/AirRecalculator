@@ -23,6 +23,8 @@ public class TicketInfoController {
 
     public void setAirPlane(AirPlane airPlane) {
         this.airPlane = airPlane;
+        loadSeats();
+        System.out.println("Air Plane from ticketInfoController: " + airPlane);
     }
 
     public int getTotalSeats(){
@@ -49,11 +51,19 @@ public class TicketInfoController {
                 seatBtn.setStyle("-fx-background-color: gray; -fx-text-fill: black;");
                 seatBtn.setDisable(true);
             } else {
-                seatBtn.setStyle("-fx-background-color: transparent; -fx-text-fill: white;");
+                seatBtn.setStyle("""
+                                    -fx-background-color: transparent;
+                                    -fx-border-color: white;
+                                    -fx-text-fill: white;
+                                    -fx-border-radius: 8px;
+                                    -fx-background-radius: 8px;
+                                    -fx-font-size: 14px;
+                                """);
                 int finalI = i;
                 seatBtn.setOnAction(e -> {
                     System.out.println("Clicked seat: " + finalI);
-                    seatBtn.setStyle("-fx-background-color: lightgreen; -fx-text-fill: white;");
+                    seatBtn.setStyle("-fx-background-color: #3a86ff; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 8px;");
+
                     seats.add(finalI-1);
                 });
             }
@@ -65,7 +75,6 @@ public class TicketInfoController {
     public void initialize() {
         Main.obj.writerPush(new Command(-1, (new ArrayList<Integer>()).add(18)));
         Main.controller.put(60,this);
-        loadSeats();
     }
 
     private Optional<ButtonType> showConfirmation(String title, String content) {

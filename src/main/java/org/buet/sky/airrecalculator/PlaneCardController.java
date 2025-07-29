@@ -31,6 +31,8 @@ public class PlaneCardController {
         flightTime.setText("Duration: " + flightDuration);
         cost.setText("Cost: " + cst);
         this.airPlane = airPlane;
+        System.out.println("PlaneCardController: setPlaneData");
+        System.out.println(airPlane);
     }
 
     public void onViewTickets(ActionEvent e) throws IOException {
