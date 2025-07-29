@@ -21,6 +21,7 @@ public class ClientListenerThread implements Runnable {
     }
 
 
+
     public void refreshWindow() {
         try {
             Platform.runLater(() -> {

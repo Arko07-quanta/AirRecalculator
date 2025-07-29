@@ -120,6 +120,28 @@ public class RequestPageController {
     }
 
 
+
+    @FXML private Button toggleButton;
+
+    private boolean isTime = true;
+
+    @FXML
+    private void onToggle() {
+        if (isTime) {
+            toggleButton.setText("Cost");
+            toggleButton.getStyleClass().remove("toggle-time");
+            toggleButton.getStyleClass().add("toggle-cost");
+        } else {
+            toggleButton.setText("Time");
+            toggleButton.getStyleClass().remove("toggle-cost");
+            toggleButton.getStyleClass().add("toggle-time");
+        }
+        isTime = !isTime;
+    }
+
+
+
+
     @FXML
     public void initialize() {
         for (int hour = 0; hour < 24; hour++) {

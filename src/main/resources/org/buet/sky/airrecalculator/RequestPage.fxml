@@ -62,12 +62,24 @@
                         <Label text="Departure Time" styleClass="label"/>
                         <ComboBox fx:id="departureTime" prefHeight="20.0" prefWidth="750.0" styleClass="combo-box"/>
 
-                        <!-- Submit Button -->
+
+
+                        <!-- Submit Button with Single Toggle -->
                         <HBox alignment="CENTER_RIGHT" spacing="10">
                             <children>
-                                <Button fx:id="requestButton" text="Request" prefHeight="40.0" prefWidth="140.0" mnemonicParsing="false" onAction="#onRequest"/>
+                                <!-- Single Toggle Button -->
+                                <Button fx:id="toggleButton" text="Time" prefWidth="100.0" prefHeight="30.0"
+                                        styleClass="toggle-time" onAction="#onToggle"/>
+
+                                <!-- Main Request Button -->
+                                <Button fx:id="requestButton" text="Request" prefHeight="40.0" prefWidth="140.0"
+                                        mnemonicParsing="false" onAction="#onRequest"/>
                             </children>
                         </HBox>
+
+
+
+
                     </children>
                 </VBox>
             </children>

@@ -12,7 +12,11 @@ public class DataBaseListener  implements Runnable{
 
             if(objectChecker.getAllCity() || objectChecker.getAllCompany() || objectChecker.getAllPlane()){
                 if(Server.requireGraph.requireGraph.containsKey(cmd.opt) == false) continue;
+
                 for(Integer client_id: Server.requireGraph.get(cmd.opt)){
+                    System.out.println(client_id);
+                    System.out.println(cmd.opt);
+
                     SharedObject obj = Server.clientObject.get(client_id);
                     obj.readerPush(new Command(cmd.opt, null));
                 }

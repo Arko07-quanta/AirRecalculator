@@ -47,6 +47,36 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.3, 0, 2);
 }
 
+
+
+.toggle-time {
+    -fx-background-color: #ff4c4c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, #ff4c4c, 10, 0.4, 0, 0);
+    -fx-background-radius: 10;
+    -fx-border-color: none;
+}
+
+.toggle-cost {
+    -fx-background-color: #4caf50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, #4caf50, 10, 0.4, 0, 0);
+    -fx-background-radius: 10;
+    -fx-border-color: none;
+
+}
+
+.toggle-time:hover, .toggle-cost:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-cursor: hand;
+}
+
+
+
+
 /* === NAVIGATION BAR === */
 .nav-bar {
     -fx-background-color: transparent;

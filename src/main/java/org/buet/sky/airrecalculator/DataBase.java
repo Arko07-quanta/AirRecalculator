@@ -285,6 +285,26 @@ public class DataBase {
 
 
 
+    public synchronized static void modifyTicket(AirPlane airplane) {
+        System.out.println(airplane.getDepartureAirport());
+        String sql = "UPDATE AirPlane SET  ticket = ? WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(DB_URL);
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setLong(1, airplane.getTicket());
+            ps.setInt(2, airplane.getId());
+            ps.executeUpdate();
+            Server.dataBaseListener.writerPush(new Command(9, airplane.getCompanyId()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+
+
     public synchronized static void modifyAirPlane(AirPlane airplane) {
         System.out.println("modifying airplane");
         System.out.println(airplane.getDepartureAirport());

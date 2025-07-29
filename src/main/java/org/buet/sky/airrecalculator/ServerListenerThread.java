@@ -117,13 +117,14 @@ public class ServerListenerThread implements Runnable {
                 }else{
                     AirPlane newPlane = objectChecker.getPlaneObj();
                     AirPlane prevPlane = DataBase.getAirplaneById(newPlane.getId());
+
                     if(prevPlane.getTicket() != newPlane.getTicket()){
                         prevPlane.setTicket(newPlane.getTicket());
-                        DataBase.modifyAirPlane(prevPlane);
+                        DataBase.modifyTicket(prevPlane);
                     }
-
                 }
             }
+
 
 
             if(objectChecker.getMyPlane()){
