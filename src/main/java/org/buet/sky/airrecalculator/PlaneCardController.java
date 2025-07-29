@@ -23,6 +23,11 @@ public class PlaneCardController {
     public boolean status = true;
 
     public void setPlaneData(String id, String name, String fuelVal, String dep, String dest, String depTime, String flightDuration, String cst, AirPlane airPlane) {
+        if(airPlane.isTimeEfficient()){
+            setTextColor("#ff4c4c", planeName, planeId, fuel, departureAirport, destinationAirport, departureTime, flightTime, cost);
+        }else{
+            setTextColor("#4caf50", planeName, planeId, fuel, departureAirport, destinationAirport, departureTime, flightTime, cost);
+        }
         planeName.setText(name);
         planeId.setText("ID: " + id);
         fuel.setText("Fuel: " + fuelVal);
@@ -44,4 +49,11 @@ public class PlaneCardController {
         ticketInfo.show();
         return;
     }
+
+    private void setTextColor(String color, Label... labels) {
+        for (Label label : labels) {
+            label.setStyle("-fx-text-fill: " + color + ";");
+        }
+    }
+
 }
