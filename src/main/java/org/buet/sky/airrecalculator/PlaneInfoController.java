@@ -50,6 +50,7 @@ public class PlaneInfoController{
                     String flightTime = nullToNA(Integer.toString(p.getFlightTime()));
                     String cost = nullToNA(Integer.toString(p.getCost()));
 
+                    pc.status = false;
                     pc.setPlaneData(
                             name,
                             id,

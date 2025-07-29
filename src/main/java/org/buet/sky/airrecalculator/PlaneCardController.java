@@ -20,6 +20,7 @@ public class PlaneCardController {
     @FXML private Label departureTime;
     @FXML private Label flightTime;
     private AirPlane airPlane;
+    public boolean status = true;
 
     public void setPlaneData(String id, String name, String fuelVal, String dep, String dest, String depTime, String flightDuration, String cst, AirPlane airPlane) {
         planeName.setText(name);
@@ -33,11 +34,13 @@ public class PlaneCardController {
         this.airPlane = airPlane;
         System.out.println("PlaneCardController: setPlaneData");
         System.out.println(airPlane);
+        System.out.println(status);
     }
 
     public void onViewTickets(ActionEvent e) throws IOException {
         Stage newStage = new Stage();
         TicketInfo ticketInfo = new TicketInfo(newStage, airPlane);
+        ticketInfo.status = this.status;
         ticketInfo.show();
         return;
     }

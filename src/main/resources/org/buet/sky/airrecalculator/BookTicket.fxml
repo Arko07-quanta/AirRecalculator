@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.buet.sky.airrecalculator.BookTicketController"
+            prefWidth="600" prefHeight="450"
+            stylesheets="@../../../../style/MainPage.css"
+            styleClass="fancyVBox">
+
+    <children>
+        <VBox spacing="15" styleClass="formContainer"
+              AnchorPane.leftAnchor="100.0"
+              AnchorPane.topAnchor="40.0"
+              AnchorPane.rightAnchor="100.0"
+              AnchorPane.bottomAnchor="40.0">
+
+            <children>
+                <Label styleClass="formLabel" text="Seat Number" />
+                <TextField fx:id="seatNumberField" prefWidth="400.0" styleClass="formField"
+                           editable="false" />
+
+                <Label styleClass="formLabel" text="Passport ID" />
+                <TextField fx:id="passportIdField" prefWidth="400.0" styleClass="formField" />
+
+                <Label styleClass="formLabel" text="Phone Number" />
+                <TextField fx:id="phoneNumberField" prefWidth="400.0" styleClass="formField" />
+
+                <Label styleClass="formLabel" text="Credit Card Number" />
+                <TextField fx:id="creditCardField" prefWidth="400.0" styleClass="formField" />
+
+                <HBox alignment="CENTER_RIGHT" prefWidth="400.0">
+                    <children>
+                        <Button fx:id="confirmBooking" onAction="#onConfirmBooking"
+                                prefWidth="120.0" styleClass="primaryButton" text="Confirm" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

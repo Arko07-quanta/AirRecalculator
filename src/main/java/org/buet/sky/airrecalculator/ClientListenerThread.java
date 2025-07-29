@@ -109,6 +109,12 @@ public class ClientListenerThread implements Runnable {
                 }catch(Exception e){
                     e.printStackTrace();
                 }
+
+                try{
+                    ((TicketInfoController) Main.controller.get(60)).loadSeats();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
             }
 
             if(objChecker.getAllPlane()){

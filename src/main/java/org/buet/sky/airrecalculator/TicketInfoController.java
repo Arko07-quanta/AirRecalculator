@@ -2,24 +2,28 @@ package org.buet.sky.airrecalculator;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class TicketInfoController {
 
 
     @FXML public FlowPane ticketPane;
     @FXML public GridPane seatGrid;
+    @FXML public Button bookButton;
     private AirPlane airPlane;
-    List<Integer> seats = new ArrayList<>();
+    public boolean status = true;
+    Set<Integer> selectedSeats = new HashSet<>();
 
     public void setAirPlane(AirPlane airPlane) {
         this.airPlane = airPlane;
@@ -32,39 +36,40 @@ public class TicketInfoController {
     }
 
     public boolean isBooked(int i){
-        return ((getTotalSeats()>>(i-1)) & 1)==1;
+        return ((airPlane.getTicket()>>(i-1)) & 1)==1;
     }
 
-    public void loadSeats(){
+    public void loadSeats() {
+        seatGrid.getChildren().clear();
+        if(!status) bookButton.setVisible(false);
         for (int i = 1; i <= getTotalSeats(); i++) {
             Button seatBtn = new Button("Seat " + i);
             seatBtn.setMinWidth(80);
             seatBtn.setMinHeight(40);
 
-            // Position calculation: two seats left, aisle, two seats right per row
             int row = (i - 1) / 4;
             int posInRow = (i - 1) % 4;
-            int col = (posInRow < 2) ? posInRow : posInRow + 1; // skip aisle column 2
+            int col = (posInRow < 2) ? posInRow : posInRow + 1;
 
-            // Style booked seats red and disable
             if (isBooked(i)) {
                 seatBtn.setStyle("-fx-background-color: gray; -fx-text-fill: black;");
                 seatBtn.setDisable(true);
             } else {
-                seatBtn.setStyle("""
-                                    -fx-background-color: transparent;
-                                    -fx-border-color: white;
-                                    -fx-text-fill: white;
-                                    -fx-border-radius: 8px;
-                                    -fx-background-radius: 8px;
-                                    -fx-font-size: 14px;
-                                """);
+                if (selectedSeats.contains(i)) {
+                    seatBtn.setStyle("-fx-background-color: lightgreen; -fx-text-fill: white;");
+                } else {
+                    seatBtn.setStyle("-fx-background-color: transparent; -fx-text-fill: white;");
+                }
+
                 int finalI = i;
                 seatBtn.setOnAction(e -> {
-                    System.out.println("Clicked seat: " + finalI);
-                    seatBtn.setStyle("-fx-background-color: #3a86ff; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 8px;");
-
-                    seats.add(finalI-1);
+                    if (selectedSeats.contains(finalI)) {
+                        selectedSeats.remove(finalI);
+                    } else {
+                        selectedSeats.clear();
+                        selectedSeats.add(finalI);
+                    }
+                    loadSeats();
                 });
             }
 
@@ -94,12 +99,20 @@ public class TicketInfoController {
     }
 
     @FXML public void onBookTickets(ActionEvent event) throws IOException {
-        if(seats.size() != 1){
+        if(selectedSeats.size() != 1){
             showAlert("Booking Error", "Please select a single seat");
             return;
         }
-//        long x = airPlane.getTicket() | seats.getFirst();
-//        airPlane.setTicket(x);
-//        Main.obj.writerPush(new Command(8,airPlane));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("BookTicket.fxml"));
+        Parent root = loader.load();
+        BookTicketController controller = loader.getController();
+        controller.setAtrributes(airPlane,selectedSeats.iterator().next());
+        Stage stage = new Stage();
+        stage.setTitle("Ticket Confirmation");
+        stage.setScene(new Scene(root));
+        stage.show();
+        if(!stage.isShowing()){
+            loadSeats();
+        }
     }
 }

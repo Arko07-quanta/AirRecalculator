@@ -11,6 +11,7 @@ import java.io.IOException;
 public class TicketInfo {
     private final Stage stage;
     private AirPlane airPlane;
+    public boolean status = true;
 
 
     TicketInfo(Stage stage, AirPlane airPlane) {
@@ -22,6 +23,7 @@ public class TicketInfo {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("TicketInfo.fxml"));
         Parent root = loader.load();
         TicketInfoController controller = loader.getController();
+        controller.status = this.status;
         controller.setAirPlane(airPlane);
         Scene scene = new Scene(root);
         stage.setScene(scene);

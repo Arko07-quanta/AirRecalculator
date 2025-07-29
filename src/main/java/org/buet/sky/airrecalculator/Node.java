@@ -1,5 +1,7 @@
 package org.buet.sky.airrecalculator;
 
+import javafx.scene.Scene;
+
 import java.util.Objects;
 
 public class Node{
@@ -26,4 +28,5 @@ public class Node{
         Node n = (Node)o;
         return city.equals(n.city) && fuel == n.fuel;
     }
+
 }
