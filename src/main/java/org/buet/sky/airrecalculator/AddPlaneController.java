@@ -2,68 +2,96 @@ package org.buet.sky.airrecalculator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AddPlaneController {
 
     @FXML public Button profileName;
-    @FXML public TextField speedField;
-    @FXML public TextField mileageField;
-    @FXML public TextField departureAirportField;
-    @FXML public TextField seatCountField;
     @FXML private TextField planeNameField;
-    @FXML private TextField fuelCapacityField;
+
+    // Sliders and value labels
+    @FXML private Slider fuelCapacitySlider;
+    @FXML private Label fuelCapacityValue;
+
+    @FXML private Slider speedSlider;
+    @FXML private Label speedValue;
+
+    @FXML private Slider mileageSlider;
+    @FXML private Label mileageValue;
+
+    @FXML private Slider seatCountSlider;
+    @FXML private Label seatCountValue;
+
+    @FXML private TextField departureAirportField;
 
     @FXML
     public void initialize() {
+        // Generate and set plane name
         String x = generateFlightId();
         planeNameField.setText(x);
-        //companyIdField.setText(getCurrentCompanyId());
-        profileName.setText(Main.company.getName());
         planeNameField.setEditable(false);
+
+        // Set profile name
+        profileName.setText(Main.company.getName());
+
+        // Bind sliders to their display labels for live feedback
+        fuelCapacityValue.textProperty().bind(
+                fuelCapacitySlider.valueProperty().asString("%.0f")
+        );
+        speedValue.textProperty().bind(
+                speedSlider.valueProperty().asString("%.0f")
+        );
+        mileageValue.textProperty().bind(
+                mileageSlider.valueProperty().asString("%.0f")
+        );
+        seatCountValue.textProperty().bind(
+                seatCountSlider.valueProperty().asString("%.0f")
+        );
     }
 
     private String generateFlightId() {
         String init = Main.company.getName().substring(0,1).toUpperCase();
-        if(Main.company.getName().length() > 1) init = Main.company.getName().substring(0, 2).toUpperCase();
+        if (Main.company.getName().length() > 1)
+            init = Main.company.getName().substring(0, 2).toUpperCase();
         return init + System.currentTimeMillis() % 100000;
     }
 
     @FXML
     public void onSubmit(ActionEvent event) {
         String name = planeNameField.getText();
-        int fuel = Integer.parseInt(fuelCapacityField.getText().trim());
-        double speed = Double.parseDouble(speedField.getText().trim());
-        double mileage = Double.parseDouble(mileageField.getText().trim());
-        int departureAirport = Integer.parseInt(departureAirportField.getText().trim());
-        long seatCount = Long.parseLong(seatCountField.getText().trim());
-        seatCount = ((long)1<<seatCount);
-        if(name.isEmpty() || fuel==0 || mileage==0 || departureAirport==0) {
+        int fuel = (int) fuelCapacitySlider.getValue();
+        double speed = speedSlider.getValue();
+        double mileage = mileageSlider.getValue();
+        int departureAirport = Integer.parseInt(
+                departureAirportField.getText().trim()
+        );
+        long seats = (long) seatCountSlider.getValue();
+
+        // Apply bitshift for seat count
+        seats = 1L << seats;
+
+        if (name.isEmpty() || fuel == 0 || mileage == 0 || departureAirport == 0) {
             Main.showPopup("Please fill all the fields");
+            return;
         }
+
         int companyId = Main.company.getId();
-        // currentLocation is assumed 0 or default; adjust as needed
 
-
-        // add ticket count
-
-        AirPlane plane = new AirPlane(name, fuel, speed, departureAirport, companyId, mileage, seatCount);
-        Command cmd = new Command(8,plane);
+        AirPlane plane = new AirPlane(
+                name, fuel, speed, departureAirport, companyId, mileage, seats
+        );
+        Command cmd = new Command(8, plane);
         System.out.println(cmd.obj);
         Main.obj.writerPush(cmd);
-//        List<Integer> require = new ArrayList<>(); require.add(9);
-//        cmd = new Command(-1,require);
-//        Main.obj.writerPush(cmd);
-        // Navigate back to plane info or clear form
+
         Main.showPopup("Plane added successfully");
     }
-
 
     @FXML
     public void onMain(ActionEvent event) throws IOException {

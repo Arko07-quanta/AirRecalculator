@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.Slider?>
 <VBox prefHeight="719.0" prefWidth="977.0"
       styleClass="fancyVBox"
       stylesheets="@../../../../style/MainPage.css"
@@ -57,37 +58,64 @@
                 <columnConstraints>
                     <ColumnConstraints halignment="RIGHT" minWidth="120" />
                     <ColumnConstraints halignment="LEFT" minWidth="200" />
+                    <ColumnConstraints halignment="LEFT" minWidth="60" />
                 </columnConstraints>
 
-                <children>
-                    <Label styleClass="label" text="Plane Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                    <TextField fx:id="planeNameField" editable="false" promptText="Auto-generated" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <!-- Plane Name -->
+                <Label styleClass="label" text="Plane Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <TextField fx:id="planeNameField" editable="false" promptText="Auto-generated"
+                           GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                    <Label styleClass="label" text="Fuel Capacity:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                    <TextField fx:id="fuelCapacityField" promptText="Enter fuel capacity" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <!-- Fuel Capacity Slider -->
+                <Label styleClass="label" text="Fuel Capacity:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Slider fx:id="fuelCapacitySlider"
+                        min="50" max="300" value="150"
+                        showTickMarks="true" showTickLabels="true"
+                        majorTickUnit="50" minorTickCount="4" blockIncrement="10"
+                        styleClass="slime-slider"
+                        GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label fx:id="fuelCapacityValue" text="150"
+                       GridPane.columnIndex="2" GridPane.rowIndex="1" />
 
-                    <Label styleClass="label" text="Speed:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                    <TextField fx:id="speedField" promptText="Enter speed" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <!-- Speed Slider -->
+                <Label styleClass="label" text="Speed:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <Slider fx:id="speedSlider"
+                        min="2" max="10" value="6"
+                        showTickMarks="true" showTickLabels="true"
+                        majorTickUnit="2" minorTickCount="1" blockIncrement="1"
+                        styleClass="slime-slider"
+                        GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Label fx:id="speedValue" text="6"
+                       GridPane.columnIndex="2" GridPane.rowIndex="2" />
 
-                    <Label styleClass="label" text="Mileage:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                    <TextField fx:id="mileageField" promptText="Enter mileage" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <!-- Mileage Slider -->
+                <Label styleClass="label" text="Mileage:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <Slider fx:id="mileageSlider"
+                        min="4" max="15" value="9"
+                        showTickMarks="true" showTickLabels="true"
+                        majorTickUnit="11" minorTickCount="11" blockIncrement="1"
+                        styleClass="slime-slider"
+                        GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <Label fx:id="mileageValue" text="9"
+                       GridPane.columnIndex="2" GridPane.rowIndex="3" />
 
-                    <Label styleClass="label" text="Total Seat Count:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                    <TextField fx:id="seatCountField" promptText="Enter total seat count" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <!-- Total Seat Count Slider -->
+                <Label styleClass="label" text="Total Seat Count:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                <Slider fx:id="seatCountSlider"
+                        min="25" max="60" value="42"
+                        showTickMarks="true" showTickLabels="true"
+                        majorTickUnit="5" minorTickCount="4" blockIncrement="1"
+                        styleClass="slime-slider"
+                        GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <Label fx:id="seatCountValue" text="42"
+                       GridPane.columnIndex="2" GridPane.rowIndex="4" />
 
-                    <Label styleClass="label" text="Departure Airport ID:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-                    <TextField fx:id="departureAirportField" promptText="Enter airport ID" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                </children>
-
-                <rowConstraints>
-                    <RowConstraints />
-                    <RowConstraints />
-                    <RowConstraints />
-                    <RowConstraints />
-                    <RowConstraints />
-                    <RowConstraints />
-                </rowConstraints>
+                <!-- Departure Airport ID -->
+                <Label styleClass="label" text="Departure Airport ID:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                <TextField fx:id="departureAirportField" promptText="Enter airport ID"
+                           GridPane.columnIndex="1" GridPane.rowIndex="5" />
             </GridPane>
+
 
             <Button fx:id="submitButton" onAction="#onSubmit" prefWidth="120" styleClass="button" text="Submit" />
         </VBox>
