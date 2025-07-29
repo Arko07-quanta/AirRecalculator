@@ -36,11 +36,7 @@ public class TicketInfoController {
     }
 
     public boolean isBooked(int i){
-<<<<<<< Updated upstream
         return ((airPlane.getTicket()>>(i-1)) & 1)==1;
-=======
-        return (((airPlane.getTicket())>>(i-1)) & 1)==1;
->>>>>>> Stashed changes
     }
 
     public void loadSeats() {

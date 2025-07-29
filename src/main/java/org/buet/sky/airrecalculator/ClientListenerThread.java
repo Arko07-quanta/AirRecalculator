@@ -131,31 +131,6 @@ public class ClientListenerThread implements Runnable {
 
             if(objChecker.getMyPlane()){
                 Main.airPlaneList = objChecker.getAllPlaneObj();
-<<<<<<< Updated upstream
-
-                try{
-                    Platform.runLater(() -> {
-                        ((PlaneInfoController) Main.controller.get(18)).refreshPlanes();
-                    });
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-
-                try{
-                    Platform.runLater(() -> {
-                        ((RequestPageController) Main.controller.get(6)).populateComboBoxes();
-                    });
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
-
-                try{
-                    ((TicketInfoController) Main.controller.get(60)).loadSeats();
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
-=======
->>>>>>> Stashed changes
             }
 
             if(objChecker.getAllPlane()){
