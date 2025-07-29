@@ -59,7 +59,6 @@ public class CityMap {
 //            city.setFillingSpeed(fillingSpeed);
 
             Random ran =  new Random();
-
             for(int i=0; i < 26; i++){
                 City city = new City();
                 city.setName("" + i);

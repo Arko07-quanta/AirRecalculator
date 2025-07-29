@@ -37,16 +37,12 @@ public class RequestPageController {
         City departureCity = (City) departureAirport.getValue();
         City destinationCity = (City) destinationAirport.getValue();
         AirPlane airPlane = (AirPlane) flightId.getValue();
+        airPlane.setTimeEfficient(isTime);
         int depTime = timeRef.get((String) departureTime.getValue());
-//        airPlane.setFuelCapacity(100);
-//        airPlane.setMileage(3);
+        if(isTime)
+            new Dijkstra(airPlane, departureCity, destinationCity, Main.cityList, true, depTime);
+        else new Dijkstra(airPlane, departureCity, destinationCity, Main.cityList, false, depTime);
 
-        // give time
-        System.out.println("getting called");
-
-        new Dijkstra(airPlane, departureCity, destinationCity, Main.cityList, true, depTime);
-        new Dijkstra(airPlane, departureCity, destinationCity, Main.cityList, false, depTime);
-        return;
     }
 
     @FXML
