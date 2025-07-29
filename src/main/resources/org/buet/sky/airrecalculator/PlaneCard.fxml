@@ -1,32 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/24.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="org.buet.sky.airrecalculator.PlaneCardController"
-      spacing="10" styleClass="card">
+      spacing="12"
+      styleClass="card">
+
+    <padding>
+        <Insets top="12" right="12" bottom="12" left="12"/>
+    </padding>
 
     <children>
-        <!-- Title -->
-        <Label fx:id="planeName" styleClass="cardTitle"/>
+        <!-- Plane Name / Title -->
+        <Label fx:id="planeName" styleClass="cardTitle" wrapText="true" />
 
-        <!-- Info Rows -->
-        <HBox spacing="10">
-            <VBox spacing="5">
-                <Label fx:id="planeId" styleClass="info" text="ID: "/>
-                <Label fx:id="fuel" styleClass="info" text="Fuel: "/>
-                <Label fx:id="departureAirport" styleClass="info" text="From: "/>
-                <!-- Cost -->
-                <Label fx:id="cost" styleClass="info" text="Cost: "/>
-            </VBox>
-            <VBox spacing="5">
-                <Label fx:id="destinationAirport" styleClass="info" text="To: "/>
-                <Label fx:id="departureTime" styleClass="info" text="Departs: "/>
-                <Label fx:id="flightTime" styleClass="info" text="Duration: "/>
-            </VBox>
+        <!-- Info Grid -->
+        <HBox spacing="30">
+            <children>
+                <VBox spacing="6">
+                    <Label fx:id="planeId" styleClass="info" text="ID: " />
+                    <Label fx:id="fuel" styleClass="info" text="Fuel: " />
+                    <Label fx:id="departureAirport" styleClass="info" text="From: " />
+                    <Label fx:id="cost" styleClass="info" text="Cost: " />
+                </VBox>
+
+                <VBox spacing="6">
+                    <Label fx:id="destinationAirport" styleClass="info" text="To: " />
+                    <Label fx:id="departureTime" styleClass="info" text="Departs: " />
+                    <Label fx:id="flightTime" styleClass="info" text="Duration: " />
+                </VBox>
+            </children>
         </HBox>
     </children>
 </VBox>

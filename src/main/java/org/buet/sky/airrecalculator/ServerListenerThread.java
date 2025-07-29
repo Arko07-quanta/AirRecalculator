@@ -34,6 +34,7 @@ public class ServerListenerThread implements Runnable {
                 for(Integer u : requireList){
                     Server.requireGraph.removeEdge(clientId, u);
                 }
+
                 if(obj.account != null)
                     Server.companyClient.removeEdge(clientId, obj.account.getId());
                 System.out.println("Client " + clientId + " closed");

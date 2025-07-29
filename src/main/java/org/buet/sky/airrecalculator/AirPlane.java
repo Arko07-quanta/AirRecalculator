@@ -17,6 +17,12 @@ public class AirPlane implements Serializable {
     private int flightTime;
     private int cost;
 
+
+    /*
+        ticket info//bitmask
+        time efficient/ cost efficient
+     */
+
     public AirPlane() {}
 
 

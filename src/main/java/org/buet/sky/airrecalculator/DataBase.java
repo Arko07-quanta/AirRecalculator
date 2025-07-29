@@ -344,7 +344,7 @@ public class DataBase {
         Random ran = new Random();
 
         for(int i=0;i < 26; i++){
-            City city = new City(i, "" + i, ran.nextInt(0, 700), ran.nextInt(0, 500), ran.nextInt(8, 15), ran.nextInt(8, 15));
+            City city = new City(i, "" + i, ran.nextInt(0, 700), ran.nextInt(0, 500), ran.nextInt(8, 100), ran.nextInt(8, 100));
             addCity(city);
         }
     }

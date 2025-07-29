@@ -37,7 +37,9 @@ public class ClientListenerThread implements Runnable {
                         stage.setScene(new Scene(root));
 
                         stage.show();
+                        ((CityMap) Main.controller.get(30)).redrawMap(Main.cityList);
                         ((CityMap) Main.controller.get(30)).drawWithEdges(dij);
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
