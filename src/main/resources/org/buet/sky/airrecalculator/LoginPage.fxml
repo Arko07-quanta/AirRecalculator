@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="719.0" prefWidth="977.0" spacing="10" styleClass="fancyVBox" stylesheets="@../../../../style/MainPage.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.buet.sky.airrecalculator.LoginPageController">
+<VBox prefHeight="719.0" prefWidth="977.0" spacing="20" styleClass="fancyVBox" stylesheets="@../../../../style/MainPage.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.buet.sky.airrecalculator.LoginPageController">
 
    <!-- Top Banner -->
    <AnchorPane prefHeight="180.0" VBox.vgrow="NEVER">

@@ -14,7 +14,7 @@
       prefWidth="977.0" prefHeight="719.0"
       styleClass="fancyVBox"
       stylesheets="@../../../../style/MainPage.css"
-      spacing="10">
+      spacing="20">
 
    <children>
       <!-- Top Banner -->
