@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.*;
 import java.util.Properties;
 
-public class DataBase {
+public class oldDataBase {
 
     private static final String DB_URL;
 

@@ -10,8 +10,13 @@ public class DataBaseListener  implements Runnable{
             Command cmd = Server.dataBaseListener.writerPop();
             ObjectChecker objectChecker = new ObjectChecker(cmd);
 
+            System.out.println("broadcasting something");
+
+
             if(objectChecker.getAllCity() || objectChecker.getAllCompany() || objectChecker.getAllPlane()){
                 if(Server.requireGraph.requireGraph.containsKey(cmd.opt) == false) continue;
+
+                System.out.println(Server.requireGraph.get(cmd.opt));
 
                 for(Integer client_id: Server.requireGraph.get(cmd.opt)){
                     System.out.println(client_id);

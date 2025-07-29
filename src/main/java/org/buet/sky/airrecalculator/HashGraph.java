@@ -20,6 +20,8 @@ public class HashGraph {
     }
 
     public void removeEdge(int u, int v){
+
+        System.out.println("removeEdge "+u+" "+v);
         if(requireGraph.get(u) != null){
             requireGraph.get(u).remove(v);
             if(requireGraph.get(u).isEmpty()) requireGraph.remove(u);

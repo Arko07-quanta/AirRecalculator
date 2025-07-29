@@ -3,7 +3,10 @@ package org.buet.sky.airrecalculator;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
@@ -25,12 +28,17 @@ public class CityMap {
     @FXML
     public void initialize() {
         Main.controller.put(30, this);
+        hoverTooltip.setStyle("""
+        -fx-background-color: rgba(0, 0, 0, 0.8);
+        -fx-text-fill: white;
+        -fx-padding: 5;
+        -fx-background-radius: 6;
+        -fx-font-size: 12;
+    """);
+        hoverTooltip.setVisible(false);
 
-        List<Integer> require = new ArrayList<>();
-        require.add(6);
-
-        Command cmd = new Command(-1, require);
-        Main.obj.writerPush(cmd);
+        // Add to parent Pane
+        ((Pane) mapCanvas.getParent()).getChildren().add(hoverTooltip);
     }
 
     @FXML
@@ -108,18 +116,56 @@ public class CityMap {
         }
     }
 
-    
     public void redrawMap(List<City> cities) {
         GraphicsContext gc = mapCanvas.getGraphicsContext2D();
-        gc.setFill(Color.WHITE);
+
+        // 🌌 Dark canvas background
+        gc.setFill(Color.web("#121212"));
         gc.fillRect(0, 0, mapCanvas.getWidth(), mapCanvas.getHeight());
 
-        gc.setFill(Color.RED);
         for (City city : cities) {
             double x = city.getX();
             double y = city.getY();
-            gc.fillOval(x - 5, y - 5, 10, 10);
-            gc.strokeText(city.getName() + " (" + city.getOilCost() + ", " + city.getFillingSpeed() + ")", x + 7, y);
+
+            // 🌕 City dot (soft glow)
+            gc.setFill(Color.web("#ff4081")); // pinkish neon
+            gc.fillOval(x - 8, y - 8, 16, 16);
+
+            // 📝 City name
+            gc.setFill(Color.web("#e0e0e0")); // light gray text
+            gc.fillText(city.getName(), x + 12, y + 4);
         }
+
+        attachCityTooltips(cities);
     }
+
+    private final Label hoverTooltip = new Label();
+
+
+
+    private void attachCityTooltips(List<City> cities) {
+        mapCanvas.setOnMouseMoved(e -> {
+            double mx = e.getX(), my = e.getY();
+            boolean hovering = false;
+
+            for (City city : cities) {
+                double cx = city.getX(), cy = city.getY();
+                double dx = mx - cx, dy = my - cy;
+
+                if (dx * dx + dy * dy <= 64) { // within radius^2 = 8^2
+                    mapCanvas.setCursor(javafx.scene.Cursor.HAND);
+
+                    Tooltip tp = new Tooltip("City: " + city.getName() +
+                            "\nOil Cost: " + city.getOilCost() +
+                            "\nFilling Speed: " + city.getFillingSpeed());
+                    Tooltip.install(mapCanvas, tp);
+                    return;
+                }
+            }
+
+            Tooltip.uninstall(mapCanvas, null);
+            mapCanvas.setCursor(javafx.scene.Cursor.DEFAULT);
+        });
+    }
+
 }

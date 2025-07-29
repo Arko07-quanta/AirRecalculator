@@ -19,7 +19,6 @@ public class SharedObject{
     }
 
     public synchronized Command readerPop(){
-        System.out.println("ServerListenerThread reader pop");
         while(reader.isEmpty()){
             try {
                 wait();
