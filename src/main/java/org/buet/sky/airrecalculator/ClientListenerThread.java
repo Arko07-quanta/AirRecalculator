@@ -136,6 +136,11 @@ public class ClientListenerThread implements Runnable {
             if (objChecker.getMyPlane()) {
                 Main.airPlaneList = objChecker.getAllPlaneObj();
             }
+
+            if (objChecker.getAllPlane()) {
+                Main.allPlaneList = objChecker.getAllPlaneObj();
+            }
+
             refreshWindow();
         }
 
