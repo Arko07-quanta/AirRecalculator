@@ -16,6 +16,7 @@ public class HashGraph {
         if(requireGraph.get(v) == null) requireGraph.put(v, new HashSet<>());
         requireGraph.get(u).add(v);
         requireGraph.get(v).add(u);
+        System.out.println("addEdge "+u+" "+v);
     }
 
     public void removeEdge(int u, int v){

@@ -29,6 +29,7 @@ public class ObjectChecker {
     public boolean isLogin() {
         return command.opt.equals(0);
     }
+    public boolean isLogOut(){ return command.opt.equals(50);}
     public boolean isSignUp() {
         return command.opt.equals(1);
     }
@@ -50,9 +51,6 @@ public class ObjectChecker {
         return (List<Integer>) command.obj;
     }
 
-    public List<AirPlane> getScheduleObj(){
-        return (List<AirPlane>) command.obj;
-    }
     public List<City> getAllCityObj(){return (List<City>) command.obj;}
     public Integer getCompanyId(){
         return (Integer) command.obj;

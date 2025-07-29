@@ -49,9 +49,16 @@ public class RegistrationPageController {
             showPopup("Passwords do not match");
             return;
         }
+
+
         Company newCompany = new Company(name, mail, phone, pass);
+        if(Main.company != null) newCompany.setId(Main.company.getId());
+        System.out.println("Company ID: " + newCompany.getId());
+
         Command cmd = new Command(1,newCompany);
         Main.obj.writerPush(cmd);
+
+
         while(!Main.serverStatus){
             try{
                 Thread.sleep(10);
@@ -59,6 +66,7 @@ public class RegistrationPageController {
                 throw new RuntimeException(e);
             }
         }
+
         if(Main.company == null){
             showPopup("Company Already Exists");
             Main.serverStatus = false;

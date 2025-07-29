@@ -92,7 +92,7 @@ public class DataBase {
             stmt.setDouble(4, city.getOilCost());
             stmt.setDouble(5, city.getFillingSpeed());
             stmt.executeUpdate();
-            //Server.dataBaseListener.writerPush(new Command(6, null));
+            Server.dataBaseListener.writerPush(new Command(6, null));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -242,12 +242,33 @@ public class DataBase {
                     airplane.setId(rs.getInt(1));
                 }
             }
-            Server.dataBaseListener.writerPush(new Command(8, airplane.getCompanyId()));
+            Server.dataBaseListener.writerPush(new Command(18, airplane.getCompanyId()));
             Server.dataBaseListener.writerPush(new Command(9, null));
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+
+
+
+
+
+    public synchronized static void modifyCompany(Company company) {
+        System.out.println("modifying company");
+
+        String sql = "UPDATE Company SET  password = ? WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(DB_URL);
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, company.getPassword());
+            ps.setInt(2, company.getId());
+            ps.executeUpdate();
+            Server.dataBaseListener.writerPush(new Command(50, company));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public synchronized static void modifyAirPlane(AirPlane airplane) {
 
@@ -264,7 +285,8 @@ public class DataBase {
             ps.setInt(5, airplane.getDepartureAirport());
             ps.setInt(6, airplane.getId());
             ps.executeUpdate();
-            Server.dataBaseListener.writerPush(new Command(8, airplane.getCompanyId()));
+            Server.dataBaseListener.writerPush(new Command(18, airplane.getCompanyId()));
+            Server.dataBaseListener.writerPush(new Command(9, null));
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -20,11 +20,6 @@ public class ServerListenerThread implements Runnable {
         obj.writerPush(new Command(6, DataBase.getCity()));
     }
 
-
-
-
-
-
     public void run() {
 
         while(true) {
@@ -40,6 +35,20 @@ public class ServerListenerThread implements Runnable {
                 System.out.println("Client " + clientId + " closed");
                 break;
             }
+
+            if(obj.account != null && objectChecker.isSignUp()){
+                obj.account = objectChecker.getAccountObj();
+                DataBase.modifyCompany(objectChecker.getAccountObj());
+            }
+
+
+            if(objectChecker.isLogOut()){
+                if(obj.account != null)
+                    Server.companyClient.removeEdge(clientId, obj.account.getId());
+                obj.account = null;
+                obj.writerPush(new Command(50, null));
+            }
+
 
 
             if(objectChecker.isRequire()) {

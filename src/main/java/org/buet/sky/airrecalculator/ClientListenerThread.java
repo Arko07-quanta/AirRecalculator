@@ -3,6 +3,7 @@ package org.buet.sky.airrecalculator;
 
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -47,6 +48,23 @@ public class ClientListenerThread implements Runnable {
 
             }
 
+            if(objChecker.isLogOut()){
+                Main.loginStatus = false;
+
+                try {
+                    Platform.runLater(() -> {
+                        LoginPage loginPage = new LoginPage(Main.primaryStage);
+                        try {
+                            loginPage.show();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+                }catch(Exception e){
+                    System.out.println("Failed to Log out");
+                }
+
+            }
 
 
             if(objChecker.getAllCity()) {
@@ -64,6 +82,7 @@ public class ClientListenerThread implements Runnable {
 
             if(objChecker.isLogin()){
                 Company company = objChecker.getAccountObj();
+
                 if(company != null){
                     Main.serverStatus = true;
                     Main.company = company;

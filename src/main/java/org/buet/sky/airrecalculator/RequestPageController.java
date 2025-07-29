@@ -130,9 +130,12 @@ public class RequestPageController {
         for(String time : times) {
             timeRef.put(time,getTime(time));
         }
+
         Main.controller.put(6,this);
         List<Integer> flightIds = new ArrayList<>(); flightIds.add(6); flightIds.add(18);
         Main.obj.writerPush(new Command(-1,flightIds));
+
+
         if(!Main.loginStatus){
             profileName.setText("Login");
             disableEditing();

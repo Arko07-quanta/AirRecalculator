@@ -5,7 +5,6 @@ public class DataBaseListener  implements Runnable{
         new Thread(this).start();
     }
 
-
     public void run(){
         while(true){
             Command cmd = Server.dataBaseListener.writerPop();
@@ -26,6 +25,16 @@ public class DataBaseListener  implements Runnable{
                 }
             }
 
+
+            if(objectChecker.isLogOut()){
+                for(Integer client_id: Server.companyClient.get(objectChecker.getAccountObj().getId())){
+                    SharedObject obj = Server.clientObject.get(client_id);
+                    if(obj.account.equals(objectChecker.getAccountObj()) == false){
+                        System.out.println("logning out someone");
+                        obj.readerPush(new Command(cmd.opt, null));
+                    }
+                }
+            }
 
         }
     }

@@ -18,10 +18,8 @@ public class AirPlane implements Serializable {
     private int cost;
 
 
-    /*
-        ticket info//bitmask
-        time efficient/ cost efficient
-     */
+    private long ticket;
+    private boolean timeEfficient;
 
     public AirPlane() {}
 
@@ -71,7 +69,6 @@ public class AirPlane implements Serializable {
 
 
 
-    // --- Getters/Setters ---
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

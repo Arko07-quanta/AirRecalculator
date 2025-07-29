@@ -19,6 +19,7 @@ public class Main extends Application {
     public static Company company;  // contains login info
     public static Boolean loginStatus = false;
     public static Boolean serverStatus = false;
+    public static Stage primaryStage;
 
     // contains all the controller's object
     public static HashMap<Integer, Object> controller;
@@ -37,8 +38,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        this.primaryStage = primaryStage;
         controller = new HashMap<>();
-        network = new Network("127.0.0.1", 44444);
+        network = new Network("192.168.1.135", 44444);
         obj = new SharedObject();
 
         new ClientReadThread(network, obj);

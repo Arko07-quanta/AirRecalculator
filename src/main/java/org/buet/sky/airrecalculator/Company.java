@@ -2,6 +2,7 @@ package org.buet.sky.airrecalculator;
 
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Company implements Serializable {
     private int id;
@@ -88,6 +89,19 @@ public class Company implements Serializable {
                 ", phone='" + phone + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Company company = (Company) o;
+        if (id != company.id) return false;
+        if(!Objects.equals(name, company.name)) return false;
+        if(!Objects.equals(email, company.email)) return false;
+        if(!Objects.equals(phone, company.phone)) return false;
+        return Objects.equals(password, company.password);
     }
 
 
