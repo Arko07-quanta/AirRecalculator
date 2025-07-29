@@ -36,11 +36,9 @@ public class ClientListenerThread implements Runnable {
                     try {
                         Parent root = FXMLLoader.load(getClass().getResource("CityMap.fxml"));
                         stage.setScene(new Scene(root));
-
                         stage.show();
                         ((CityMap) Main.controller.get(30)).redrawMap(Main.cityList);
                         ((CityMap) Main.controller.get(30)).drawWithEdges(dij);
-
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -95,9 +93,6 @@ public class ClientListenerThread implements Runnable {
 
             if(objChecker.getMyPlane()){
                 Main.airPlaneList = objChecker.getAllPlaneObj();
-                for(AirPlane airPlane:Main.airPlaneList){
-                    System.out.println(airPlane);
-                }
 
                 try{
                     Platform.runLater(() -> {

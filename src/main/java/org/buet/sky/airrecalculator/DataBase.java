@@ -217,9 +217,12 @@ public class DataBase {
 
 
     public synchronized static void addAirPlane(AirPlane airplane) {
+        System.out.println("adding airplane");
         System.out.println("getting called");
         if(verify(airplane) == false) {
             System.out.println("modify");
+            System.out.println(airplane.getFlightTime());
+
             modifyAirPlane(airplane);
             return;
         }
@@ -291,9 +294,9 @@ public class DataBase {
             ps.setInt(3, airplane.getFlightTime());
             ps.setInt(4, airplane.getCost());
             ps.setInt(5, airplane.getDepartureAirport());
-            ps.setInt(6, airplane.getId());
-            ps.setLong(7, airplane.getTicket());
-            ps.setBoolean(8, airplane.isTimeEfficient());
+            ps.setLong(6, airplane.getTicket());
+            ps.setBoolean(7, airplane.isTimeEfficient());
+            ps.setInt(8, airplane.getId());
             ps.executeUpdate();
             Server.dataBaseListener.writerPush(new Command(18, airplane.getCompanyId()));
             Server.dataBaseListener.writerPush(new Command(9, null));
@@ -369,9 +372,45 @@ public class DataBase {
         }
     }
 
+    public static void makeUpdateTable(Connection conn) throws SQLException {
+        try (Statement stmt = conn.createStatement()) {
+
+            // DROP the existing table first
+            stmt.execute("DROP TABLE IF EXISTS AirPlane;");
+            System.out.println("🗑️ Existing AirPlane table dropped.");
+
+            // Then CREATE the updated table with AUTOINCREMENT
+            String sql = """
+            CREATE TABLE AirPlane (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name VARCHAR(100),
+                fuelCapacity INT,
+                speed DOUBLE,
+                mileage DOUBLE,
+                currentLocation INT,
+                companyId INT,
+                userRating DOUBLE,
+                departureAirport INT,
+                arrivalAirport INT,
+                departureTime INT,
+                flightTime INT,
+                cost INT,
+                ticket BIGINT,
+                timeEfficient BOOLEAN
+            );
+        """;
+
+            stmt.execute(sql);
+            System.out.println("🛫 New AirPlane table created with auto-incrementing id, ticket, and timeEfficient ✅");
+        }
+    }
+
+
 
     public static void main(String args[]) throws SQLException {
+        makeUpdateTable(DriverManager.getConnection(DB_URL));
         resetAllTables();
+
 
         Random ran = new Random();
 

@@ -160,7 +160,6 @@ public class Dijkstra implements Runnable {
         }else{
             Main.obj.readerPush(new Command(15, getMinCost()));
         }
-        System.out.println("hello world");
         Main.obj.writerPush(new Command(8, airplane));
     }
 }
