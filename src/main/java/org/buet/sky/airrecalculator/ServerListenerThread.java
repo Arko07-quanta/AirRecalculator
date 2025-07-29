@@ -20,6 +20,7 @@ public class ServerListenerThread implements Runnable {
         obj.writerPush(new Command(6, DataBase.getCity()));
     }
 
+
     public void run() {
 
         while(true) {
