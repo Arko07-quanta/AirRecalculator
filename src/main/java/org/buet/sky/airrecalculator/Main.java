@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,6 +27,8 @@ public class Main extends Application {
     public static List<AirPlane> airPlaneList;
     public static List<City>  cityList;
     public static List<AirPlane> allPlaneList;
+    public static List<Integer> req;
+
 
     public static void showPopup(String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -47,6 +50,13 @@ public class Main extends Application {
         new ClientWriteThread(network, obj);
         new ClientListenerThread(obj);
 
+
+
+        // want updated information about all plane and all city
+        req = new ArrayList<>();
+        req.add(6);
+        req.add(9);
+        obj.writerPush(new Command(-1, req));
 
 
         Parent root = (new FXMLLoader(HelloApplication.class.getResource("MainPage.fxml"))).load();

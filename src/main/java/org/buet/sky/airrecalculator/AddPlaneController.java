@@ -32,15 +32,12 @@ public class AddPlaneController {
 
     @FXML
     public void initialize() {
-        // Generate and set plane name
         String x = generateFlightId();
         planeNameField.setText(x);
         planeNameField.setEditable(false);
 
-        // Set profile name
         profileName.setText(Main.company.getName());
 
-        // Bind sliders to their display labels for live feedback
         fuelCapacityValue.textProperty().bind(
                 fuelCapacitySlider.valueProperty().asString("%.0f")
         );

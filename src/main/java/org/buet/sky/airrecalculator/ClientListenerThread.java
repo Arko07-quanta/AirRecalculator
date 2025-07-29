@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClientListenerThread implements Runnable {
@@ -17,6 +18,49 @@ public class ClientListenerThread implements Runnable {
         this.obj = obj;
         new Thread(this).start();
     }
+
+
+
+
+    public void refreshWindow(){
+        try{
+            Platform.runLater(() -> {
+                ((RequestPageController) Main.controller.get(6)).loadData();
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        try{
+            Platform.runLater(() -> {
+                ((PlaneInfoController) Main.controller.get(18)).loadData();
+            });
+        }catch (Exception e){
+            System.out.println("PlaneInfo refresh failed");
+        }
+
+        try{
+            Platform.runLater(() -> {
+                ((SchedulePageController) Main.controller.get(9)).loadData();
+            });
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        try{
+            Platform.runLater(() -> {
+                ((ProfilePageController) Main.controller.get(15)).loadData();
+            });
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+
 
     public void run() {
         while (true) {
@@ -61,38 +105,33 @@ public class ClientListenerThread implements Runnable {
                 }catch(Exception e){
                     System.out.println("Failed to Log out");
                 }
-
             }
 
 
             if(objChecker.getAllCity()) {
                 Main.cityList = objChecker.getAllCityObj();
-                try{
-                    Platform.runLater(() -> {
-                        ((RequestPageController) Main.controller.get(6)).populateComboBoxes();
-                    });
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
             }
-
 
 
             if(objChecker.isLogin()){
                 Company company = objChecker.getAccountObj();
-
                 if(company != null){
+                    List<Integer> list = new ArrayList<>();
+                    list.addAll(Main.req);
+                    list.add(18);
+                    obj.writerPush(new Command(-1, list));
                     Main.serverStatus = true;
                     Main.company = company;
-                }
-                else{
+                }else{
                     Main.serverStatus = true;
                 }
 
             }
+            System.out.println("reading something");
 
             if(objChecker.getMyPlane()){
                 Main.airPlaneList = objChecker.getAllPlaneObj();
+<<<<<<< Updated upstream
 
                 try{
                     Platform.runLater(() -> {
@@ -115,18 +154,15 @@ public class ClientListenerThread implements Runnable {
                 }catch(Exception e){
                     e.printStackTrace();
                 }
+=======
+>>>>>>> Stashed changes
             }
 
             if(objChecker.getAllPlane()){
                 Main.allPlaneList = objChecker.getAllPlaneObj();
-                try{
-                    Platform.runLater(() -> {
-                        ((SchedulePageController) Main.controller.get(9)).loadPlanes();
-                    });
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
             }
+
+            refreshWindow();
         }
     }
 

@@ -36,7 +36,11 @@ public class TicketInfoController {
     }
 
     public boolean isBooked(int i){
+<<<<<<< Updated upstream
         return ((airPlane.getTicket()>>(i-1)) & 1)==1;
+=======
+        return (((airPlane.getTicket())>>(i-1)) & 1)==1;
+>>>>>>> Stashed changes
     }
 
     public void loadSeats() {
@@ -52,6 +56,9 @@ public class TicketInfoController {
             int col = (posInRow < 2) ? posInRow : posInRow + 1;
 
             if (isBooked(i)) {
+                System.out.println("Seat " + i + " is already booked");
+                System.out.println(Long.toBinaryString(airPlane.getTicket()));
+
                 seatBtn.setStyle("-fx-background-color: gray; -fx-text-fill: black;");
                 seatBtn.setDisable(true);
             } else {
@@ -78,7 +85,6 @@ public class TicketInfoController {
     }
 
     public void initialize() {
-        Main.obj.writerPush(new Command(-1, (new ArrayList<Integer>()).add(18)));
         Main.controller.put(60,this);
     }
 

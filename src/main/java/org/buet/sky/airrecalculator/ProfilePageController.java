@@ -57,15 +57,17 @@ public class ProfilePageController {
     @FXML
     public void initialize() {
         Main.controller.put(15,this);
-        List<Integer> req = new ArrayList<>(); req.add(18);
-        Main.obj.writerPush(new Command(-1,req));
+        loadData();
+    }
+
+    public void loadData(){
         profileName.setText(Main.company.getName());
         nameLabel.setText(Main.company.getName());
         idLabel.setText(Integer.toString(Main.company.getId()));
         if(Main.airPlaneList != null) cnt = Main.airPlaneList.size();
         else cnt = 0;
+        System.out.println("loading size");
         planeCountLabel.setText(Integer.toString(cnt));
-        return;
     }
 
     @FXML

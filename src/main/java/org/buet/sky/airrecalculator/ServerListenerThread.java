@@ -58,6 +58,7 @@ public class ServerListenerThread implements Runnable {
                 }
 
                 requireList = objectChecker.getRequireObj();
+                System.out.println(requireList);
                 for (Integer opt : requireList) {
                     Server.requireGraph.addEdge(opt, clientId);
                     System.out.println(opt);

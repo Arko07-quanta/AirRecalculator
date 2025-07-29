@@ -23,16 +23,17 @@ public class PlaneInfoController{
     private VBox cardContainer;
 
     public void initialize() {
-        profileName.setText(Main.company.getName());
         Main.controller.put(18, this);
-        List<Integer> list = new ArrayList<>();
-        list.add(18);
-        Main.obj.writerPush(new Command(-1, list));
+        loadData();
+    }
+
+    public void loadData(){
+        profileName.setText(Main.company.getName());
         refreshPlanes();
     }
 
     public void refreshPlanes() {
-        cardContainer.getChildren().clear(); // Clear existing cards
+        cardContainer.getChildren().clear();
 
         if (Main.airPlaneList != null) {
             for (AirPlane p : Main.airPlaneList) {

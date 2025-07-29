@@ -56,17 +56,17 @@ public class SchedulePageController {
 
     @FXML
     public void initialize(){
+        Main.controller.put(9,this);
+        loadData();
+    }
+
+    public void loadData(){
         if(Main.loginStatus){
             profileName.setText(Main.company.getName());
         }
         else{
             profileName.setText("Login");
         }
-
-
-        Main.controller.put(9,this);
-        List<Integer> req = new ArrayList<>(); req.add(9);
-        Main.obj.writerPush(new Command(-1,req));
         loadPlanes();
     }
 

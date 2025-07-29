@@ -45,6 +45,10 @@ public class MainPageController {
     }
 
     public void initialize(){
+
+        loadData();
+    }
+    public void loadData(){
         if(Main.loginStatus){
             loginProfile.setText(Main.company.getName());
         }
