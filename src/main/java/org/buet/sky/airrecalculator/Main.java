@@ -29,6 +29,7 @@ public class Main extends Application {
     public static List<City>  cityList;
     public static List<AirPlane> allPlaneList;
     public static List<Integer> req;
+    public static HashMap<String, String> hashCityMap = new HashMap<>();
 
 
     public static void showPopup(String msg, Alert.AlertType type) {
@@ -39,7 +40,7 @@ public class Main extends Application {
 
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(
-                TicketInfoController.class.getResource("/styles/alert-style.css").toExternalForm()
+                TicketInfoController.class.getResource("/style/MainPage.css").toExternalForm()
         );
 
         alert.showAndWait();

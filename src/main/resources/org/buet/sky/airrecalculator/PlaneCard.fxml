@@ -16,24 +16,39 @@
     </padding>
 
     <children>
-        <!-- Plane Name / Title -->
+        <!-- Plane Name -->
         <Label fx:id="planeName" styleClass="cardTitle" wrapText="true" />
 
-        <!-- Info Grid -->
+        <!-- Info Section -->
         <HBox spacing="30">
             <children>
+
+                <!-- Left Column: ID, Fuel, From, Cost & Available -->
                 <VBox spacing="6">
-                    <Label fx:id="planeId" styleClass="info" text="ID: " />
-                    <Label fx:id="fuel" styleClass="info" text="Fuel: " />
-                    <Label fx:id="departureAirport" styleClass="info" text="From: " />
-                    <Label fx:id="cost" styleClass="info" text="Cost: " />
+                    <children>
+                        <Label fx:id="planeId" styleClass="info" text="ID: " />
+                        <Label fx:id="fuel" styleClass="info" text="Fuel: " />
+                        <Label fx:id="departureAirport" styleClass="info" text="From: " />
+
+                        <!-- Cost + Available Tickets side by side -->
+                        <HBox spacing="8" alignment="CENTER_LEFT">
+                            <children>
+                                <Label fx:id="cost" styleClass="info" text="Cost: " />
+                            </children>
+                        </HBox>
+                    </children>
                 </VBox>
 
+                <!-- Right Column: To, Departure Time, Duration -->
                 <VBox spacing="6">
-                    <Label fx:id="destinationAirport" styleClass="info" text="To: " />
-                    <Label fx:id="departureTime" styleClass="info" text="Departs: " />
-                    <Label fx:id="flightTime" styleClass="info" text="Duration: " />
+                    <children>
+                        <Label fx:id="destinationAirport" styleClass="info" text="To: " />
+                        <Label fx:id="departureTime" styleClass="info" text="Departs: " />
+                        <Label fx:id="flightTime" styleClass="info" text="Duration: " />
+                        <Label fx:id="availableTickets" styleClass="info" text="Available: " />
+                    </children>
                 </VBox>
+
             </children>
         </HBox>
 
