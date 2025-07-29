@@ -24,16 +24,6 @@ public class RegistrationPageController {
 
 
     @FXML
-    public void showPopup(String msg) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(msg);
-        alert.showAndWait();
-    }
-
-
-    @FXML
     public void onCreateAccount(ActionEvent event) throws IOException {
         Main.serverStatus = false;
         String pass = regPass.getText();
@@ -42,11 +32,11 @@ public class RegistrationPageController {
         String mail = regMail.getText();
         String phone = regPhone.getText();
         if(pass.isEmpty() || passConfirm.isEmpty() || name.isEmpty() || mail.isEmpty() || phone.isEmpty()){
-            showPopup("Please fill all the fields");
+            Main.showPopup("Please fill all the fields",Alert.AlertType.INFORMATION);
             return;
         }
         if(!pass.equals(passConfirm)){
-            showPopup("Passwords do not match");
+            Main.showPopup("Passwords do not match",Alert.AlertType.ERROR);
             return;
         }
 
@@ -68,7 +58,7 @@ public class RegistrationPageController {
         }
 
         if(Main.company == null){
-            showPopup("Company Already Exists");
+            Main.showPopup("Company Already Exists",Alert.AlertType.INFORMATION);
             Main.serverStatus = false;
             regPass.clear();
             regConfirmPass.clear();
@@ -77,7 +67,7 @@ public class RegistrationPageController {
             regPhone.clear();
             return;
         }
-        showPopup("Successfully Created Company");
+        Main.showPopup("Successfully Created Company",Alert.AlertType.CONFIRMATION);
         regPass.clear();
         regConfirmPass.clear();
         regName.clear();

@@ -1,10 +1,7 @@
 package org.buet.sky.airrecalculator;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
@@ -74,7 +71,7 @@ public class AddPlaneController {
         seats = 1L << seats;
 
         if (name.isEmpty() || fuel == 0 || mileage == 0 || departureAirport == 0) {
-            Main.showPopup("Please fill all the fields");
+            Main.showPopup("Please fill all the fields", Alert.AlertType.INFORMATION);
             return;
         }
 
@@ -87,7 +84,7 @@ public class AddPlaneController {
         System.out.println(cmd.obj);
         Main.obj.writerPush(cmd);
 
-        Main.showPopup("Plane added successfully");
+        Main.showPopup("Plane added successfully", Alert.AlertType.CONFIRMATION);
     }
 
     @FXML

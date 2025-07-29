@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DialogPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -30,13 +31,20 @@ public class Main extends Application {
     public static List<Integer> req;
 
 
-    public static void showPopup(String msg) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Error");
+    public static void showPopup(String msg, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(type.name());
         alert.setHeaderText(null);
         alert.setContentText(msg);
+
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(
+                TicketInfoController.class.getResource("/styles/alert-style.css").toExternalForm()
+        );
+
         alert.showAndWait();
     }
+
 
 
     @Override

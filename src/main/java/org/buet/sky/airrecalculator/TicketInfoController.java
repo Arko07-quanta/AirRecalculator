@@ -91,25 +91,11 @@ public class TicketInfoController {
         Main.controller.put(60,this);
     }
 
-    private Optional<ButtonType> showConfirmation(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        return alert.showAndWait();
-    }
 
-    private void showAlert(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
 
     @FXML public void onBookTickets(ActionEvent event) throws IOException {
         if(selectedSeats.size() != 1){
-            showAlert("Booking Error", "Please select a single seat");
+            Main.showPopup("Please select a single seat",Alert.AlertType.INFORMATION);
             return;
         }
         for(AirPlane p : Main.allPlaneList){

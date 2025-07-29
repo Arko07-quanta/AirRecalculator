@@ -3,6 +3,7 @@ package org.buet.sky.airrecalculator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -46,7 +47,7 @@ public class LoginPageController {
         String pass = userPass.getText();
         Main.serverStatus = false;
         if(pass.isEmpty() || name.isEmpty()){
-            Main.showPopup("Please fill all the fields");
+            Main.showPopup("Please fill all the fields", Alert.AlertType.INFORMATION);
             return;
         }
         Company company = new Company(name,pass);
@@ -67,7 +68,7 @@ public class LoginPageController {
             profilePage.show();
         }
         else{
-            Main.showPopup("Invalid username or password");
+            Main.showPopup("Invalid username or password",Alert.AlertType.ERROR);
             Main.serverStatus = false;
         }
         return;

@@ -2,6 +2,7 @@ package org.buet.sky.airrecalculator;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.Node;
@@ -38,14 +39,14 @@ public class BookTicketController {
         String phoneNumber = phoneNumberField.getText();
         String creditCard = creditCardField.getText();
         if (passportId.isEmpty() || phoneNumber.isEmpty() || creditCard.isEmpty()) {
-            Main.showPopup("Please fill all the fields");
+            Main.showPopup("Please fill all the fields", Alert.AlertType.INFORMATION);
         }
         else{
             long x = airPlane.getTicket();
             x = x|((long)1<<(number-1));
             airPlane.setTicket(x);
             Main.obj.writerPush(new Command(8,airPlane));
-            Main.showPopup("Booking Successful");
+            Main.showPopup("Booking Successful",Alert.AlertType.CONFIRMATION);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.close();
         }

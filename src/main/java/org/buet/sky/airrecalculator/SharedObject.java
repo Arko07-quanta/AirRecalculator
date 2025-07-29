@@ -2,14 +2,16 @@ package org.buet.sky.airrecalculator;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class SharedObject{
-    public Queue<Command> reader, writer;
+    public BlockingQueue<Command> reader, writer;
     public Company account;
 
     SharedObject(){
-        reader = new LinkedList<Command>();
-        writer = new LinkedList<Command>();
+        reader = new LinkedBlockingQueue<>();
+        writer = new LinkedBlockingQueue<>();
     }
 
 
