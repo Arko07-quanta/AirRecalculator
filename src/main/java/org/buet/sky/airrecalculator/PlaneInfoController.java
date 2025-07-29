@@ -58,7 +58,8 @@ public class PlaneInfoController{
                             destinationAirport,
                             departureTime,
                             flightTime,
-                            cost
+                            cost,
+                            p
                     );
                     cardContainer.getChildren().add(card);
 

@@ -197,3 +197,31 @@
     -fx-background-color: white;
 }
 
+
+.ticket-root {
+    -fx-background-color: #f9f9f9;
+}
+
+.button {
+    -fx-font-size: 14px;
+    -fx-background-radius: 6;
+}
+
+.primary-button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.seat-button {
+    -fx-pref-width: 60px;
+    -fx-pref-height: 40px;
+    -fx-background-color: #e0e0e0;
+    -fx-font-weight: bold;
+}
+
+.booked-seat {
+    -fx-background-color: #d9534f;
+    -fx-text-fill: white;
+}
+

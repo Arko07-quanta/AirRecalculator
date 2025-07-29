@@ -102,7 +102,8 @@ public class SchedulePageController {
                             destinationAirport,
                             departureTime,
                             flightTime,
-                            cost
+                            cost,
+                            p
                     );
                     cardContainer.getChildren().add(card);
 
