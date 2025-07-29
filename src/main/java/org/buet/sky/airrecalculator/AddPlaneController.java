@@ -16,6 +16,7 @@ public class AddPlaneController {
     @FXML public TextField speedField;
     @FXML public TextField mileageField;
     @FXML public TextField departureAirportField;
+    @FXML public TextField seatCountField;
     @FXML private TextField planeNameField;
     @FXML private TextField fuelCapacityField;
 
@@ -41,6 +42,8 @@ public class AddPlaneController {
         double speed = Double.parseDouble(speedField.getText().trim());
         double mileage = Double.parseDouble(mileageField.getText().trim());
         int departureAirport = Integer.parseInt(departureAirportField.getText().trim());
+        long seatCount = Long.parseLong(seatCountField.getText().trim());
+        seatCount = ((long)1<<seatCount);
         if(name.isEmpty() || fuel==0 || mileage==0 || departureAirport==0) {
             Main.showPopup("Please fill all the fields");
         }
@@ -50,7 +53,7 @@ public class AddPlaneController {
 
         // add ticket count
 
-        AirPlane plane = new AirPlane(name, fuel, speed, departureAirport, companyId, mileage, 0);
+        AirPlane plane = new AirPlane(name, fuel, speed, departureAirport, companyId, mileage, seatCount);
         Command cmd = new Command(8,plane);
         System.out.println(cmd.obj);
         Main.obj.writerPush(cmd);

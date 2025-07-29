@@ -72,11 +72,15 @@
                     <Label styleClass="label" text="Mileage:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
                     <TextField fx:id="mileageField" promptText="Enter mileage" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-                    <Label styleClass="label" text="Departure Airport ID:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                    <TextField fx:id="departureAirportField" promptText="Enter airport ID" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                    <Label styleClass="label" text="Total Seat Count:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                    <TextField fx:id="seatCountField" promptText="Enter total seat count" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                    <Label styleClass="label" text="Departure Airport ID:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                    <TextField fx:id="departureAirportField" promptText="Enter airport ID" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                 </children>
 
                 <rowConstraints>
+                    <RowConstraints />
                     <RowConstraints />
                     <RowConstraints />
                     <RowConstraints />

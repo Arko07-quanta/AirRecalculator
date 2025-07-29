@@ -1,10 +1,15 @@
 package org.buet.sky.airrecalculator;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+
+import java.io.IOException;
 
 public class PlaneCardController {
     @FXML public Label cost;
+    @FXML public Button viewTicketsButton;
     @FXML private Label planeName;
     @FXML private Label planeId;
     @FXML private Label fuel;
@@ -22,5 +27,9 @@ public class PlaneCardController {
         departureTime.setText("Departure: " + depTime);
         flightTime.setText("Duration: " + flightDuration);
         cost.setText("Cost: " + cst);
+    }
+
+    public void onViewTickets(ActionEvent e) throws IOException {
+        return;
     }
 }
