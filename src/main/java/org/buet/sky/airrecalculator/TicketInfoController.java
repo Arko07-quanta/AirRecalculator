@@ -22,11 +22,13 @@ public class TicketInfoController {
     @FXML public GridPane seatGrid;
     @FXML public Button bookButton;
     private AirPlane airPlane;
+    private static String airPlaneName = "";
     public boolean status = true;
     Set<Integer> selectedSeats = new HashSet<>();
 
     public void setAirPlane(AirPlane airPlane) {
         this.airPlane = airPlane;
+        airPlaneName = airPlane.getName();
         loadSeats();
         System.out.println("Air Plane from ticketInfoController: " + airPlane);
     }
@@ -40,6 +42,11 @@ public class TicketInfoController {
     }
 
     public void loadSeats() {
+        for(AirPlane p: Main.allPlaneList){
+            if(p.getName().equals(airPlaneName)){
+                this.airPlane = p;
+            }
+        }
         seatGrid.getChildren().clear();
         if(!status) bookButton.setVisible(false);
         for (int i = 1; i <= getTotalSeats(); i++) {
@@ -104,6 +111,11 @@ public class TicketInfoController {
         if(selectedSeats.size() != 1){
             showAlert("Booking Error", "Please select a single seat");
             return;
+        }
+        for(AirPlane p : Main.allPlaneList){
+            if(p.getName().equals(airPlaneName)){
+                this.airPlane = p;
+            }
         }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("BookTicket.fxml"));
         Parent root = loader.load();

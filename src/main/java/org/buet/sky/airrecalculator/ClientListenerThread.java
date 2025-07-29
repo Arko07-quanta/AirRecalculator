@@ -56,6 +56,14 @@ public class ClientListenerThread implements Runnable {
             e.printStackTrace();
         }
 
+        try{
+            Platform.runLater(() -> {
+                ((TicketInfoController)Main.controller.get(60)).loadSeats();
+            });
+        }catch(Exception e){
+            System.out.println("Ticket refresh failed");
+        }
+
     }
 
 
