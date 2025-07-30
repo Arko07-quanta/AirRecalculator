@@ -22,6 +22,7 @@ public class ProfilePageController {
     @FXML public Button addPlaneButton;
     @FXML public Button logoutButton;
     @FXML public Button profileName;
+    @FXML Button profileChange;
     private int cnt;
 
     @FXML
@@ -68,6 +69,8 @@ public class ProfilePageController {
         else cnt = 0;
         System.out.println("loading size");
         planeCountLabel.setText(Integer.toString(cnt));
+        profileChange.setText("Change Profile");
+
     }
 
     @FXML

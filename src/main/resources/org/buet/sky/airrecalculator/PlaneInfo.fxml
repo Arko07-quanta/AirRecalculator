@@ -52,10 +52,8 @@
                         onAction="#onLoginPage"
                         prefWidth="100.0" prefHeight="40.0"
                         styleClass="navButton"/>
-                <Button text="Registration"
-                        onAction="#onRegistrationPage"
-                        prefWidth="100.0" prefHeight="40.0"
-                        styleClass="navButton"/>
+                <Button fx:id="profileChange" text="Registration" onAction="#onRegistrationPage" prefHeight="40.0" prefWidth="100.0" />
+
             </children>
         </HBox>
 

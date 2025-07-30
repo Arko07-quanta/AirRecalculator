@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 public class PlaneInfoController{
 
     @FXML public Button profileName;
+    @FXML Button profileChange;
     @FXML
     private VBox cardContainer;
 
@@ -30,6 +31,8 @@ public class PlaneInfoController{
     public void loadData(){
         profileName.setText(Main.company.getName());
         refreshPlanes();
+        profileChange.setText("Change Profile");
+
     }
 
     public void refreshPlanes() {

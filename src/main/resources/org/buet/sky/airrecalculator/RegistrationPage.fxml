@@ -32,7 +32,7 @@
                 <Button text="Schedule" prefHeight="40.0" prefWidth="100.0" mnemonicParsing="false" onAction="#onSchedulePage" />
                 <Button text="Request" prefHeight="40.0" prefWidth="100.0" mnemonicParsing="false" onAction="#onRequestPage" />
                 <Button fx:id="loginProfile" text="Login" prefHeight="40.0" prefWidth="100.0" mnemonicParsing="false" onAction="#onLoginPage" />
-                <Button text="Registration" prefHeight="40.0" prefWidth="100.0" mnemonicParsing="false" />
+                <Button fx:id="profileChange" text="Registration" prefHeight="40.0" prefWidth="100.0" />
             </children>
         </HBox>
 

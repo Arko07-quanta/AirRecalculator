@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -19,6 +20,8 @@ public class LoginPageController {
 
     @FXML public TextField userName;
     @FXML public PasswordField userPass;
+    @FXML Button profileChange;
+
 
     @FXML
     public void onMain(ActionEvent event) throws IOException {

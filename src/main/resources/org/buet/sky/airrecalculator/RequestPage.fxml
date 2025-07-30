@@ -37,7 +37,8 @@
                 <Button text="Schedule" prefHeight="40.0" prefWidth="100.0" mnemonicParsing="false" onAction="#onSchedulePage"/>
                 <Button text="Request" prefHeight="40.0" prefWidth="100.0" mnemonicParsing="false"/>
                 <Button fx:id="profileName" text="Login" prefHeight="40.0" prefWidth="100.0" mnemonicParsing="false" onAction="#onLoginPage"/>
-                <Button text="Registration" prefHeight="40.0" prefWidth="100.0" mnemonicParsing="false" onAction="#onRegistrationPage"/>
+                <Button fx:id="profileChange" text="Registration" onAction="#onRegistrationPage" prefHeight="40.0" prefWidth="100.0" />
+
             </children>
         </HBox>
 
@@ -70,16 +71,11 @@
                                 <!-- Single Toggle Button -->
                                 <Button fx:id="toggleButton" text="Time" prefWidth="100.0" prefHeight="30.0"
                                         styleClass="toggle-time" onAction="#onToggle"/>
-
                                 <!-- Main Request Button -->
-                                <Button fx:id="requestButton" text="Request" prefHeight="40.0" prefWidth="140.0"
-                                        mnemonicParsing="false" onAction="#onRequest"/>
+                                <Button text="Request" onAction="#onRequest" prefHeight="40.0" prefWidth="100.0" />
+
                             </children>
                         </HBox>
-
-
-
-
                     </children>
                 </VBox>
             </children>

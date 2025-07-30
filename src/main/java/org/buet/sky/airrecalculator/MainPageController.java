@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class MainPageController {
     @FXML public Button loginProfile;
+    @FXML Button profileChange;
 
     @FXML
     public void onRegistrationPage(ActionEvent event) throws IOException {
@@ -51,6 +52,8 @@ public class MainPageController {
     public void loadData(){
         if(Main.loginStatus){
             loginProfile.setText(Main.company.getName());
+            profileChange.setText("Change Profile");
+
         }
         else{
             loginProfile.setText("Login");

@@ -30,7 +30,7 @@
          <Button onAction="#onSchedulePage" prefHeight="40.0" prefWidth="100.0" styleClass="navButton" text="Schedule" />
          <Button onAction="#onRequestPage" prefHeight="40.0" prefWidth="100.0" styleClass="navButton" text="Request" />
          <Button fx:id="loginProfile" prefHeight="40.0" prefWidth="100.0" styleClass="navButton" text="Login" />
-         <Button onAction="#onRegistrationPage" prefHeight="40.0" prefWidth="100.0" styleClass="navButton" text="Registration" />
+         <Button fx:id="profileChange" text="Registration" onAction="#onRegistrationPage" prefHeight="40.0" prefWidth="100.0" />
       </children>
    </HBox>
 

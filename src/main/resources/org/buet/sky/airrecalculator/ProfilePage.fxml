@@ -36,7 +36,7 @@
                 <Button mnemonicParsing="false" onAction="#onSchedulePage" prefHeight="40.0" prefWidth="100.0" text="Schedule" />
                 <Button mnemonicParsing="false" onAction="#onRequestPage" prefHeight="40.0" prefWidth="100.0" text="Request" />
                 <Button fx:id="profileName" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Login" />
-                <Button mnemonicParsing="false" onAction="#onRegistrationPage" prefHeight="40.0" prefWidth="100.0" text="Registration" />
+                <Button fx:id="profileChange" text="Registration" onAction="#onRegistrationPage" prefHeight="40.0" prefWidth="100.0" />
             </children>
         </HBox>
 

@@ -10,6 +10,8 @@ import java.io.IOException;
 public class AddPlaneController {
 
     @FXML public Button profileName;
+    @FXML public Button profileChange;
+
     @FXML private TextField planeNameField;
 
     // Sliders and value labels
@@ -34,6 +36,9 @@ public class AddPlaneController {
         planeNameField.setEditable(false);
 
         profileName.setText(Main.company.getName());
+        profileChange.setText("Change Profile");
+
+
 
         fuelCapacityValue.textProperty().bind(
                 fuelCapacitySlider.valueProperty().asString("%.0f")

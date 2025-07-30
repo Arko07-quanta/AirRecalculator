@@ -39,7 +39,7 @@ public class Main extends Application {
 
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(
-                TicketInfoController.class.getResource("/styles/alert-style.css").toExternalForm()
+                TicketInfoController.class.getResource("/style/MainPage.css").toExternalForm()
         );
 
         alert.showAndWait();
@@ -71,6 +71,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("City Mapper");
         primaryStage.show();
+        //((CityMap)controller.get(30)).redrawMap(cityList);
     }
 
     public static void main(String[] args) {

@@ -24,6 +24,7 @@ public class RequestPageController {
     @FXML public ComboBox departureTime;
     @FXML public Button requestButton;
     @FXML public Button profileName;
+    @FXML Button profileChange;
     List<String> times = new ArrayList<>();
     HashMap<String,Integer> timeRef = new HashMap<>();
 
@@ -160,6 +161,7 @@ public class RequestPageController {
             return;
         }
         else{
+            profileChange.setText("Change Profile");
             companyNameLabel.setText(Main.company.getName());
             profileName.setText(Main.company.getName());
             enableEditing();

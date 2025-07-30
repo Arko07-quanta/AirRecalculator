@@ -21,6 +21,7 @@ public class RegistrationPageController {
     @FXML public PasswordField regConfirmPass;
     @FXML public Button createAccount;
     @FXML public Button loginProfile;
+    @FXML Button profileChange;
 
 
     @FXML
@@ -44,11 +45,12 @@ public class RegistrationPageController {
         Company newCompany = new Company(name, mail, phone, pass);
         if(Main.company != null) newCompany.setId(Main.company.getId());
         System.out.println("Company ID: " + newCompany.getId());
+        System.out.println(newCompany);
 
         Command cmd = new Command(1,newCompany);
         Main.obj.writerPush(cmd);
 
-
+        System.out.println("fucking thread");
         while(!Main.serverStatus){
             try{
                 Thread.sleep(10);
@@ -56,6 +58,9 @@ public class RegistrationPageController {
                 throw new RuntimeException(e);
             }
         }
+        System.out.println("fucked thread");
+
+
 
         if(Main.company == null){
             Main.showPopup("Company Already Exists",Alert.AlertType.INFORMATION);
@@ -67,6 +72,7 @@ public class RegistrationPageController {
             regPhone.clear();
             return;
         }
+        System.out.println("successful");
         Main.showPopup("Successfully Created Company",Alert.AlertType.CONFIRMATION);
         regPass.clear();
         regConfirmPass.clear();
@@ -118,9 +124,16 @@ public class RegistrationPageController {
     public void initialize(){
         if(Main.loginStatus){
             loginProfile.setText(Main.company.getName());
+            profileChange.setText("Change Profile");
+            System.out.println(Main.company);
+            regName.setText(Main.company.getName());
+            regMail.setText(Main.company.getEmail());
+            regPhone.setText(Main.company.getPhone());
+            regName.setEditable(false);
         }
         else{
             loginProfile.setText("Login");
+            regName.setEditable(true);
         }
     }
 

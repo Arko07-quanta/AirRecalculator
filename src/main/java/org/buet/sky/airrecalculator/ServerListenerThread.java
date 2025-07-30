@@ -50,7 +50,6 @@ public class ServerListenerThread implements Runnable {
                 obj.writerPush(new Command(50, null));
             }
 
-
             if(objectChecker.isRequire()) {
                 for (Integer opt : requireList) {
                     Server.requireGraph.removeEdge(opt, clientId);
@@ -74,6 +73,7 @@ public class ServerListenerThread implements Runnable {
                 Company company = objectChecker.getAccountObj();
                 if(DataBase.verify(company)){
                     Server.companyClient.addEdge(clientId, company.getId());
+                    company = DataBase.getCompanyById(company.getId());
                     obj.account = company;
                     obj.writerPush(new Command(0, company));
                 }else{
@@ -82,11 +82,9 @@ public class ServerListenerThread implements Runnable {
             }
 
 
-
             if(objectChecker.isSignUp()){
                 System.out.println("Client " + clientId + " sign up");
                 Company company = objectChecker.getAccountObj();
-
                 if(DataBase.validate(company)){
                     Server.companyClient.addEdge(clientId, company.getId());
                     DataBase.addCompany(company);

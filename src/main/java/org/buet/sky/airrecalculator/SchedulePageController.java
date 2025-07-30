@@ -19,6 +19,7 @@ import java.util.List;
 public class SchedulePageController {
     @FXML public Button profileName;
     @FXML public VBox cardContainer;
+    @FXML Button profileChange;
 
     @FXML
     public void onMain(ActionEvent event) throws IOException {
@@ -63,6 +64,7 @@ public class SchedulePageController {
     public void loadData(){
         if(Main.loginStatus){
             profileName.setText(Main.company.getName());
+            profileChange.setText("Change Profile");
         }
         else{
             profileName.setText("Login");
