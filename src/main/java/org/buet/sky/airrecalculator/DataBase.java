@@ -262,26 +262,26 @@ public class DataBase {
 
 
 
-    public synchronized static Company getCompanyById(int id){
-        String sql = "SELECT * FROM company WHERE id = ?";
-        try {
-            Connection conn = DriverManager.getConnection(DB_URL);
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
-            rs.next();
-            System.out.println(rs.getInt("id"));
+        public synchronized static Company getCompanyById(int id){
+            String sql = "SELECT * FROM Company WHERE id = ?";
+            try {
+                Connection conn = DriverManager.getConnection(DB_URL);
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                stmt.setInt(1, id);
+                ResultSet rs = stmt.executeQuery();
+                rs.next();
 
-            return new Company(
-                    rs.getInt("id"),
-                    rs.getString("name"),
-                    rs.getString("email"),
-                    rs.getString("phone"),
-                    rs.getString("password")
-            );
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+                return new Company(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("email"),
+                        rs.getString("phone"),
+                        rs.getString("password")
+                );
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
-    }
 
 
 

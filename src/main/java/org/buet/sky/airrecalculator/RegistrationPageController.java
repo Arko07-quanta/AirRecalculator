@@ -72,6 +72,7 @@ public class RegistrationPageController {
             regPhone.clear();
             return;
         }
+
         System.out.println("successful");
         Main.showPopup("Successfully Created Company",Alert.AlertType.CONFIRMATION);
         regPass.clear();

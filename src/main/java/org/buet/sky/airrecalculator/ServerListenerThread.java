@@ -74,6 +74,7 @@ public class ServerListenerThread implements Runnable {
                 if(DataBase.verify(company)){
                     Server.companyClient.addEdge(clientId, company.getId());
                     company = DataBase.getCompanyById(company.getId());
+                    System.out.println(company);
                     obj.account = company;
                     obj.writerPush(new Command(0, company));
                 }else{
