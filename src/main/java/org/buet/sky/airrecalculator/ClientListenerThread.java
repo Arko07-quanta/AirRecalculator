@@ -116,7 +116,7 @@ public class ClientListenerThread implements Runnable {
             if (objChecker.getAllCity()) {
                 Main.cityList = objChecker.getAllCityObj();
                 for (City city : Main.cityList) {
-                    Main.hashCityMap.put(Integer.toString(city.getId()), city.getName());
+                    Main.hashCityMap.put(city.getId(), city);
                 }
             }
 

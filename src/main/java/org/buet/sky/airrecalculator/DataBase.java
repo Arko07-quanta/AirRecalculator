@@ -303,11 +303,7 @@ public class DataBase {
         }
     }
 
-
-
-
     public synchronized static void modifyTicket(AirPlane airplane) {
-        System.out.println("modifying ticket");
         String sql = "UPDATE AirPlane SET  ticket = ? WHERE id = ?";
         try (Connection conn = DriverManager.getConnection(DB_URL);
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -327,8 +323,6 @@ public class DataBase {
 
 
     public synchronized static void modifyAirPlane(AirPlane airplane) {
-        System.out.println("modifying airplane");
-        System.out.println(airplane.getDepartureAirport());
 
         String sql = "UPDATE AirPlane SET  departureTime = ?, arrivalAirport = ?, flightTime = ?, cost = ?, departureAirport = ?, ticket = ?, timeEfficient=? WHERE id = ?";
         try (Connection conn = DriverManager.getConnection(DB_URL);

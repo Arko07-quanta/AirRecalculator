@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.canvas.Canvas?>
 <VBox fx:controller="org.buet.sky.airrecalculator.MainPageController"
       xmlns="http://javafx.com/javafx/24.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
@@ -42,4 +43,9 @@
       <!-- Placeholder for dynamic center content -->
       <AnchorPane fx:id="dynamicContentPane" VBox.vgrow="ALWAYS" />
    </children>
+
+   <Canvas fx:id="mapCanvas"
+           width="960" height="600"
+           style="-fx-border-color: #444444; -fx-background-color: #121212;"
+           VBox.vgrow="ALWAYS" />
 </VBox>

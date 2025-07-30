@@ -29,7 +29,7 @@ public class Main extends Application {
     public static List<City>  cityList;
     public static List<AirPlane> allPlaneList;
     public static List<Integer> req;
-    public static HashMap<String, String> hashCityMap = new HashMap<>();
+    public static HashMap<Integer, City> hashCityMap = new HashMap<>();
 
 
     public static void showPopup(String msg, Alert.AlertType type) {

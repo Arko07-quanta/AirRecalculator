@@ -34,8 +34,8 @@ public class PlaneCardController {
         planeName.setText(name);
         planeId.setText("ID: " + id);
         fuel.setText("Fuel: " + fuelVal);
-        departureAirport.setText("From: " + Main.hashCityMap.get(dep));
-        destinationAirport.setText("To: " + Main.hashCityMap.get(dest));
+        departureAirport.setText("From: " + Main.hashCityMap.get(dep).getName());
+        destinationAirport.setText("To: " + Main.hashCityMap.get(dest).getName());
         departureTime.setText("Departure: " + depTime + " M");
         flightTime.setText("Duration: " + flightDuration + " M");
         cost.setText("Cost: " + cst + "$");
