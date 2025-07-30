@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -108,7 +109,10 @@ public class TicketInfoController {
         BookTicketController controller = loader.getController();
         controller.setAtrributes(airPlane,selectedSeats.iterator().next());
         Stage stage = new Stage();
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/logo.png")));
+        stage.setResizable(false);
         stage.setTitle("Ticket Confirmation");
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/logo.png")));
         stage.setScene(new Scene(root));
         stage.show();
         if(!stage.isShowing()){

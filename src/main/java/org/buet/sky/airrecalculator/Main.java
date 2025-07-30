@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DialogPane;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -70,7 +71,9 @@ public class Main extends Application {
 
         Parent root = (new FXMLLoader(HelloApplication.class.getResource("MainPage.fxml"))).load();
         primaryStage.setScene(new Scene(root));
-        primaryStage.setTitle("City Mapper");
+        primaryStage.setTitle("Air Recalulator");
+        primaryStage.setResizable(false);
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/logo.png")));
         primaryStage.show();
         //((CityMap)controller.get(30)).redrawMap(cityList);
     }

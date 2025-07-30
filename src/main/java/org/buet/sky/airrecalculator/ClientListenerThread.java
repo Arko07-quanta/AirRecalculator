@@ -82,6 +82,7 @@ public class ClientListenerThread implements Runnable {
 
                 Platform.runLater(() -> {
                     Stage stage = new Stage();
+                    stage.setResizable(false);
                     try {
                         Parent root = FXMLLoader.load(getClass().getResource("CityMap.fxml"));
                         stage.setScene(new Scene(root));

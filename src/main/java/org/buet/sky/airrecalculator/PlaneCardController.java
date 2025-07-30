@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -73,6 +74,8 @@ public class PlaneCardController {
 
     public void onViewTickets(ActionEvent e) throws IOException {
         Stage newStage = new Stage();
+        newStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/logo.png")));
+        newStage.setResizable(false);
         TicketInfo ticketInfo = new TicketInfo(newStage, airPlane);
         ticketInfo.status = this.status;
         ticketInfo.show();
