@@ -34,8 +34,33 @@ public class PlaneCardController {
         planeName.setText(name);
         planeId.setText("ID: " + id);
         fuel.setText("Fuel: " + fuelVal);
-        departureAirport.setText("From: " + Main.hashCityMap.get(dep).getName());
-        destinationAirport.setText("To: " + Main.hashCityMap.get(dest).getName());
+        try {
+            int depId = Integer.parseInt(dep);
+            City city = Main.hashCityMap.get(depId);
+
+            if (city != null && city.getName() != null) {
+                departureAirport.setText("From: " + city.getName());
+            } else {
+                departureAirport.setText("From: N/A");
+            }
+        } catch (NumberFormatException e) {
+            departureAirport.setText("From: Invalid ID");
+            System.err.println("Failed to parse dep: " + dep);
+        }
+        try {
+            int destId = Integer.parseInt(dest);
+            City city = Main.hashCityMap.get(destId);
+
+            if (city != null && city.getName() != null) {
+                destinationAirport.setText("To: " + city.getName());
+            } else {
+                destinationAirport.setText("To: N/A");
+            }
+        } catch (NumberFormatException e) {
+            departureAirport.setText("To: Invalid ID");
+            System.err.println("Failed to parse dest: " + dest);
+        }
+
         departureTime.setText("Departure: " + depTime + " M");
         flightTime.setText("Duration: " + flightDuration + " M");
         cost.setText("Cost: " + cst + "$");
