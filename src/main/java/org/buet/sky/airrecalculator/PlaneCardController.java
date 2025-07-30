@@ -75,6 +75,7 @@ public class PlaneCardController {
     public void onViewTickets(ActionEvent e) throws IOException {
         Stage newStage = new Stage();
         newStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/logo.png")));
+        newStage.setTitle("Book Ticket");
         newStage.setResizable(false);
         TicketInfo ticketInfo = new TicketInfo(newStage, airPlane);
         ticketInfo.status = this.status;
