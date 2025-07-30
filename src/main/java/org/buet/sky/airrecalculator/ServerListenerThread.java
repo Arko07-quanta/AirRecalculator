@@ -85,9 +85,16 @@ public class ServerListenerThread implements Runnable {
                 System.out.println("Client " + clientId + " sign up");
                 Company company = objectChecker.getAccountObj();
                 if(DataBase.validate(company)){
-                    Server.companyClient.addEdge(clientId, company.getId());
+
+
+
+
+
+
                     DataBase.addCompany(company);
                     obj.account = company;
+                    Server.companyClient.addEdge(clientId, company.getId());
+
                     obj.writerPush(new Command(0, company));
                 }else{
                     obj.writerPush(new Command(0, null));
@@ -96,7 +103,8 @@ public class ServerListenerThread implements Runnable {
 
 
             if(objectChecker.addCity()){
-                DataBase.addCity(objectChecker.getCityObj());
+                if(obj.account.getName().equals("admin"))
+                    DataBase.addCity(objectChecker.getCityObj());
             }
 
 

@@ -172,7 +172,6 @@ public class DataBase {
         executeWithRetry(new DatabaseOperation<Void>() {
             @Override
             public Void execute() throws SQLException {
-                System.out.println(company);
                 try (Connection conn = getConnection();
                      PreparedStatement stmt = conn.prepareStatement("INSERT INTO company (name, email, phone, password) VALUES (?, ?, ?, ?)")) {
                     stmt.setString(1, company.getName());
@@ -180,7 +179,6 @@ public class DataBase {
                     stmt.setString(3, company.getPhone());
                     stmt.setString(4, company.getPassword());
                     stmt.executeUpdate();
-                    company.setId(getCompanyId(company));
                     Server.dataBaseListener.writerPush(new Command(1, null));
                 }
                 return null;
